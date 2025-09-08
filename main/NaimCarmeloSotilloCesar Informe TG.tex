@@ -8,13 +8,16 @@
 \linespread{1.5}
 \usepackage{tabularx}
 \usepackage[nottoc]{tocbibind}
-\usepackage[colorlinks=true, linkcolor=black, citecolor=black]{hyperref}
+\usepackage[colorlinks=true, linkcolor=black, citecolor=black, urlcolor=black]{hyperref}
 \usepackage{apacite}
 \bibliographystyle{apacite}
 \setlength\extrarowheight{2pt}
 \usepackage{longtable}
 \usepackage{ltablex}
 \usepackage{booktabs}
+\usepackage{titlesec}
+
+\titlespacing{\chapter}{0pt}{0pt}{40pt}
 
 % Formato para evitar la separación de palabras 
 \tolerance=1
@@ -43,14 +46,25 @@
 \usepackage{enumitem}
 \renewcommand{\labelitemi}{$\bullet$}
 \setlength{\parindent}{0.4in}
-\setlist[itemize,1]{leftmargin=0.55in}
+\setlist[itemize,1]{leftmargin=0.35in}
 \setlist[itemize]{leftmargin=0.2in}
 
 % Formato de la tabla de contenido
 \usepackage{tocloft}
-\setlocalecaption{spanish}{contents}{Índice de Contenido}
+\addto\captionsspanish{
+  \renewcommand{\contentsname}{Índice de Contenido}
+  \renewcommand{\listfigurename}{Índice de Figuras}
+  \renewcommand{\listtablename}{Índice de Tablas}
+}
 \renewcommand{\cfttoctitlefont}{\hfill\normalsize\bfseries}
 \renewcommand{\cftaftertoctitle}{\hfill}
+\renewcommand{\cftloftitlefont}{\hfill\normalsize\bfseries}
+\renewcommand{\cftafterloftitle}{\hfill}
+\renewcommand{\cftlottitlefont}{\hfill\normalsize\bfseries}
+\renewcommand{\cftafterlottitle}{\hfill}
+\setlength{\cftbeforetoctitleskip}{-20pt}
+\setlength{\cftbeforeloftitleskip}{-20pt}
+\setlength{\cftbeforelottitleskip}{-20pt}
 \setcounter{secnumdepth}{4}
 \setcounter{tocdepth}{4}
 
@@ -69,18 +83,17 @@
 
 % Formato de los diferentes niveles de secciones
 \newcommand{\upper}[1]{\uppercase{#1}}
-\newcommand{\adddot}[1]{#1.}
 \usepackage{titlesec}
 \titleformat{\chapter}
 {\normalfont\fontsize{12}{15}\bfseries\centering}{\upper{Capítulo \thechapter}.}{0.3em}{\bigbreak\upper}[\thispagestyle{empty}]
 \titleformat{\section}
 {\normalfont\fontsize{12}{15}\bfseries}{\thesection}{1em}{}
 \titleformat{\subsection}
-{\normalfont\fontsize{12}{15}\bfseries\narrower}{\thesubsection}{1em}{\adddot}
+{\normalfont\fontsize{12}{15}\bfseries\narrower}{\thesubsection}{1em}{}
 \titleformat{\subsubsection}
-{\normalfont\fontsize{12}{15}\bfseries\itshape\narrower}{\thesubsubsection}{1em}{\adddot}
+{\normalfont\fontsize{12}{15}\bfseries\itshape\narrower}{\thesubsubsection}{1em}{}
 \titleformat{\paragraph}
-{\normalfont\fontsize{12}{15}\itshape\narrower}{\theparagraph}{1em}{\adddot}
+{\normalfont\fontsize{12}{15}\itshape\narrower}{\theparagraph}{1em}{}
 
 % Comandos para crear secciones no numeradas con entrada en el índice
 \newcommand{\usection}[1]{
@@ -108,11 +121,20 @@
 
 \pagenumbering{gobble}
 \input{prelude/_index}
-\input{content/introduction}
+
 \clearpage
 
 \pagestyle{prelude}
 \tableofcontents
+\clearpage
+\listoftables
+\clearpage
+\listoffigures
+\clearpage
+
+\input{prelude/4.abstract}
+
+\input{content/introduction}
 \clearpage
 
 \pagestyle{plain}

@@ -1,3 +1,1009 @@
 \begin{thebibliography}{}
 
+\bibitem [\protect \citeauthoryear {%
+{Alpha Cephei}%
+}{%
+{Alpha Cephei}%
+}{%
+{\protect \APACyear {2024}}%
+}]{%
+alpha_cephei_vosk_2024}
+\APACinsertmetastar {%
+alpha_cephei_vosk_2024}%
+\begin{APACrefauthors}%
+{Alpha Cephei}.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2024}{}{}.
+\newblock
+\APACrefbtitle {Vosk models.} {Vosk models.}
+\newblock
+\begin{APACrefURL} [{2025-09-08}]\url{https://alphacephei.com/vosk/models}
+  \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+{Apple}%
+}{%
+{Apple}%
+}{%
+{\protect \APACyear {2023}}%
+}]{%
+apple_use_2023}
+\APACinsertmetastar {%
+apple_use_2023}%
+\begin{APACrefauthors}%
+{Apple}.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2023}{}{}.
+\newblock
+\APACrefbtitle {Use Fall Detection with Apple Watch.} {Use fall detection with
+  apple watch.}
+\newblock
+\begin{APACrefURL} [{2025-09-08}]\url{https://support.apple.com/en-us/108896}
+  \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+{Asamblea Nacional Constituyente}%
+}{%
+{Asamblea Nacional Constituyente}%
+}{%
+{\protect \APACyear {1999}}%
+}]{%
+asamblea_nacional_constituyente_constitucion_1999}
+\APACinsertmetastar {%
+asamblea_nacional_constituyente_constitucion_1999}%
+\begin{APACrefauthors}%
+{Asamblea Nacional Constituyente}.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1999}{}{}.
+\newblock
+\APACrefbtitle {Constitución de la República Bolivariana de Venezuela.}
+  {Constitución de la república bolivariana de venezuela.}
+\newblock
+\begin{APACrefURL}
+  [{2025-09-08}]\url{https://www.oas.org/dil/esp/constitucion_venezuela.pdf}
+  \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Bobadilla~Osses%
+}{%
+Bobadilla~Osses%
+}{%
+{\protect \APACyear {2010}}%
+}]{%
+bobadilla_cadenas_2010}
+\APACinsertmetastar {%
+bobadilla_cadenas_2010}%
+\begin{APACrefauthors}%
+Bobadilla~Osses, A.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2010}{}{}.
+\newblock
+\APACrefbtitle {Cadenas de Markov.} {Cadenas de markov.}
+\newblock
+\begin{APACrefURL}
+  [{2025-09-08}]\url{https://repositoriobibliotecas.uv.cl/serveruv/api/core/bitstreams/f4406bb7-5f33-4a41-8333-7d822360a0ed/content}
+  \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Boehm%
+}{%
+Boehm%
+}{%
+{\protect \APACyear {1988}}%
+}]{%
+boehm_spiral_1988}
+\APACinsertmetastar {%
+boehm_spiral_1988}%
+\begin{APACrefauthors}%
+Boehm, B.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1988}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {A spiral model of software development and enhancement}
+  {A spiral model of software development and enhancement}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{ACM SIGSOFT Software Engineering Notes}{11}{4}{14--24}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Carmona%
+}{%
+Carmona%
+}{%
+{\protect \APACyear {2024}}%
+}]{%
+carmona_enchufe_2024}
+\APACinsertmetastar {%
+carmona_enchufe_2024}%
+\begin{APACrefauthors}%
+Carmona, J\BPBI A.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2024}{}{}.
+\newblock
+\APACrefbtitle {Un “enchufe” WiFi que avisa de caídas en casa. Este es el
+  innovador invento que quiere ayudar a los mayores.} {Un “enchufe” wifi
+  que avisa de caídas en casa. este es el innovador invento que quiere ayudar
+  a los mayores.}
+\newblock
+\begin{APACrefURL}
+  [{2025-09-08}]\url{https://www.xatakahome.com/seguridad-en-el-hogar/enchufe-wifi-que-avisa-caidas-casa-este-innovador-invento-que-quiere-ayudar-a-mayores}
+  \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+{Comisión Venezolana de Normas Industriales (COVENIN)}%
+}{%
+{Comisión Venezolana de Normas Industriales (COVENIN)}%
+}{%
+{\protect \APACyear {2005}}%
+}]{%
+covenin_norma_2005}
+\APACinsertmetastar {%
+covenin_norma_2005}%
+\begin{APACrefauthors}%
+{Comisión Venezolana de Normas Industriales (COVENIN)}.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2005}{}{}.
+\newblock
+\APACrefbtitle {Norma COVENIN 2500-1: Sistemas electrónicos de seguridad –
+  Requisitos generales.} {Norma covenin 2500-1: Sistemas electrónicos de
+  seguridad – requisitos generales.}
+\newblock
+\begin{APACrefURL}
+  [{2025-09-08}]\url{https://www.medicinalaboraldevenezuela.com.ve/normas_covenin.html}
+  \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Doluí%
+\ \BBA {} Kanti~Datta%
+}{%
+Doluí%
+\ \BBA {} Kanti~Datta%
+}{%
+{\protect \APACyear {2017}}%
+}]{%
+dolui_comparison_2017}
+\APACinsertmetastar {%
+dolui_comparison_2017}%
+\begin{APACrefauthors}%
+Doluí, K.%
+\BCBT {}\ \BBA {} Kanti~Datta, S.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2017}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Comparison of Edge Computing implementations: Fog
+  computing, cloudlet and mobile Edge Computing} {Comparison of edge computing
+  implementations: Fog computing, cloudlet and mobile edge computing}.{\BBCQ}
+\newblock
+\BIn{} \APACrefbtitle {Global Internet of Things Summit (GloTS).} {Global
+  internet of things summit (glots).}
+\newblock
+\begin{APACrefDOI} \doi{10.1109/giots.2017.8016213} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Dubs%
+}{%
+Dubs%
+}{%
+{\protect \APACyear {2004}}%
+}]{%
+dubs_estrategia_2004}
+\APACinsertmetastar {%
+dubs_estrategia_2004}%
+\begin{APACrefauthors}%
+Dubs, R.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2004}{}{}.
+\newblock
+\APACrefbtitle {Una Estrategia Metodológica para el Proyecto Factible.} {Una
+  estrategia metodológica para el proyecto factible.}
+\newblock
+\begin{APACrefURL}
+  [{2025-09-08}]\url{https://historico.upel.edu.ve:81/revistas/index.php/entretemas/article/download/1032/363}
+  \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+García%
+, Molina%
+\BCBL {}\ \BBA {} Berlanga%
+}{%
+García%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2018}}%
+}]{%
+garcia_ciencia_2018}
+\APACinsertmetastar {%
+garcia_ciencia_2018}%
+\begin{APACrefauthors}%
+García, J.%
+, Molina, J.%
+\BCBL {}\ \BBA {} Berlanga, A.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{2018}.
+\newblock
+\APACrefbtitle {Ciencia de Datos: Técnicas Analíticas y Aprendizaje
+  Estadístico en un Enfoque Práctico} {Ciencia de datos: Técnicas
+  analíticas y aprendizaje estadístico en un enfoque práctico}.
+\newblock
+\APACaddressPublisher{}{Alfaomega}.
+\newblock
+\begin{APACrefURL}
+  \url{https://d1wqtxts1xzle7.cloudfront.net/64031156/Ciencia_de_datos_2018-libre.pdf}
+  \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Goldsborough%
+}{%
+Goldsborough%
+}{%
+{\protect \APACyear {2016}}%
+}]{%
+goldsborough_tour_2016}
+\APACinsertmetastar {%
+goldsborough_tour_2016}%
+\begin{APACrefauthors}%
+Goldsborough, P.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2016}{}{}.
+\newblock
+\APACrefbtitle {A Tour of TensorFlow, Proseminar Data Mining.} {A tour of
+  tensorflow, proseminar data mining.}
+\newblock
+\begin{APACrefURL} [{2025-09-08}]\url{https://arxiv.org/pdf/1610.01178}
+  \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Hernández%
+, Fernández%
+\BCBL {}\ \BBA {} Baptista%
+}{%
+Hernández%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2014}}%
+}]{%
+hernandez_metodologia_2014}
+\APACinsertmetastar {%
+hernandez_metodologia_2014}%
+\begin{APACrefauthors}%
+Hernández, R.%
+, Fernández, C.%
+\BCBL {}\ \BBA {} Baptista, P.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{2014}.
+\newblock
+\APACrefbtitle {Metodología de la investigación} {Metodología de la
+  investigación}\ (\PrintOrdinal{6}\ \BEd).
+\newblock
+\APACaddressPublisher{}{McGraw-Hill}.
+\newblock
+\begin{APACrefURL}
+  \url{https://www.esup.edu.pe/wp-content/uploads/2020/12/2.%20Hernandez,%20Fernandez%20y%20Baptista-Metodología%20Investigacion%20Cientifica%206ta%20ed.pdf}
+  \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Hurtado%
+}{%
+Hurtado%
+}{%
+{\protect \APACyear {2000}}%
+}]{%
+hurtado_metodologia_2000}
+\APACinsertmetastar {%
+hurtado_metodologia_2000}%
+\begin{APACrefauthors}%
+Hurtado, J.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2000}{}{}.
+\newblock
+\APACrefbtitle {Metodología de la investigación Holística.} {Metodología de
+  la investigación holística.}
+\newblock
+\begin{APACrefURL}
+  [{2025-09-08}]\url{https://ayudacontextos.wordpress.com/wp-content/uploads/2018/04/jacqueline-hurtado-de-barrera-metodologia-de-investigacion-holistica.pdf}
+  \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Hyndman%
+\ \BBA {} Athanasopoulos%
+}{%
+Hyndman%
+\ \BBA {} Athanasopoulos%
+}{%
+{\protect \APACyear {2018}}%
+}]{%
+hyndman_forecasting_2018}
+\APACinsertmetastar {%
+hyndman_forecasting_2018}%
+\begin{APACrefauthors}%
+Hyndman, R\BPBI J.%
+\BCBT {}\ \BBA {} Athanasopoulos, G.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{2018}.
+\newblock
+\APACrefbtitle {Forecasting: Principles and Practice} {Forecasting: Principles
+  and practice}\ (\PrintOrdinal{2}\ \BEd).
+\newblock
+\APACaddressPublisher{}{OTexts}.
+\newblock
+\begin{APACrefURL} \url{https://otexts.com/fpp2/} \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Igba%
+, Alemzadeh%
+, Durugbo%
+\BCBL {}\ \BBA {} Eiriksson%
+}{%
+Igba%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2016}}%
+}]{%
+igba_analysing_2016}
+\APACinsertmetastar {%
+igba_analysing_2016}%
+\begin{APACrefauthors}%
+Igba, J.%
+, Alemzadeh, K.%
+, Durugbo, C.%
+\BCBL {}\ \BBA {} Eiriksson, E\BPBI T.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2016}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Analysing RMS and peak values of vibration signals for
+  condition monitoring of wind turbine gearboxes} {Analysing rms and peak
+  values of vibration signals for condition monitoring of wind turbine
+  gearboxes}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Renewable Energy}{91}{}{90--106}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+{Kaggle}%
+}{%
+{Kaggle}%
+}{%
+{\protect \APACyear {2024}}%
+}]{%
+kaggle_yamnet_2024}
+\APACinsertmetastar {%
+kaggle_yamnet_2024}%
+\begin{APACrefauthors}%
+{Kaggle}.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2024}{}{}.
+\newblock
+\APACrefbtitle {YAMNet.} {Yamnet.}
+\newblock
+\begin{APACrefURL}
+  [{2025-09-08}]\url{https://www.kaggle.com/models/google/yamnet}
+  \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Malmberg%
+\ \BBA {} Radszuweit%
+}{%
+Malmberg%
+\ \BBA {} Radszuweit%
+}{%
+{\protect \APACyear {2021}}%
+}]{%
+malmberg_real-time_2021}
+\APACinsertmetastar {%
+malmberg_real-time_2021}%
+\begin{APACrefauthors}%
+Malmberg, C.%
+\BCBT {}\ \BBA {} Radszuweit, D.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2021}{}{}.
+\newblock
+\APACrefbtitle {Real-time Audio Classification on an Edge Device - Using YAMNet
+  and TensorFlow Lite.} {Real-time audio classification on an edge device -
+  using yamnet and tensorflow lite.}
+\newblock
+\begin{APACrefURL}
+  [{2025-09-08}]\url{https://www.diva-portal.org/smash/record.jsf?pid=diva2%3A1605037&dswid=6895}
+  \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Matas~Soberón%
+}{%
+Matas~Soberón%
+}{%
+{\protect \APACyear {2024}}%
+}]{%
+matas_introduccion_2024}
+\APACinsertmetastar {%
+matas_introduccion_2024}%
+\begin{APACrefauthors}%
+Matas~Soberón, J\BPBI J.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2024}{}{}.
+\newblock
+\APACrefbtitle {Una Introducción a las Cadenas de Markov y sus Aplicaciones.}
+  {Una introducción a las cadenas de markov y sus aplicaciones.}
+\newblock
+\begin{APACrefURL}
+  [{2025-09-08}]\url{https://dspace.uib.es/xmlui/bitstream/handle/11201/151803/Memoria_EPSU0697.pdf?sequence=1&isAllowed=y}
+  \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Medina%
+}{%
+Medina%
+}{%
+{\protect \APACyear {2019}}%
+}]{%
+medina_edge_2019}
+\APACinsertmetastar {%
+medina_edge_2019}%
+\begin{APACrefauthors}%
+Medina, M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2019}{}{}.
+\newblock
+\APACrefbtitle {Edge Computing para IoT.} {Edge computing para iot.}
+\newblock
+\APAChowpublished
+  {\url{https://openaccess.uoc.edu/bitstream/10609/91207/7/mmedinabarTFM0119memoria.pdf}}.
+\newblock
+\APACrefnote{Accessed: 2025-09-08}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Mondragón%
+, Pérez-Meana%
+, Calderón%
+\BCBL {}\ \BBA {} Jiménez%
+}{%
+Mondragón%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2021}}%
+}]{%
+mondragon_clasificacion_2021}
+\APACinsertmetastar {%
+mondragon_clasificacion_2021}%
+\begin{APACrefauthors}%
+Mondragón, F\BPBI J.%
+, Pérez-Meana, H\BPBI M.%
+, Calderón, G.%
+\BCBL {}\ \BBA {} Jiménez, J.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2021}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Clasificación de sonidos ambientales usando la
+  transformada wavelet continúa y redes neuronales convolucionales}
+  {Clasificación de sonidos ambientales usando la transformada wavelet
+  continúa y redes neuronales convolucionales}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Información Tecnológica}{32}{2}{61--78}.
+\newblock
+\begin{APACrefDOI} \doi{10.4067/S0718-07642021000200061} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+{Naciones Unidas}%
+}{%
+{Naciones Unidas}%
+}{%
+{\protect \APACyear {2015}}%
+}]{%
+naciones_unidas_transformar_2015}
+\APACinsertmetastar {%
+naciones_unidas_transformar_2015}%
+\begin{APACrefauthors}%
+{Naciones Unidas}.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2015}{}{}.
+\newblock
+\APACrefbtitle {Transformar nuestro mundo: la Agenda 2030 para el Desarrollo
+  Sostenible.} {Transformar nuestro mundo: la agenda 2030 para el desarrollo
+  sostenible.}
+\newblock
+\begin{APACrefURL}
+  [{2025-09-08}]\url{https://www.un.org/sustainabledevelopment/es/}
+  \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+{Naciones Unidas}%
+}{%
+{Naciones Unidas}%
+}{%
+{\protect \APACyear {2022}}%
+}]{%
+naciones_unidas_envejecimiento_2022}
+\APACinsertmetastar {%
+naciones_unidas_envejecimiento_2022}%
+\begin{APACrefauthors}%
+{Naciones Unidas}.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2022}{}{}.
+\newblock
+\APACrefbtitle {Envejecimiento.} {Envejecimiento.}
+\newblock
+\begin{APACrefURL}
+  [{2025-09-08}]\url{https://www.un.org/es/global-issues/ageing}
+  \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Pressman%
+}{%
+Pressman%
+}{%
+{\protect \APACyear {2010}}%
+}]{%
+pressman_ingenieria_2010}
+\APACinsertmetastar {%
+pressman_ingenieria_2010}%
+\begin{APACrefauthors}%
+Pressman, R.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{2010}.
+\newblock
+\APACrefbtitle {Ingeniería del software: Un enfoque práctico} {Ingeniería
+  del software: Un enfoque práctico}\ (\PrintOrdinal{7}\ \BEd).
+\newblock
+\APACaddressPublisher{}{McGraw-Hill}.
+\newblock
+\begin{APACrefURL}
+  \url{https://www.academia.edu/87171392/Ingeniería_de_software_enfoque_practico_Roger_Pressman_7ma_edición}
+  \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Provost%
+\ \BBA {} Fawcett%
+}{%
+Provost%
+\ \BBA {} Fawcett%
+}{%
+{\protect \APACyear {2013}}%
+}]{%
+provost_data_2013}
+\APACinsertmetastar {%
+provost_data_2013}%
+\begin{APACrefauthors}%
+Provost, F.%
+\BCBT {}\ \BBA {} Fawcett, T.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{2013}.
+\newblock
+\APACrefbtitle {Data Science for Business: What You Need to Know about Data
+  Mining and Data-Analytic Thinking} {Data science for business: What you need
+  to know about data mining and data-analytic thinking}.
+\newblock
+\APACaddressPublisher{}{O'Reilly Media}.
+\newblock
+\begin{APACrefURL}
+  \url{https://www.researchgate.net/publication/256438799_Data_Science_for_Business}
+  \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Ralla%
+}{%
+Ralla%
+}{%
+{\protect \APACyear {2024}}%
+}]{%
+ralla_hallan_2024}
+\APACinsertmetastar {%
+ralla_hallan_2024}%
+\begin{APACrefauthors}%
+Ralla, E.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2024}{}{}.
+\newblock
+\APACrefbtitle {Hallan el cadáver en Zaragoza de un hombre que llevaba muerto
+  varios días en su casa.} {Hallan el cadáver en zaragoza de un hombre que
+  llevaba muerto varios días en su casa.}
+\newblock
+\begin{APACrefURL}
+  [{2025-09-08}]\url{https://www.heraldo.es/noticias/aragon/zaragoza/2024/03/22/encuentran-cadaver-zaragoza-hombre-muerto-varios-dias-casa-1720901.html}
+  \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+{República Bolivariana de Venezuela}%
+}{%
+{República Bolivariana de Venezuela}%
+}{%
+{\protect \APACyear {2001}}%
+{\protect \APACexlab {{\protect \BCnt {1}}}}}]{%
+republica_bolivariana_venezuela_ley_mensajes_2001}
+\APACinsertmetastar {%
+republica_bolivariana_venezuela_ley_mensajes_2001}%
+\begin{APACrefauthors}%
+{República Bolivariana de Venezuela}.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2001{\protect \BCnt {1}}}{}{}.
+\newblock
+\APACrefbtitle {Ley de Mensajes de Datos y Firmas Electrónicas.} {Ley de
+  mensajes de datos y firmas electrónicas.}
+\newblock
+\begin{APACrefURL}
+  [{2025-09-08}]\url{https://www.oas.org/juridico/spanish/mesicic3_ven_anexo19.pdf}
+  \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+{República Bolivariana de Venezuela}%
+}{%
+{República Bolivariana de Venezuela}%
+}{%
+{\protect \APACyear {2001}}%
+{\protect \APACexlab {{\protect \BCnt {2}}}}}]{%
+republica_bolivariana_venezuela_ley_2001}
+\APACinsertmetastar {%
+republica_bolivariana_venezuela_ley_2001}%
+\begin{APACrefauthors}%
+{República Bolivariana de Venezuela}.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2001{\protect \BCnt {2}}}{}{}.
+\newblock
+\APACrefbtitle {Ley Especial contra Delitos Informáticos.} {Ley especial
+  contra delitos informáticos.}
+\newblock
+\begin{APACrefURL}
+  [{2025-09-08}]\url{https://www.oas.org/juridico/spanish/mesicic3_ven_anexo18.pdf}
+  \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+{República Bolivariana de Venezuela}%
+}{%
+{República Bolivariana de Venezuela}%
+}{%
+{\protect \APACyear {2010}}%
+}]{%
+republica_bolivariana_venezuela_ley_organica_2010}
+\APACinsertmetastar {%
+republica_bolivariana_venezuela_ley_organica_2010}%
+\begin{APACrefauthors}%
+{República Bolivariana de Venezuela}.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2010}{}{}.
+\newblock
+\APACrefbtitle {Ley Orgánica de Telecomunicaciones.} {Ley orgánica de
+  telecomunicaciones.}
+\newblock
+\begin{APACrefURL}
+  [{2025-09-08}]\url{https://www.oas.org/juridico/spanish/cyb_ven_ley_telecomunicaciones.pdf}
+  \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Richardson%
+\ \BBA {} Wallace%
+}{%
+Richardson%
+\ \BBA {} Wallace%
+}{%
+{\protect \APACyear {2016}}%
+}]{%
+richardson_getting_2016}
+\APACinsertmetastar {%
+richardson_getting_2016}%
+\begin{APACrefauthors}%
+Richardson, M.%
+\BCBT {}\ \BBA {} Wallace, S.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{2016}.
+\newblock
+\APACrefbtitle {Getting Started with Raspberry Pi: An Introduction to the
+  Fastest-Selling Computer in the World} {Getting started with raspberry pi: An
+  introduction to the fastest-selling computer in the world}\
+  (\PrintOrdinal{4}\ \BEd).
+\newblock
+\APACaddressPublisher{}{Maker Media, Inc.}
+\newblock
+\begin{APACrefURL}
+  \url{https://books.google.co.ve/books/about/Getting_Started_With_Raspberry_Pi.html?id=w4CkDAAAQBAJ&redir_esc=y}
+  \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Russell%
+\ \BBA {} Norvig%
+}{%
+Russell%
+\ \BBA {} Norvig%
+}{%
+{\protect \APACyear {2022}}%
+}]{%
+russell_artificial_2022}
+\APACinsertmetastar {%
+russell_artificial_2022}%
+\begin{APACrefauthors}%
+Russell, S.%
+\BCBT {}\ \BBA {} Norvig, P.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{2022}.
+\newblock
+\APACrefbtitle {Artificial Intelligence: A Modern Approach} {Artificial
+  intelligence: A modern approach}\ (\PrintOrdinal{4}\ \BEd).
+\newblock
+\APACaddressPublisher{}{Pearson}.
+\newblock
+\begin{APACrefURL}
+  \url{http://lib.ysu.am/disciplines_bk/efdd4d1d4c2087fe1cbe03d9ced67f34.pdf}
+  \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Sabo%
+}{%
+Sabo%
+}{%
+{\protect \APACyear {2020}}%
+}]{%
+sabo_nestjs_2020}
+\APACinsertmetastar {%
+sabo_nestjs_2020}%
+\begin{APACrefauthors}%
+Sabo, M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2020}{}{}.
+\newblock
+\APACrefbtitle {NestJS.} {Nestjs.}
+\newblock
+\begin{APACrefURL}
+  [{2025-09-08}]\url{https://zir.nsk.hr/islandora/object/mathos:441}
+  \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Shi%
+, Cao%
+, Zhang%
+, Li%
+\BCBL {}\ \BBA {} Xu%
+}{%
+Shi%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2016}}%
+}]{%
+shi_edge_2016}
+\APACinsertmetastar {%
+shi_edge_2016}%
+\begin{APACrefauthors}%
+Shi, W.%
+, Cao, J.%
+, Zhang, Q.%
+, Li, Y.%
+\BCBL {}\ \BBA {} Xu, L.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2016}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Edge Computing: Vision and Challenges} {Edge computing:
+  Vision and challenges}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{IEEE Internet of Things Journal}{3}{5}{637--646}.
+\newblock
+\begin{APACrefDOI} \doi{10.1109/JIOT.2016.2579198} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Tamayo%
+}{%
+Tamayo%
+}{%
+{\protect \APACyear {2004}}%
+}]{%
+tamayo_proceso_2004}
+\APACinsertmetastar {%
+tamayo_proceso_2004}%
+\begin{APACrefauthors}%
+Tamayo, M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{2004}.
+\newblock
+\APACrefbtitle {El proceso de la investigación científica} {El proceso de la
+  investigación científica}.
+\newblock
+\APACaddressPublisher{}{Limusa}.
+\newblock
+\begin{APACrefURL}
+  \url{https://www.gob.mx/cms/uploads/attachment/file/227860/El_proceso__de_la_investigaci_n_cient_fica_Mario_Tamayo.pdf}
+  \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Torija%
+, Ruiz%
+\BCBL {}\ \BBA {} Ramos-Diao%
+}{%
+Torija%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2018}}%
+}]{%
+torija_metodologia_2018}
+\APACinsertmetastar {%
+torija_metodologia_2018}%
+\begin{APACrefauthors}%
+Torija, A.%
+, Ruiz, P.%
+\BCBL {}\ \BBA {} Ramos-Diao, A.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2018}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Metodología para la identificación de eventos sonoros
+  anómalos} {Metodología para la identificación de eventos sonoros
+  anómalos}.{\BBCQ}
+\newblock
+\BIn{} \APACrefbtitle {Congreso Nacional de Acústica -- Tecniacústica 2018.}
+  {Congreso nacional de acústica -- tecniacústica 2018.}
+\newblock
+\begin{APACrefURL}
+  \url{https://documentacion.sea-acustica.es/publicaciones/Coimbra08/id206.pdf}
+  \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+{UPEL}%
+}{%
+{UPEL}%
+}{%
+{\protect \APACyear {2004}}%
+}]{%
+upel_manual_2004}
+\APACinsertmetastar {%
+upel_manual_2004}%
+\begin{APACrefauthors}%
+{UPEL}.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2004}{}{}.
+\newblock
+\APACrefbtitle {Manual de Trabajos de Grado de Especialización y Maestría y
+  Tesis Doctorales.} {Manual de trabajos de grado de especialización y
+  maestría y tesis doctorales.}
+\newblock
+\begin{APACrefURL}
+  [{2025-09-08}]\url{https://fondoeditorialupel.com/manual-de-trabajos-de-grado-de-especializacion-y-maestria-y-tesis-doctorales/}
+  \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Upton%
+\ \BBA {} Halfacree%
+}{%
+Upton%
+\ \BBA {} Halfacree%
+}{%
+{\protect \APACyear {2020}}%
+}]{%
+upton_raspberry_2020}
+\APACinsertmetastar {%
+upton_raspberry_2020}%
+\begin{APACrefauthors}%
+Upton, E.%
+\BCBT {}\ \BBA {} Halfacree, G.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{2020}.
+\newblock
+\APACrefbtitle {Raspberry Pi User Guide} {Raspberry pi user guide}\
+  (\PrintOrdinal{4}\ \BEd).
+\newblock
+\APACaddressPublisher{}{John Wiley \& Sons}.
+\newblock
+\begin{APACrefURL}
+  \url{https://www.perlego.com/book/997788/raspberry-pi-user-guide-pdf}
+  \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Yuill%
+\ \BBA {} Halpin%
+}{%
+Yuill%
+\ \BBA {} Halpin%
+}{%
+{\protect \APACyear {2006}}%
+}]{%
+yuill_python_2006}
+\APACinsertmetastar {%
+yuill_python_2006}%
+\begin{APACrefauthors}%
+Yuill, S.%
+\BCBT {}\ \BBA {} Halpin, H.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2006}{}{}.
+\newblock
+\APACrefbtitle {Python.} {Python.}
+\newblock
+\APAChowpublished
+  {\url{https://citeseerx.ist.psu.edu/document?repid=rep1&type=pdf&doi=1f2ee3831eebfc97bfafd514ca2abb7e2c5c86bb}}.
+\newblock
+\APACrefnote{Accessed: 2025-09-08}
+\PrintBackRefs{\CurrentBib}
+
 \end{thebibliography}
