@@ -1,0 +1,11 @@
+\usection{Conclusiones}
+
+La revisión teórica y el análisis de enfoques previos permitieron establecer las bases conceptuales y tecnológicas para diseñar un sistema capaz de detectar patrones acústicos asociados a situaciones de riesgo. La integración de modelos como YAMNet y Vosk demostró que es posible realizar detección y clasificación de eventos sonoros en tiempo real desde dispositivos de bajo consumo, como Raspberry Pi.
+
+La arquitectura del sistema, basada en una red distribuida de micrófonos conectados a nodos de procesamiento local, permitió generar un perfil acústico del entorno, diferenciando entre sonidos rutinarios y eventos anómalos. La incorporación de cadenas de Márkov como modelo probabilístico inicial brindó un nivel de razonamiento temporal básico, aunque sus limitaciones estructurales derivaron en la exploración de arquitecturas más avanzadas, como redes LSTM, capaces de modelar secuencias acústicas de forma más coherente.
+
+Durante la validación, el sistema mostró una alta tasa de éxito en pruebas con eventos claramente definidos, como gritos, cristales rotos o sonidos fuertes, alcanzando niveles del 100\% de aciertos. Sin embargo, se identificaron desafíos en la detección contextualizada de palabras clave o en sonidos menos estructurados, lo que evidencia la necesidad de seguir mejorando la sensibilidad y especificidad del sistema en escenarios complejos.
+
+El desarrollo adoptó la metodología espiral, lo cual permitió iterar entre diseño, implementación y validación de forma progresiva. Esta estrategia fue clave para ajustar la solución a las restricciones del entorno real, abordando problemas como la gestión de ruido ambiental, las limitaciones de hardware y los requisitos legales sobre privacidad de datos.
+
+A nivel social y ético, el sistema representa una herramienta accesible y no invasiva, especialmente relevante para personas en situación de vulnerabilidad, como adultos mayores o personas con discapacidad. Al evitar el almacenamiento de datos sensibles y operar en tiempo real, se garantiza el cumplimiento con principios constitucionales de confidencialidad y autonomía.

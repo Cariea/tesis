@@ -1,0 +1,36 @@
+\usection{Bases Legales}
+
+El desarrollo del Sistema de Monitoreo Acústico se fundamenta en el cumplimiento de las normativas venezolanas vigentes relacionadas con la privacidad, protección de datos y seguridad informática. A continuación, se detallan los instrumentos legales aplicables:
+
+\begin{enumerate}
+  \item Constitución de la República Bolivariana de Venezuela (1999)
+        \begin{itemize}
+          \item Artículo 60: Garantiza el derecho a la protección de la vida privada, intimidad, honor, propia imagen, confidencialidad y reputación. El sistema respeta este principio al no almacenar grabaciones de audio ni recopilar datos personales sensibles, limitándose al análisis acústico en tiempo real y a la generación de alertas basadas en patrones predefinidos.
+          \item Artículo 28: Establece el derecho a la protección de datos personales. El sistema utiliza una base de datos local, sin transmisión a la nube, asegurando que la información procesada (como eventos acústicos clasificados) no permita identificar directamente a los usuarios.
+        \end{itemize}
+  \item Ley Especial contra Delitos Informáticos (2001)
+        \begin{itemize}
+          \item Artículo 6: Prohíbe el acceso no autorizado a sistemas informáticos. El diseño del sistema incluye medidas de autenticación y encriptación para proteger el acceso al servidor local y evitar intrusiones externas.
+          \item Artículo 20: Sanciona la violación de la privacidad mediante la interceptación de comunicaciones. Al no grabar ni almacenar audios, el sistema evita cualquier forma de interceptación ilegítima de información personal.
+        \end{itemize}
+  \item Ley de Mensajes de Datos y Firmas Electrónicas (2001)
+        \begin{itemize}
+          \item Artículo 10: Establece la validez jurídica de los mensajes de datos. Aunque el sistema no genera documentos electrónicos, garantiza la integridad de los registros de eventos mediante algoritmos de hash, asegurando la autenticidad de las alertas generadas.
+        \end{itemize}
+  \item Normas COVENIN
+        \begin{itemize}
+          \item Norma COVENIN 2500-1: Especifica requisitos técnicos para sistemas electrónicos de seguridad. El sistema cumple con estándares de fiabilidad y funcionalidad, garantizando un monitoreo continuo sin comprometer la privacidad.
+          \item Norma COVENIN 27001: Orienta sobre gestión de seguridad de la información. El servidor local implementa protocolos de seguridad física y lógica, como firewalls y restricciones de acceso, para proteger los datos procesados.
+        \end{itemize}
+  \item Ley Orgánica de Telecomunicaciones (2010)
+        \begin{itemize}
+          \item Artículo 3: Promueve el uso ético de las telecomunicaciones. Al operar en una red local sin dependencia de servicios externos, el sistema evita riesgos asociados a la transmisión de datos sensibles a través de redes públicas.
+        \end{itemize}
+\end{enumerate}
+
+El proyecto prioriza la privacidad mediante:
+\begin{itemize}
+  \item No almacenamiento de audios: Los sonidos capturados se procesan en tiempo real y se descartan inmediatamente después de su análisis.
+  \item Base de datos local: La información técnica (como patrones de sonido y registros de alertas) se almacena en un servidor interno, sin conexión a internet, cumpliendo con el principio de confidencialidad.
+  \item Transparencia: Los usuarios son informados sobre el funcionamiento del sistema y su finalidad, asegurando consentimiento informado conforme al artículo 60 constitucional.
+\end{itemize}

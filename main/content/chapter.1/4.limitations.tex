@@ -1,0 +1,13 @@
+\usection{Limitaciones}
+
+En la implementación del sistema, ciertas limitaciones que podrían influir en el desempeño de su desarrollo. A continuación, se describirán algunas de las restricciones que se podrían presentar:
+
+Limitaciones tecnológicas: La precisión del sistema puede verse afectada por la calidad de los sensores acústicos y la capacidad de procesamiento de los microcontroladores empleados.
+
+Limitaciones de datos: La recolección de suficientes muestras de sonidos para entrenar el modelo puede ser limitada, lo que puede comprometer la eficacia del sistema en escenarios no previstos.
+
+Limitaciones operativas: La inestabilidad del suministro eléctrico, especialmente en contextos donde se realizaron las pruebas, puede interrumpir la recolección continua de datos y afectar la disponibilidad del sistema para capturar eventos clave en su contexto temporal.
+
+Limitaciones de hardware: El reentrenamiento de modelos complejos, como los basados en Transformers o LSTM, requiere recursos de cómputo significativos que superan la capacidad de dispositivos de bajo consumo como Raspberry Pi. Esto restringe la posibilidad de actualizar o adaptar los modelos directamente en el dispositivo, obligando a depender de un servidor externo para estas tareas.
+
+Limitaciones legales: La transmisión y procesamiento de datos acústicos captados en entornos domésticos plantea riesgos relacionados con la privacidad y la protección de datos personales. La implementación del sistema debe ajustarse a marcos regulatorios y normativos vigentes en materia de confidencialidad y tratamiento de información sensible, lo que puede restringir su despliegue o requerir mecanismos adicionales de anonimización y consentimiento informado.
