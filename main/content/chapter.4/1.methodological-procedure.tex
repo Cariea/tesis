@@ -21,33 +21,33 @@ Para la implementación del sistema, se realizó una evaluación de hardware con
 Durante el análisis inicial, se identificaron varias limitaciones y desafíos técnicos que podrían afectar el desempeño del sistema. Entre ellos, destacan:
 
 \begin{enumerate}
-  \item Limitaciones tecnológicas: El rendimiento del sistema está directamente condicionado por tres factores: la calidad del sensor acústico para una captura de audio fiel, la capacidad de procesamiento del hardware de borde para ejecutar los modelos sin latencia, y la presencia de ruido ambiental, que puede enmascarar o ser confundido con eventos anómalos.
-  \item Limitaciones de datos: La recolección de suficientes muestras de sonidos para entrenar el modelo puede ser limitada, lo que puede comprometer el funcionamiento del sistema en escenarios no previstos. Para abordar este desafío, se consideró la posibilidad de utilizar datasets públicos y el uso de modelos preentrenados.
-  \item Privacidad y seguridad: El desafío ético y técnico de monitorear un entorno privado. Se abordó estableciendo como requisito fundamental el procesamiento 100\% local (Edge AI), sin almacenar ni transmitir grabaciones de audio, para garantizar la confidencialidad del usuario.
+      \item Limitaciones tecnológicas: El rendimiento del sistema está directamente condicionado por tres factores: la calidad del sensor acústico para una captura de audio fiel, la capacidad de procesamiento del hardware de borde para ejecutar los modelos sin latencia, y la presencia de ruido ambiental, que puede enmascarar o ser confundido con eventos anómalos.
+      \item Limitaciones de datos: La recolección de suficientes muestras de sonidos para entrenar el modelo puede ser limitada, lo que puede comprometer el funcionamiento del sistema en escenarios no previstos. Para abordar este desafío, se consideró la posibilidad de utilizar datasets públicos y el uso de modelos preentrenados.
+      \item Privacidad y seguridad: El desafío ético y técnico de monitorear un entorno privado. Se abordó estableciendo como requisito fundamental el procesamiento 100\% local (Edge AI), sin almacenar ni transmitir grabaciones de audio, para garantizar la confidencialidad del usuario.
 \end{enumerate}
 
 \usubsubsection{Requerimientos Funcionales}
 
 \begin{enumerate}
-  \item El sistema debe capturar el audio ambiental de forma continua a través de los micrófonos designados.
-  \item El sistema debe procesar el audio capturado para clasificarlo en eventos sonoros predefinidos (ej. voz, silencio, golpe, etc.) utilizando sus modelos de IA.
-  \item El sistema debe aprender y mantener un perfil de la actividad acústica "normal" del entorno, basado en la secuencia y horario de los sonidos clasificados.
-  \item El sistema debe comparar la actividad en tiempo real con el perfil de normalidad para detectar patrones anómalos.
-  \item El sistema debe realizar una consulta verbal al usuario (ej. "¿Está todo bien?") cuando se detecte una anomalía.
-  \item Permitir al usuario responder que está bien en caso de que haya un falso positivo o se presente una posible situación de emergencia.
-  \item El sistema debe enviar notificaciones de emergencia a una lista de contactos predefinidos si una anomalía es crítica o si no se recibe respuesta a la consulta de verificación.
+      \item El sistema debe capturar el audio ambiental de forma continua a través de los micrófonos designados.
+      \item El sistema debe procesar el audio capturado para clasificarlo en eventos sonoros predefinidos (ej. voz, silencio, golpe, etc.) utilizando sus modelos de IA.
+      \item El sistema debe aprender y mantener un perfil de la actividad acústica "normal" del entorno, basado en la secuencia y horario de los sonidos clasificados.
+      \item El sistema debe comparar la actividad en tiempo real con el perfil de normalidad para detectar patrones anómalos.
+      \item El sistema debe realizar una consulta verbal al usuario (ej. "¿Está todo bien?") cuando se detecte una anomalía.
+      \item Permitir al usuario responder que está bien en caso de que haya un falso positivo o se presente una posible situación de emergencia.
+      \item El sistema debe enviar notificaciones de emergencia a una lista de contactos predefinidos si una anomalía es crítica o si no se recibe respuesta a la consulta de verificación.
 \end{enumerate}
 
 \usubsubsection{Requerimientos no funcionales}
 
 \begin{enumerate}
-  \item Garantizar la seguridad y privacidad de los datos al no almacenar grabaciones de audio ni datos personales sensibles.
-  \item Ser escalable para adaptarse a diferentes entornos y necesidades, permitiendo la integración de nuevos micrófonos o dispositivos de procesamiento según sea necesario.
-  \item Mantener una alta disponibilidad para estar operativo las 24 horas del día, los 7 días de la semana, garantizando la detección continua de eventos sonoros críticos.
-  \item Mejorar el uso de recursos de hardware, como la memoria y el procesamiento, para funcionar en dispositivos de bajo consumo, como la Raspberry Pi.
-  \item Contar con una interfaz de usuario intuitiva que sea fácil de usar tanto para usuarios técnicos como no técnicos.
-  \item Ser robusto y confiable para funcionar en entornos ruidosos y bajo condiciones variables, manteniendo una alta precisión en la detección de eventos sonoros.
-  \item Facilitar el mantenimiento y actualización mediante un diseño modular que permita actualizaciones de software y hardware sin interrumpir su funcionamiento.
+      \item Garantizar la seguridad y privacidad de los datos al no almacenar grabaciones de audio ni datos personales sensibles.
+      \item Ser escalable para adaptarse a diferentes entornos y necesidades, permitiendo la integración de nuevos micrófonos o dispositivos de procesamiento según sea necesario.
+      \item Mantener una alta disponibilidad para estar operativo las 24 horas del día, los 7 días de la semana, garantizando la detección continua de eventos sonoros críticos.
+      \item Mejorar el uso de recursos de hardware, como la memoria y el procesamiento, para funcionar en dispositivos de bajo consumo, como la Raspberry Pi.
+      \item Contar con una interfaz de usuario intuitiva que sea fácil de usar tanto para usuarios técnicos como no técnicos.
+      \item Ser robusto y confiable para funcionar en entornos ruidosos y bajo condiciones variables, manteniendo una alta precisión en la detección de eventos sonoros.
+      \item Facilitar el mantenimiento y actualización mediante un diseño modular que permita actualizaciones de software y hardware sin interrumpir su funcionamiento.
 \end{enumerate}
 
 \usubsubsection{Selección de Tecnologías}
@@ -57,22 +57,22 @@ Una vez definidos los requerimientos, se procedió a la selección de las tecnol
 \uparagraph{Captura de Audio (Hardware)}
 
 \begin{enumerate}
-  \item \textbf{Micrófonos:} Para garantizar una captura de audio clara, se seleccionaron micrófonos con alta sensibilidad. Como señalan Torija, Ruiz y Ramos-Ridao (2008), la calidad del sensor acústico es un factor determinante para la precisión en la detección de eventos.
-  \item \textbf{Plataforma de Procesamiento (Raspberry Pi):} Se eligió la Raspberry Pi como el dispositivo de borde principal debido a su bajo costo, su comunidad de soporte y su capacidad para ejecutar los modelos de IA. Su versatilidad y opciones de conectividad la hacen ideal para prototipar proyectos de IoT y análisis en tiempo real (Richardson y Wallace, 2016).
+      \item \textbf{Micrófonos:} Para garantizar una captura de audio clara, se seleccionaron micrófonos con alta sensibilidad. Como señalan Torija, Ruiz y Ramos-Ridao (2008), la calidad del sensor acústico es un factor determinante para la precisión en la detección de eventos.
+      \item \textbf{Plataforma de Procesamiento (Raspberry Pi):} Se eligió la Raspberry Pi como el dispositivo de borde principal debido a su bajo costo, su comunidad de soporte y su capacidad para ejecutar los modelos de IA. Su versatilidad y opciones de conectividad la hacen ideal para prototipar proyectos de IoT y análisis en tiempo real (Richardson y Wallace, 2016).
 \end{enumerate}
 
 \uparagraph{Procesamiento y Lógica de Detección (Software)}
 
 \begin{enumerate}
-  \item Framework de IA (TensorFlow Lite): Para la ejecución de los modelos en el dispositivo, se optó por TensorFlow Lite. Esta es una versión optimizada de TensorFlow diseñada específicamente para hardware con recursos limitados, permitiendo una inferencia rápida y eficiente (Goldsborough, 2016).
-  \item Modelo de Clasificación de Sonido (YAMNet): Se seleccionó YAMNet como el clasificador de audio base. Al ser un modelo pre-entrenado por Google en un dataset masivo (AudioSet), proporciona una base robusta para identificar una amplia gama de eventos acústicos generales sin necesidad de un entrenamiento desde cero.
-  \item Modelos de Detección de Anomalías (Isolation Forest y LSTM): Para el análisis del comportamiento, se eligió una combinación de Isolation Forest, por su alta eficiencia para detectar anomalías puntuales, y un Autoencoder LSTM, por su capacidad para identificar patrones anómalos en secuencias temporales.
-  \item Modelo de Detección de Palabras Clave (Vosk): Para la funcionalidad de activación por voz, se seleccionó la librería Vosk, un toolkit de reconocimiento de voz de código abierto que puede operar completamente offline en la Raspberry Pi, garantizando la privacidad
+      \item Framework de IA (TensorFlow Lite): Para la ejecución de los modelos en el dispositivo, se optó por TensorFlow Lite. Esta es una versión optimizada de TensorFlow diseñada específicamente para hardware con recursos limitados, permitiendo una inferencia rápida y eficiente (Goldsborough, 2016).
+      \item Modelo de Clasificación de Sonido (YAMNet): Se seleccionó YAMNet como el clasificador de audio base. Al ser un modelo pre-entrenado por Google en un dataset masivo (AudioSet), proporciona una base robusta para identificar una amplia gama de eventos acústicos generales sin necesidad de un entrenamiento desde cero.
+      \item Modelos de Detección de Anomalías (Isolation Forest y LSTM): Para el análisis del comportamiento, se eligió una combinación de Isolation Forest, por su alta eficiencia para detectar anomalías puntuales, y un Autoencoder LSTM, por su capacidad para identificar patrones anómalos en secuencias temporales.
+      \item Modelo de Detección de Palabras Clave (Vosk): Para la funcionalidad de activación por voz, se seleccionó la librería Vosk, un toolkit de reconocimiento de voz de código abierto que puede operar completamente offline en la Raspberry Pi, garantizando la privacidad
 \end{enumerate}
 
 \uparagraph{Capa de Notificación (Backend)}
 \begin{enumerate}
-  \item Framework del Servidor (NestJS): Para el sistema de envío de notificaciones, se seleccionó NestJS. Al ser un framework de Node.js escalable y basado en TypeScript, facilita la creación de un backend mantenible y eficiente, capaz de gestionar las alertas de forma segura (Sabo, 2020).
+      \item Framework del Servidor (NestJS): Para el sistema de envío de notificaciones, se seleccionó NestJS. Al ser un framework de Node.js escalable y basado en TypeScript, facilita la creación de un backend mantenible y eficiente, capaz de gestionar las alertas de forma segura (Sabo, 2020).
 \end{enumerate}
 
 \usubsection{Diseño del sistema de monitoreo acústico para generar alertas en casos de emergencia}
@@ -82,14 +82,14 @@ Una vez definidos los requerimientos, se procedió a la selección de las tecnol
 La arquitectura del sistema es un híbrido que combina la organización de Microservicios con un patrón de comunicación Orientado a Eventos. En lugar de un programa monolítico, el sistema se compone de servicios pequeños e independientes (los microservicios) que colaboran de forma asíncrona reaccionando a eventos diseño de la arquitectura del sistema fue una etapa crítica en la fase de diseño. Se optó por una arquitectura distribuida, compuesta por los siguientes componentes principales:
 
 \begin{enumerate}
-  \item Red de micrófonos: Conjunto de dispositivos distribuidos estratégicamente en distintas estancias de la vivienda o espacio. Su función es capturar de forma continua los sonidos del ambiente para su posterior procesamiento.
-  \item Componente de Clasificación de Eventos: Actúa como el "traductor" principal. Utiliza un modelo de red neuronal pre-entrenado (YAMNet) para convertir el audio crudo en una secuencia de eventos etiquetados (ej. "voz", "música", "golpe"). Esta secuencia es la materia prima para el análisis de comportamiento.
-  \item Componente de Detección de Palabras Clave: Opera en paralelo al clasificador. Utiliza un motor de reconocimiento de voz (Vosk) para escuchar activamente un conjunto predefinido de palabras de emergencia (ej. "auxilio"). Su función es permitir una activación de alerta explícita por parte del usuario, la cancelación de las mismas y las interacciones con el usuario.
-  \item Componente de Detección de Actividad Ambiental: Analiza el nivel de energía general de la señal acústica. Su propósito no es identificar sonidos específicos, sino detectar anomalías en la actividad misma, como períodos de silencio prolongados e inusuales que podrían indicar una emergencia.
-  \item Componente de Análisis de Comportamiento: Este es el núcleo del análisis a largo plazo. Recibe la secuencia de eventos del Componente de Clasificación y utiliza modelos no supervisados (Isolation Forest, LSTM) para aprender el perfil de actividad "normal" del entorno y detectar desviaciones en la rutina.
-  \item Gestor de Eventos y Alertas: Actúa como el cerebro central que toma las decisiones. Recibe las señales de los componentes 2, 3, 4 y 5 y, basándose en una lógica de prioridades, determina si se debe iniciar un protocolo de alerta. También gestiona la consulta verbal para verificar la situación y reducir falsos positivos.
-  \item Componente de Gestión de Datos: Su función es almacenar y preparar los datos generados por los módulos de percepción. Recopila la secuencia de eventos etiquetados y otros metadatos relevantes del entorno para ser utilizados en el entrenamiento y reentrenamiento periódico de los modelos de detección de anomalías (como Isolation Forest y LSTM).
-  \item Componente de Notificaciones Externas: Es el único componente que requiere conexión a internet y opera de forma desacoplada. Una vez que el Componente de Orquestación confirma una emergencia, este servicio se encarga de enviar las alertas a los contactos predefinidos a través de los canales configurados.
+      \item Red de micrófonos: Conjunto de dispositivos distribuidos estratégicamente en distintas estancias de la vivienda o espacio. Su función es capturar de forma continua los sonidos del ambiente para su posterior procesamiento.
+      \item Componente de Clasificación de Eventos: Actúa como el "traductor" principal. Utiliza un modelo de red neuronal pre-entrenado (YAMNet) para convertir el audio crudo en una secuencia de eventos etiquetados (ej. "voz", "música", "golpe"). Esta secuencia es la materia prima para el análisis de comportamiento.
+      \item Componente de Detección de Palabras Clave: Opera en paralelo al clasificador. Utiliza un motor de reconocimiento de voz (Vosk) para escuchar activamente un conjunto predefinido de palabras de emergencia (ej. "auxilio"). Su función es permitir una activación de alerta explícita por parte del usuario, la cancelación de las mismas y las interacciones con el usuario.
+      \item Componente de Detección de Actividad Ambiental: Analiza el nivel de energía general de la señal acústica. Su propósito no es identificar sonidos específicos, sino detectar anomalías en la actividad misma, como períodos de silencio prolongados e inusuales que podrían indicar una emergencia.
+      \item Componente de Análisis de Comportamiento: Este es el núcleo del análisis a largo plazo. Recibe la secuencia de eventos del Componente de Clasificación y utiliza modelos no supervisados (Isolation Forest, LSTM) para aprender el perfil de actividad "normal" del entorno y detectar desviaciones en la rutina.
+      \item Gestor de Eventos y Alertas: Actúa como el cerebro central que toma las decisiones. Recibe las señales de los componentes 2, 3, 4 y 5 y, basándose en una lógica de prioridades, determina si se debe iniciar un protocolo de alerta. También gestiona la consulta verbal para verificar la situación y reducir falsos positivos.
+      \item Componente de Gestión de Datos: Su función es almacenar y preparar los datos generados por los módulos de percepción. Recopila la secuencia de eventos etiquetados y otros metadatos relevantes del entorno para ser utilizados en el entrenamiento y reentrenamiento periódico de los modelos de detección de anomalías (como Isolation Forest y LSTM).
+      \item Componente de Notificaciones Externas: Es el único componente que requiere conexión a internet y opera de forma desacoplada. Una vez que el Componente de Orquestación confirma una emergencia, este servicio se encarga de enviar las alertas a los contactos predefinidos a través de los canales configurados.
 \end{enumerate}
 
 % TODO - Agrega diagrama
@@ -133,113 +133,134 @@ Gracias a su simplicidad y a no depender de cálculos de distancia o densidad, I
 \usubsubsection{Iteraciones}
 
 \begin{enumerate}
-  \item Prototipo basado en esp32 y detección de intensidad de sonido
+      \item Prototipo basado en esp32 y detección de intensidad de sonido
 
-        Para el primer ciclo de desarrollo, y siguiendo una recomendación del tutor del proyecto, el objetivo fue validar la hipótesis de que se podían detectar anomalías a través del error de pronóstico de un modelo de series temporales. La estrategia consistía en utilizar un modelo estadístico como ARIMA para predecir el comportamiento sonoro "normal", de modo que cualquier diferencia significativa entre el valor predicho y el valor real observado fuera clasificada como una anomalía. El diseño del prototipo para probar este enfoque se inspiró en metodologías documentadas para sistemas IoT (Mtei et al., 2023) y consistió en un dispositivo de captura basado en un microcontrolador ESP32, que transmitía el audio a un servidor local (Raspberry Pi 4) para su análisis con el modelo ARIMA..
+            \begin{figure}[h!]
+                  \centering
+                  \includegraphics[width=0.65\textwidth]{Arquitectura/I1.png}
+                  \caption{Prototipo basado en ESP32 y detección de intensidad de sonido}
+                  \label{fig:prototipo1}
+            \end{figure}
 
-        Sin embargo, durante la fase de evaluación, este enfoque demostró ser fundamentalmente inviable. El problema de fondo no fue solo que el modelo ARIMA tuviera limitaciones, sino que su propio proceso de parametrización resultó ser incompatible con la naturaleza del problema de investigación.
+            Para el primer ciclo de desarrollo, y siguiendo una recomendación del tutor del proyecto, el objetivo fue validar la hipótesis de que se podían detectar anomalías a través del error de pronóstico de un modelo de series temporales. La estrategia consistía en utilizar un modelo estadístico como ARIMA para predecir el comportamiento sonoro "normal", de modo que cualquier diferencia significativa entre el valor predicho y el valor real observado fuera clasificada como una anomalía. El diseño del prototipo para probar este enfoque se inspiró en metodologías documentadas para sistemas IoT (Mtei et al., 2023) y consistió en un dispositivo de captura basado en un microcontrolador ESP32, que transmitía el audio a un servidor local (Raspberry Pi 4) para su análisis con el modelo ARIMA..
 
-        La parametrización de ARIMA busca encontrar una "receta" estadística fija (los valores p,d,q) que describa la estructura de la serie de tiempo. Este enfoque funciona bien cuando el proceso que genera los datos es estable y predecible. No obstante, el entorno acústico de un hogar es todo lo contrario, lo que reveló las siguientes incompatibilidades críticas:
+            Sin embargo, durante la fase de evaluación, este enfoque demostró ser fundamentalmente inviable. El problema de fondo no fue solo que el modelo ARIMA tuviera limitaciones, sino que su propio proceso de parametrización resultó ser incompatible con la naturaleza del problema de investigación.
 
-        \begin{itemize}
-          \item Naturaleza Dinámica y No Estacionaria: La principal barrera fue que las señales acústicas de un ambiente domestico son altamente no estacionarias. Parametrizar ARIMA es como tomar una foto de las reglas estadísticas del sonido en un momento dado, pero el sonido de un hogar es una "película" que cambia constantemente. La "receta" estadística que describe los sonidos de una mañana activa (conversaciones, desayuno) es completamente diferente a la de una tarde silenciosa o una noche con la televisión encendida. Un modelo con parámetros fijos, por definición, no puede adaptarse a estos cambios de contexto, lo cual viola el supuesto fundamental de estacionariedad que ARIMA necesita para operar de forma fiable.
-          \item Complejidad y No Linealidad: El proceso de parametrización de ARIMA asume que las relaciones en los datos son, en su mayoría, lineales. Sin embargo, los eventos sonoros de una emergencia (un grito, un golpe fuerte, un cristal rompiéndose) son eventos abruptos y no lineales. Un modelo lineal es incapaz de capturar la complejidad de estas interacciones, lo que limita severamente su capacidad para detectar las anomalías más críticas.
-          \item Carencia de Contexto Externo: La "receta" (p,d,q) de ARIMA solo se basa en los valores pasados de la propia señal de audio. El modelo es "ciego" a información contextual crucial, como la hora del día, el día de la semana o si hay personas en casa. Un sonido, como pasos rápidos, puede ser normal a las 3 PM, pero una anomalía crítica a las 3 AM. Al no poder incorporar variables externas, ARIMA es incapaz de realizar esta distinción.
-          \item Baja Adaptabilidad a Cambios Súbitos: Como consecuencia de su parametrización fija, ARIMA asume que el comportamiento pasado se mantendrá en el futuro. Esto lo hace poco adaptable a rupturas estructurales en el entorno, como el inicio de una reunión social o una tormenta, respondiendo pobremente ante eventos atípicos.
-        \end{itemize}
+            La parametrización de ARIMA busca encontrar una "receta" estadística fija (los valores p,d,q) que describa la estructura de la serie de tiempo. Este enfoque funciona bien cuando el proceso que genera los datos es estable y predecible. No obstante, el entorno acústico de un hogar es todo lo contrario, lo que reveló las siguientes incompatibilidades críticas:
 
-        Estas limitaciones nos llevaron a considerar enfoques más flexibles y robustos, capaces de adaptarse a la dinámica cambiante del entorno doméstico y a las características complejas de las señales de audio.
+            \begin{itemize}
+                  \item Naturaleza Dinámica y No Estacionaria: La principal barrera fue que las señales acústicas de un ambiente domestico son altamente no estacionarias. Parametrizar ARIMA es como tomar una foto de las reglas estadísticas del sonido en un momento dado, pero el sonido de un hogar es una "película" que cambia constantemente. La "receta" estadística que describe los sonidos de una mañana activa (conversaciones, desayuno) es completamente diferente a la de una tarde silenciosa o una noche con la televisión encendida. Un modelo con parámetros fijos, por definición, no puede adaptarse a estos cambios de contexto, lo cual viola el supuesto fundamental de estacionariedad que ARIMA necesita para operar de forma fiable.
+                  \item Complejidad y No Linealidad: El proceso de parametrización de ARIMA asume que las relaciones en los datos son, en su mayoría, lineales. Sin embargo, los eventos sonoros de una emergencia (un grito, un golpe fuerte, un cristal rompiéndose) son eventos abruptos y no lineales. Un modelo lineal es incapaz de capturar la complejidad de estas interacciones, lo que limita severamente su capacidad para detectar las anomalías más críticas.
+                  \item Carencia de Contexto Externo: La "receta" (p,d,q) de ARIMA solo se basa en los valores pasados de la propia señal de audio. El modelo es "ciego" a información contextual crucial, como la hora del día, el día de la semana o si hay personas en casa. Un sonido, como pasos rápidos, puede ser normal a las 3 PM, pero una anomalía crítica a las 3 AM. Al no poder incorporar variables externas, ARIMA es incapaz de realizar esta distinción.
+                  \item Baja Adaptabilidad a Cambios Súbitos: Como consecuencia de su parametrización fija, ARIMA asume que el comportamiento pasado se mantendrá en el futuro. Esto lo hace poco adaptable a rupturas estructurales en el entorno, como el inicio de una reunión social o una tormenta, respondiendo pobremente ante eventos atípicos.
+            \end{itemize}
 
-  \item Esp32 con micrófonos de señales de audio (Inmp441 Omnidireccional) y prophet
+            Estas limitaciones nos llevaron a considerar enfoques más flexibles y robustos, capaces de adaptarse a la dinámica cambiante del entorno doméstico y a las características complejas de las señales de audio.
 
-        En una segunda iteración, se abandonó la rigidez del modelo ARIMA en favor de un enfoque más flexible. Aunque se mantuvo la arquitectura de hardware basada en el microcontrolador ESP32, se integraron micrófonos omnidireccionales INMP441 para garantizar una captura de señales acústicas de alta fidelidad. A nivel de software, se reemplazó el modelo ARIMA por Prophet, una librería de pronóstico de series temporales desarrollada por Facebook, diseñada específicamente para superar las limitaciones del enfoque anterior.
+      \item Esp32 con micrófonos de señales de audio (Inmp441 Omnidireccional) y prophet
 
-        El modelo Prophet logró ajustarse a las variaciones periódicas del sonido ambiental, como los patrones de ruido diurnos y nocturnos. Sin embargo, durante las pruebas se identificó una limitación crítica: su mecanismo para suavizar datos e identificar tendencias a largo plazo provocaba que se descartaran los eventos de interés. Sonidos de corta duración y alta amplitud, como un golpe, un grito o la rotura de un cristal, eran filtrados por el modelo y no generaban ninguna alerta, ya que no formaban parte de un patrón estacional o de una tendencia.
+            \begin{figure}[h!]
+                  \centering
+                  \includegraphics[width=0.85\textwidth]{Arquitectura/I2.png}
+                  \caption{Diseño de prototipo de esp32 con micrófono de señales de audio y prophet}
+                  \label{fig:prototipo2}
+            \end{figure}
 
-        Esta observación llevó a la conclusión de que el enfoque de pronóstico de series temporales, independientemente del modelo utilizado, no era el adecuado para el objetivo del proyecto. El problema no era predecir la evolución del nivel de ruido, sino detectar eventos instantáneos y atípicos en el contenido de la señal acústica. Por lo tanto, se redefinió el problema como uno de detección de anomalías en tiempo real, lo que exigió un cambio completo en la estrategia de software.
+            En una segunda iteración, se abandonó la rigidez del modelo ARIMA en favor de un enfoque más flexible. Aunque se mantuvo la arquitectura de hardware basada en el microcontrolador ESP32, se integraron micrófonos omnidireccionales INMP441 para garantizar una captura de señales acústicas de alta fidelidad. A nivel de software, se reemplazó el modelo ARIMA por Prophet, una librería de pronóstico de series temporales desarrollada por Facebook, diseñada específicamente para superar las limitaciones del enfoque anterior.
 
-        Para implementar esta nueva estrategia de detección de anomalías, se propuso un enfoque basado en una arquitectura de redes neuronales. La hipótesis de trabajo es que un modelo de este tipo puede aprender a caracterizar el perfil acústico "normal" de un entorno a partir de la extracción de características espectrales del audio. De esta forma, el sistema podría operar en tiempo real identificando cualquier desviación significativa de esa línea base aprendida y marcarla como una posible anomalía.
+            El modelo Prophet logró ajustarse a las variaciones periódicas del sonido ambiental, como los patrones de ruido diurnos y nocturnos. Sin embargo, durante las pruebas se identificó una limitación crítica: su mecanismo para suavizar datos e identificar tendencias a largo plazo provocaba que se descartaran los eventos de interés. Sonidos de corta duración y alta amplitud, como un golpe, un grito o la rotura de un cristal, eran filtrados por el modelo y no generaban ninguna alerta, ya que no formaban parte de un patrón estacional o de una tendencia.
 
-  \item Desarrollo de con dataset propio y modelo personalizado
+            Esta observación llevó a la conclusión de que el enfoque de pronóstico de series temporales, independientemente del modelo utilizado, no era el adecuado para el objetivo del proyecto. El problema no era predecir la evolución del nivel de ruido, sino detectar eventos instantáneos y atípicos en el contenido de la señal acústica. Por lo tanto, se redefinió el problema como uno de detección de anomalías en tiempo real, lo que exigió un cambio completo en la estrategia de software.
 
-        Inicialmente, la estrategia se centró en el desarrollo de un modelo de clasificación personalizado a partir de un conjunto de datos propio. El plan consistía en capturar y etiquetar una colección de sonidos de emergencia para entrenar una red neuronal diseñada específicamente para los escenarios de interés del proyecto.
+            Para implementar esta nueva estrategia de detección de anomalías, se propuso un enfoque basado en una arquitectura de redes neuronales. La hipótesis de trabajo es que un modelo de este tipo puede aprender a caracterizar el perfil acústico "normal" de un entorno a partir de la extracción de características espectrales del audio. De esta forma, el sistema podría operar en tiempo real identificando cualquier desviación significativa de esa línea base aprendida y marcarla como una posible anomalía.
 
-        Sin embargo, a medida que avanzaba el desarrollo, la investigación sobre la robustez de los clasificadores acústicos reveló la verdadera magnitud del desafío. Se hizo evidente que para que un modelo pudiera generalizar y operar de manera fiable, necesitaría ser entrenado con un volumen de datos masivo. La literatura académica confirma que la efectividad de los modelos de aprendizaje profundo para audio depende directamente de la escala y diversidad de los datos, requiriendo a menudo millones de ejemplos para capturar la enorme variabilidad de los sonidos del mundo real (Gemmeke et al., 2017). La tarea de construir un dataset de esa magnitud era logísticamente inviable para el proyecto.
+      \item Desarrollo de con dataset propio y modelo personalizado
 
-        Fue precisamente durante esta etapa de investigación que se identificó YAMNet, una arquitectura de clasificación acústica ya pre-entrenada por Google. Este modelo fue entrenado sobre el corpus AudioSet, un extenso conjunto de datos que, como describen Gemmeke et al. (2017), contiene más de dos millones de clips de audio de 10 segundos etiquetados a partir de una ontología de 527 clases de eventos sonoros. El descubrimiento de YAMNet ofrecía una solución directa al problema de la adquisición de datos a gran escala que se había identificado como el principal obstáculo.
+            Inicialmente, la estrategia se centró en el desarrollo de un modelo de clasificación personalizado a partir de un conjunto de datos propio. El plan consistía en capturar y etiquetar una colección de sonidos de emergencia para entrenar una red neuronal diseñada específicamente para los escenarios de interés del proyecto.
 
-        Ante esta situación, continuar con el desarrollo de un modelo propio habría significado un esfuerzo redundante. Por lo tanto, se tomó la decisión estratégica de descartar el enfoque personalizado y pivotar hacia la integración de YAMNet. Esta medida es una aplicación del paradigma de aprendizaje por transferencia (transfer learning), que permite aprovechar el conocimiento de un modelo ya entrenado en un gran dataset para resolver un problema específico con mayor eficiencia y fiabilidad, tal como analizan Pons, Nieto y Serra (2019) en su trabajo sobre el impacto del tamaño del dataset en audio. Esto permitió enfocar los recursos del proyecto en la implementación del sistema final sobre una base tecnológica ya validada.
+            Sin embargo, a medida que avanzaba el desarrollo, la investigación sobre la robustez de los clasificadores acústicos reveló la verdadera magnitud del desafío. Se hizo evidente que para que un modelo pudiera generalizar y operar de manera fiable, necesitaría ser entrenado con un volumen de datos masivo. La literatura académica confirma que la efectividad de los modelos de aprendizaje profundo para audio depende directamente de la escala y diversidad de los datos, requiriendo a menudo millones de ejemplos para capturar la enorme variabilidad de los sonidos del mundo real (Gemmeke et al., 2017). La tarea de construir un dataset de esa magnitud era logísticamente inviable para el proyecto.
 
-  \item Raspberry Pi, Yamnet, Cadenas de Markov
+            Fue precisamente durante esta etapa de investigación que se identificó YAMNet, una arquitectura de clasificación acústica ya pre-entrenada por Google. Este modelo fue entrenado sobre el corpus AudioSet, un extenso conjunto de datos que, como describen Gemmeke et al. (2017), contiene más de dos millones de clips de audio de 10 segundos etiquetados a partir de una ontología de 527 clases de eventos sonoros. El descubrimiento de YAMNet ofrecía una solución directa al problema de la adquisición de datos a gran escala que se había identificado como el principal obstáculo.
 
-        En esta cuarta iteración del prototipo, se migró la lógica de procesamiento desde el ESP32 hacia una Raspberry Pi, con mayor capacidad computacional, lo que permitió trabajar con señales de audio completas en lugar de limitarse a la intensidad. Se integraron micrófonos digitales de rango completo, capaces de capturar audio a frecuencias más altas y con mayor fidelidad, lo que permitió acceder a un contenido espectral más rico y útil para clasificación detallada.
+            Ante esta situación, continuar con el desarrollo de un modelo propio habría significado un esfuerzo redundante. Por lo tanto, se tomó la decisión estratégica de descartar el enfoque personalizado y pivotar hacia la integración de YAMNet. Esta medida es una aplicación del paradigma de aprendizaje por transferencia (transfer learning), que permite aprovechar el conocimiento de un modelo ya entrenado en un gran dataset para resolver un problema específico con mayor eficiencia y fiabilidad, tal como analizan Pons, Nieto y Serra (2019) en su trabajo sobre el impacto del tamaño del dataset en audio. Esto permitió enfocar los recursos del proyecto en la implementación del sistema final sobre una base tecnológica ya validada.
 
-        Con esta infraestructura, se incorporó YAMNet, un modelo de clasificación de audio en tiempo real basado en redes neuronales convolucionales entrenado con el dataset AudioSet de Google. YAMNet permite detectar y clasificar una gran variedad de eventos acústicos o (más de 500 categorías) como gritos, portazos, pasos, objetos cayendo, entre otros. Esta capacidad permitió dar un salto importante en la interpretación contextual del entorno sonoro.
+      \item Raspberry Pi, Yamnet, Cadenas de Markov
 
-        No obstante, si bien YAMNet ofrecía una detección puntual efectiva, surgió la necesidad de darle significado secuencial y contextual a los eventos detectados. Para abordar esta limitación, se integró un módulo de modelado probabilístico mediante cadenas de Markov, con el fin de analizar la secuencia temporal de eventos sonoros y establecer si un patrón era coherente con el comportamiento normal del entorno o si representaba una situación anómala.
+            \begin{figure}[h]
+                  \centering
+                  \includegraphics[width=0.85\textwidth]{Arquitectura/I4.png}
+                  \caption{Prototipo con Raspberry Pi, Yamnet y Cadenas de Markov}
+                  \label{fig:prototipo4}
+            \end{figure}
 
-        No obstante, también surgieron limitaciones importantes. Si bien éramos capaces de detectar situaciones potencialmente peligrosas a partir de categorías específicas identificadas por YAMNet, el intento de modelar secuencias completas de eventos mediante cadenas de Márkov resultó ineficaz. Estas cadenas se limitan a representar transiciones entre estados inmediatos, es decir, predicen solo el evento más probable siguiente, sin tener en cuenta el historial completo de eventos previos.
+            En esta cuarta iteración del prototipo, se migró la lógica de procesamiento desde el ESP32 hacia una Raspberry Pi, con mayor capacidad computacional, lo que permitió trabajar con señales de audio completas en lugar de limitarse a la intensidad. Se integraron micrófonos digitales de rango completo, capaces de capturar audio a frecuencias más altas y con mayor fidelidad, lo que permitió acceder a un contenido espectral más rico y útil para clasificación detallada.
 
-        Intentar forzar el modelado de secuencias más largas con este enfoque llevó a comportamientos problemáticos, como ciclos repetitivos sin resolución lógica, o secuencias que carecían de coherencia contextual, especialmente cuando el espacio de eventos posibles crecía. Esta rigidez estructural impidió representar adecuadamente escenarios más complejos o ambiguos, donde la interpretación depende no solo del último evento detectado, sino de una serie de interacciones acústicas encadenadas en el tiempo.
+            Con esta infraestructura, se incorporó YAMNet, un modelo de clasificación de audio en tiempo real basado en redes neuronales convolucionales entrenado con el dataset AudioSet de Google. YAMNet permite detectar y clasificar una gran variedad de eventos acústicos o (más de 500 categorías) como gritos, portazos, pasos, objetos cayendo, entre otros. Esta capacidad permitió dar un salto importante en la interpretación contextual del entorno sonoro.
 
-        Este hallazgo marcó un punto de inflexión en el desarrollo del sistema, motivando la exploración de enfoques más robustos y dinámicos, capaces de capturar dependencias de largo plazo en secuencias acústicas. En particular, se consideraron modelos como LSTM (Long Short-Term Memory) y transformers , que permiten aprender patrones secuenciales con memoria y contexto más amplio.
+            No obstante, si bien YAMNet ofrecía una detección puntual efectiva, surgió la necesidad de darle significado secuencial y contextual a los eventos detectados. Para abordar esta limitación, se integró un módulo de modelado probabilístico mediante cadenas de Markov, con el fin de analizar la secuencia temporal de eventos sonoros y establecer si un patrón era coherente con el comportamiento normal del entorno o si representaba una situación anómala.
 
-  \item Raspberry Pi, Yamnet, Isolation Forest y LSTM
+            No obstante, también surgieron limitaciones importantes. Si bien éramos capaces de detectar situaciones potencialmente peligrosas a partir de categorías específicas identificadas por YAMNet, el intento de modelar secuencias completas de eventos mediante cadenas de Márkov resultó ineficaz. Estas cadenas se limitan a representar transiciones entre estados inmediatos, es decir, predicen solo el evento más probable siguiente, sin tener en cuenta el historial completo de eventos previos.
 
-        En esta quinta iteración, nos enfocamos en el desarrollo de una solución más robusta para la detección de anomalías, como respuesta a las limitaciones encontradas con las cadenas de Markov. Para ello, basamos nuestro enfoque en el trabajo de Reis y Serôdio (2025), cuya investigación se centra en arquitecturas de Inteligencia Artificial en el borde (Edge AI) para el monitoreo en tiempo real. Específicamente, su estudio valida el uso de dos tecnologías que adoptamos: Isolation Forest (IF), un modelo de alta eficiencia para la detección de eventos, y un Long Short-Term Memory Autoencoder (LSTM-AE), una red neuronal para el análisis de patrones secuenciales complejos.
+            Intentar forzar el modelado de secuencias más largas con este enfoque llevó a comportamientos problemáticos, como ciclos repetitivos sin resolución lógica, o secuencias que carecían de coherencia contextual, especialmente cuando el espacio de eventos posibles crecía. Esta rigidez estructural impidió representar adecuadamente escenarios más complejos o ambiguos, donde la interpretación depende no solo del último evento detectado, sino de una serie de interacciones acústicas encadenadas en el tiempo.
 
-        Para la implementación de estos modelos en nuestro sistema, se replicaron las configuraciones y optimizaciones validadas en dicho estudio para asegurar el rendimiento en la Raspberry Pi.
+            Este hallazgo marcó un punto de inflexión en el desarrollo del sistema, motivando la exploración de enfoques más robustos y dinámicos, capaces de capturar dependencias de largo plazo en secuencias acústicas. En particular, se consideraron modelos como LSTM (Long Short-Term Memory) y transformers , que permiten aprender patrones secuenciales con memoria y contexto más amplio.
 
-        En el caso del Isolation Forest, adoptamos los hiperparámetros del estudio, configurando el modelo con 100 árboles ($n_estimators$) y un parámetro de contaminación del 3\%. Este último valor asume una proporción esperada de anomalías en nuestros datos, alineándose con los escenarios simulados en la investigación de referencia.
+      \item Raspberry Pi, Yamnet, Isolation Forest y LSTM
 
-        El segundo modelo implementado es un LSTM Autoencoder, una arquitectura de red neuronal no supervisada especialmente eficaz para la detección de anomalías en datos secuenciales (Malhotra et al., 2015). Su objetivo es aprender una representación comprimida de los patrones "normales" presentes en los datos de entrenamiento para luego identificar desviaciones significativas.
-        Para el desarrollo y aplicación del modelo, se adoptó un enfoque metodológico inspirado en el trabajo de Reis y Serôdio (2025), el cual se estructuró en un riguroso proceso de tres etapas: preparación de los datos, construcción y entrenamiento de la arquitectura, y definición del mecanismo de detección.
+            En esta quinta iteración, nos enfocamos en el desarrollo de una solución más robusta para la detección de anomalías, como respuesta a las limitaciones encontradas con las cadenas de Markov. Para ello, basamos nuestro enfoque en el trabajo de Reis y Serôdio (2025), cuya investigación se centra en arquitecturas de Inteligencia Artificial en el borde (Edge AI) para el monitoreo en tiempo real. Específicamente, su estudio valida el uso de dos tecnologías que adoptamos: Isolation Forest (IF), un modelo de alta eficiencia para la detección de eventos, y un Long Short-Term Memory Autoencoder (LSTM-AE), una red neuronal para el análisis de patrones secuenciales complejos.
 
-        \begin{enumerate}
-          \item Preparación de los Datos: Traduciendo Eventos a un Lenguaje Neuronal
-                Para que nuestro modelo LSTM pudiera interpretar los datos de los eventos, primero tuvimos que "traducirlos" a un formato numérico que la red neuronal pudiera procesar. Este paso es crucial, ya que el modelo no entiende de fechas o etiquetas de texto por sí mismo; solo trabaja con números y mientras mas sentido y relaciones tengan estos números mejor aprendera el modelo.
-                Por ejemplo, si convertimos los días de la semana a números (domingo=0, lunes=1, ..., sábado=6), el modelo interpretaría que el sábado (6) y el domingo (0) son valores muy distantes, cuando en realidad son adyacentes. Este tipo de malentendido impide que la red aprenda patrones que ocurren en la transición del fin de semana.
-                Para resolver este problema, el enfoque consiste en representar las variables temporales de una manera que refleje su naturaleza cíclica. En lugar de ver el tiempo como una línea recta, lo tratamos como un círculo, similar a las manecillas de un reloj. Esto se logra mediante funciones matemáticas (seno y coseno) que asignan a cada instante una coordenada única en un círculo. De esta forma:
-                El sábado queda matemáticamente "cerca" del domingo.
-                Las 23:59 quedan justo al lado de las 00:00.
-                Este preprocesamiento es fundamental, pues permite que el modelo LSTM capture patrones de comportamiento continuos y lógicos, como los que ocurren durante la madrugada o en el cambio de un día para otro.
-                Convirtiendo Categorías en Señales Claras
-                De manera similar, el modelo no puede procesar etiquetas de texto como "uso de microondas" o "sensor de movimiento". Un error común sería asignarles un número a cada una (ej: microondas=1, sensor=2), ya que esto crearía una falsa relación matemática (como si el "sensor" fuera el doble del "microondas").
-                La solución es una técnica llamada One-Hot Encoding. Funciona como un panel de interruptores, donde cada evento posible tiene su propio interruptor.
-                Cuando ocurre un evento, su interruptor se "enciende" (toma el valor de 1) mientras que todos los demás permanecen "apagados" (con valor de 0). De esta forma, el modelo recibe una señal clara y sin ambigüedades sobre qué evento específico sucedió, sin crear jerarquías o relaciones numéricas que no existen.
-                El Poder del Contexto: Agrupando Datos en Secuencias
-                Finalmente, el verdadero potencial de un modelo LSTM es su capacidad para entender el contexto. Un evento aislado, como "se enciende una luz", no dice mucho. Pero si ocurre dentro de una "historia" o secuencia como "sensor de movimiento activado → se abre la puerta → se enciende la luz", el patrón es mucho más revelador.
-                Por esta razón, en lugar de analizar los eventos de forma individual, los agrupamos en secuencias superpuestas de una longitud fija (por ejemplo, 10 eventos consecutivos). Es como pasar de ver fotografías individuales a ver pequeños videoclips.
-                Al entregarle los datos en este formato, el modelo LSTM no solo aprende "qué" pasó, sino "en qué orden" y "en relación con qué" otros eventos ocurrieron, permitiéndole así aprender los patrones complejos que definen un comportamiento normal. Con los datos ya "traducidos" a este formato numérico, cíclico y secuencial, el modelo está listo para comenzar su fase de entrenamiento.
+            Para la implementación de estos modelos en nuestro sistema, se replicaron las configuraciones y optimizaciones validadas en dicho estudio para asegurar el rendimiento en la Raspberry Pi.
 
-          \item Arquitectura del Modelo: El Autoencoder LSTM
-                Para nuestra tarea, utilizamos un tipo especial de red neuronal llamado Autoencoder LSTM. La idea es bastante intuitiva. En lugar de predecir un valor futuro, el objetivo de un autoencoder es aprender a reproducir su propia entrada.
-                Podemos imaginarlo como un artista experto que se especializa en copiar un único estilo de pintura. Después de ver cientos de obras de ese estilo, aprende a reproducirlas a la perfección. Sin embargo, si le pides que copie una obra de un estilo completamente diferente, el resultado será pobre y lleno de errores.
-                Nuestro modelo funciona igual: se le entrena para ser un experto en "copiar" o reconstruir secuencias de eventos normales. Cuando se encuentra con una secuencia anómala, su reconstrucción es de mala calidad, y ese "error de reconstrucción" es la señal que nos alerta de una anomalía.
-                La arquitectura del autoencoder se divide en dos partes simétricas:
-                El Codificador (El Resumidor): Esta primera mitad de la red toma la secuencia de entrada (nuestro "videoclip" de 10 eventos) y la comprime progresivamente en una representación mucho más pequeña y densa. Es como si leyera un párrafo completo y lo resumiera en una sola idea clave. En nuestro caso, dos capas LSTM reducen la dimensionalidad de 32 a 16 bits, creando esa "idea" o resumen.
-                El Decodificador (El Reconstructor): Esta segunda mitad toma la idea clave generada por el codificador y realiza el proceso inverso: intenta reconstruir la secuencia original de 10 eventos con la mayor fidelidad posible. Actúa como un espejo del codificador, expandiendo la representación de 16 de vuelta a 32 bits.
-                Para mejorar la robustez del modelo y evitar que simplemente "memorice" los datos de entrenamiento, se incluyeron capas de Dropout. Estas capas "apagan" aleatoriamente algunas neuronas durante el entrenamiento, forzando al modelo a aprender patrones más generales y significativos del comportamiento normal.
+            En el caso del Isolation Forest, adoptamos los hiperparámetros del estudio, configurando el modelo con 100 árboles ($n_estimators$) y un parámetro de contaminación del 3\%. Este último valor asume una proporción esperada de anomalías en nuestros datos, alineándose con los escenarios simulados en la investigación de referencia.
 
-          \item Entrenamiento y Detección: Definiendo la "Normalidad"
+            El segundo modelo implementado es un LSTM Autoencoder, una arquitectura de red neuronal no supervisada especialmente eficaz para la detección de anomalías en datos secuenciales (Malhotra et al., 2015). Su objetivo es aprender una representación comprimida de los patrones "normales" presentes en los datos de entrenamiento para luego identificar desviaciones significativas.
+            Para el desarrollo y aplicación del modelo, se adoptó un enfoque metodológico inspirado en el trabajo de Reis y Serôdio (2025), el cual se estructuró en un riguroso proceso de tres etapas: preparación de los datos, construcción y entrenamiento de la arquitectura, y definición del mecanismo de detección.
 
-                Una vez definida la arquitectura, el modelo entra en la fase de entrenamiento, que es donde aprende el "ritmo" del comportamiento normal.
-                El Proceso de Entrenamiento
-                El objetivo del entrenamiento es simple: hacer que el modelo sea extremadamente bueno reconstruyendo las secuencias de eventos normales y muy malo haciendo lo mismo con las anómalas. Para ello, se le alimenta exclusivamente con datos que representan la normalidad.
-                El modelo procesa los datos en un ciclo de "ensayo y error":
-                Intenta reconstruir una secuencia normal.
-                Calcula el "error de reconstrucción" (qué tan diferente es su copia del original), usando una métrica llamada Error Cuadrático Medio (MSE).
-                Ajusta sus parámetros internos para reducir ese error en el siguiente intento.
-                Este proceso se repite miles de veces. Para hacerlo más eficiente e inteligente, utilizamos dos mecanismos clave:
+            \begin{enumerate}
+                  \item Preparación de los Datos: Traduciendo Eventos a un Lenguaje Neuronal
+                        Para que nuestro modelo LSTM pudiera interpretar los datos de los eventos, primero tuvimos que "traducirlos" a un formato numérico que la red neuronal pudiera procesar. Este paso es crucial, ya que el modelo no entiende de fechas o etiquetas de texto por sí mismo; solo trabaja con números y mientras mas sentido y relaciones tengan estos números mejor aprendera el modelo.
+                        Por ejemplo, si convertimos los días de la semana a números (domingo=0, lunes=1, ..., sábado=6), el modelo interpretaría que el sábado (6) y el domingo (0) son valores muy distantes, cuando en realidad son adyacentes. Este tipo de malentendido impide que la red aprenda patrones que ocurren en la transición del fin de semana.
+                        Para resolver este problema, el enfoque consiste en representar las variables temporales de una manera que refleje su naturaleza cíclica. En lugar de ver el tiempo como una línea recta, lo tratamos como un círculo, similar a las manecillas de un reloj. Esto se logra mediante funciones matemáticas (seno y coseno) que asignan a cada instante una coordenada única en un círculo. De esta forma:
+                        El sábado queda matemáticamente "cerca" del domingo.
+                        Las 23:59 quedan justo al lado de las 00:00.
+                        Este preprocesamiento es fundamental, pues permite que el modelo LSTM capture patrones de comportamiento continuos y lógicos, como los que ocurren durante la madrugada o en el cambio de un día para otro.
+                        Convirtiendo Categorías en Señales Claras
+                        De manera similar, el modelo no puede procesar etiquetas de texto como "uso de microondas" o "sensor de movimiento". Un error común sería asignarles un número a cada una (ej: microondas=1, sensor=2), ya que esto crearía una falsa relación matemática (como si el "sensor" fuera el doble del "microondas").
+                        La solución es una técnica llamada One-Hot Encoding. Funciona como un panel de interruptores, donde cada evento posible tiene su propio interruptor.
+                        Cuando ocurre un evento, su interruptor se "enciende" (toma el valor de 1) mientras que todos los demás permanecen "apagados" (con valor de 0). De esta forma, el modelo recibe una señal clara y sin ambigüedades sobre qué evento específico sucedió, sin crear jerarquías o relaciones numéricas que no existen.
+                        El Poder del Contexto: Agrupando Datos en Secuencias
+                        Finalmente, el verdadero potencial de un modelo LSTM es su capacidad para entender el contexto. Un evento aislado, como "se enciende una luz", no dice mucho. Pero si ocurre dentro de una "historia" o secuencia como "sensor de movimiento activado → se abre la puerta → se enciende la luz", el patrón es mucho más revelador.
+                        Por esta razón, en lugar de analizar los eventos de forma individual, los agrupamos en secuencias superpuestas de una longitud fija (por ejemplo, 10 eventos consecutivos). Es como pasar de ver fotografías individuales a ver pequeños videoclips.
+                        Al entregarle los datos en este formato, el modelo LSTM no solo aprende "qué" pasó, sino "en qué orden" y "en relación con qué" otros eventos ocurrieron, permitiéndole así aprender los patrones complejos que definen un comportamiento normal. Con los datos ya "traducidos" a este formato numérico, cíclico y secuencial, el modelo está listo para comenzar su fase de entrenamiento.
 
-                EarlyStopping (Parada Temprana): Es un supervisor que detiene el entrenamiento automáticamente si el modelo deja de mejorar. Esto evita el sobreajuste (que el modelo "memorice" en lugar de "aprender") y ahorra tiempo de cómputo.
-                ReduceLROnPlateau (Reducción de Tasa de Aprendizaje): Si el modelo se estanca, este mecanismo reduce la magnitud de los ajustes que realiza, permitiéndole un aprendizaje más fino y preciso para superar el estancamiento.
-                El Mecanismo de Detección
-                Una vez que el modelo es un experto en la normalidad, detectar una anomalía es un proceso de tres pasos:
-                Calcular el Error en Datos Normales: Primero, pasamos todos los datos de entrenamiento (que son normales) a través del modelo y guardamos el error de reconstrucción de cada secuencia. Esto nos da una medida de cuál es el rango de error "aceptable" para un comportamiento normal.
-                Establecer un Umbral de Anomalía: No elegimos un umbral al azar. Lo calculamos estadísticamente, por ejemplo, tomando el percentil 99.5 de los errores normales. Este valor se convierte en nuestra línea en la arena: cualquier error por encima de este umbral se considerará sospechoso.
-                Detectar en Tiempo Real: Cuando llega una nueva secuencia de eventos, se la pasamos al modelo. Si el error de reconstrucción de esa secuencia supera nuestro umbral, el sistema la etiqueta como una anomalía y dispara una alerta.
-        \end{enumerate}
+                  \item Arquitectura del Modelo: El Autoencoder LSTM
+                        Para nuestra tarea, utilizamos un tipo especial de red neuronal llamado Autoencoder LSTM. La idea es bastante intuitiva. En lugar de predecir un valor futuro, el objetivo de un autoencoder es aprender a reproducir su propia entrada.
+                        Podemos imaginarlo como un artista experto que se especializa en copiar un único estilo de pintura. Después de ver cientos de obras de ese estilo, aprende a reproducirlas a la perfección. Sin embargo, si le pides que copie una obra de un estilo completamente diferente, el resultado será pobre y lleno de errores.
+                        Nuestro modelo funciona igual: se le entrena para ser un experto en "copiar" o reconstruir secuencias de eventos normales. Cuando se encuentra con una secuencia anómala, su reconstrucción es de mala calidad, y ese "error de reconstrucción" es la señal que nos alerta de una anomalía.
+                        La arquitectura del autoencoder se divide en dos partes simétricas:
+                        El Codificador (El Resumidor): Esta primera mitad de la red toma la secuencia de entrada (nuestro "videoclip" de 10 eventos) y la comprime progresivamente en una representación mucho más pequeña y densa. Es como si leyera un párrafo completo y lo resumiera en una sola idea clave. En nuestro caso, dos capas LSTM reducen la dimensionalidad de 32 a 16 bits, creando esa "idea" o resumen.
+                        El Decodificador (El Reconstructor): Esta segunda mitad toma la idea clave generada por el codificador y realiza el proceso inverso: intenta reconstruir la secuencia original de 10 eventos con la mayor fidelidad posible. Actúa como un espejo del codificador, expandiendo la representación de 16 de vuelta a 32 bits.
+                        Para mejorar la robustez del modelo y evitar que simplemente "memorice" los datos de entrenamiento, se incluyeron capas de Dropout. Estas capas "apagan" aleatoriamente algunas neuronas durante el entrenamiento, forzando al modelo a aprender patrones más generales y significativos del comportamiento normal.
+
+                  \item Entrenamiento y Detección: Definiendo la "Normalidad"
+
+                        Una vez definida la arquitectura, el modelo entra en la fase de entrenamiento, que es donde aprende el "ritmo" del comportamiento normal.
+                        El Proceso de Entrenamiento
+                        El objetivo del entrenamiento es simple: hacer que el modelo sea extremadamente bueno reconstruyendo las secuencias de eventos normales y muy malo haciendo lo mismo con las anómalas. Para ello, se le alimenta exclusivamente con datos que representan la normalidad.
+                        El modelo procesa los datos en un ciclo de "ensayo y error":
+                        Intenta reconstruir una secuencia normal.
+                        Calcula el "error de reconstrucción" (qué tan diferente es su copia del original), usando una métrica llamada Error Cuadrático Medio (MSE).
+                        Ajusta sus parámetros internos para reducir ese error en el siguiente intento.
+                        Este proceso se repite miles de veces. Para hacerlo más eficiente e inteligente, utilizamos dos mecanismos clave:
+
+                        EarlyStopping (Parada Temprana): Es un supervisor que detiene el entrenamiento automáticamente si el modelo deja de mejorar. Esto evita el sobreajuste (que el modelo "memorice" en lugar de "aprender") y ahorra tiempo de cómputo.
+                        ReduceLROnPlateau (Reducción de Tasa de Aprendizaje): Si el modelo se estanca, este mecanismo reduce la magnitud de los ajustes que realiza, permitiéndole un aprendizaje más fino y preciso para superar el estancamiento.
+                        El Mecanismo de Detección
+                        Una vez que el modelo es un experto en la normalidad, detectar una anomalía es un proceso de tres pasos:
+                        Calcular el Error en Datos Normales: Primero, pasamos todos los datos de entrenamiento (que son normales) a través del modelo y guardamos el error de reconstrucción de cada secuencia. Esto nos da una medida de cuál es el rango de error "aceptable" para un comportamiento normal.
+                        Establecer un Umbral de Anomalía: No elegimos un umbral al azar. Lo calculamos estadísticamente, por ejemplo, tomando el percentil 99.5 de los errores normales. Este valor se convierte en nuestra línea en la arena: cualquier error por encima de este umbral se considerará sospechoso.
+                        Detectar en Tiempo Real: Cuando llega una nueva secuencia de eventos, se la pasamos al modelo. Si el error de reconstrucción de esa secuencia supera nuestro umbral, el sistema la etiqueta como una anomalía y dispara una alerta.
+            \end{enumerate}
 \end{enumerate}
 
 \usubsection{Validación del sistema de monitoreo acústico para generar alertas en casos de emergencia}
@@ -255,18 +276,50 @@ El proceso consistió en pasar cada una de las 45,841 secuencias de prueba a tra
 
 La selección de este percentil (99.95) no fue un valor arbitrario. Para definir el umbral de decisión óptimo, se realizó un análisis de la Curva ROC (Receiver Operating Characteristic). Esta herramienta permite evaluar el balance entre la capacidad de detectar anomalías reales (Tasa de Verdaderos Positivos) y la tasa de falsas alarmas (Tasa de Falsos Positivos) para diferentes umbrales. Se probaron varios percentiles y se seleccionó aquel que maximizaba el Área Bajo la Curva (AUC), una métrica que resume la capacidad global del modelo para distinguir entre clases. Como se muestra en la gráfica, el umbral del 99.95\% permitió alcanzar un AUC de 0.792, un valor cercano al objetivo de 0.8, lo que confirma que el umbral elegido posiciona al modelo en un punto de operación con un sólido equilibrio entre sensibilidad y especificidad.
 
+\begin{figure}[ht!]
+      \centering
+      \includegraphics[width=0.85\textwidth]{LSTM/roc.png}
+      \caption{Curva ROC y AUC del LSTM Autoencoder}
+      \label{fig:roc_lstm}
+\end{figure}
+
 El resultado principal del proceso de validación se puede observar directamente en el siguiente gráfico, que muestra el momento exacto en que el modelo detecta una anomalía.
+
+\begin{figure}[ht!]
+      \centering
+      \includegraphics[width=0.85\textwidth]{LSTM/anomalias.png}
+      \caption{Gráficas de MSE por secuencia para el LSTM Autoencoder.}
+      \label{fig:mse_lstm}
+\end{figure}
 
 En la gráfica de la figura 1, se visualiza el error de reconstrucción para cada secuencia del conjunto de prueba. La línea discontinua roja representa el umbral de anomalía (MSE = 0.001646). Los puntos rojos marcan las 21 secuencias cuyo error superó este límite, siendo clasificadas correctamente como anomalías. Este gráfico confirma visualmente que el modelo es efectivo para asignar una puntuación de error mucho más alta a los eventos que se desvían del comportamiento normal aprendido.
 
 Para analizar en detalle el rendimiento del modelo, no es suficiente con saber el número total de anomalías detectadas. Es fundamental comprender la naturaleza de sus aciertos y errores, y para ello se utiliza la matriz de confusión. Esta herramienta es una tabla que desglosa los resultados al comparar las predicciones del modelo con la realidad del conjunto de prueba, permitiéndonos visualizar cuatro escenarios clave:
 
 \begin{itemize}
-  \item Verdaderos Positivos (VP): Las anomalías que el modelo identificó correctamente.
-  \item Verdaderos Negativos (VN): Los eventos normales que el modelo clasificó correctamente como normales.
-  \item Falsos Positivos (FP): Eventos normales que el modelo etiquetó erróneamente como anomalías (las "falsas alarmas").
-  \item Falsos Negativos (FN): Las anomalías reales que el modelo no fue capaz de detectar (los errores más críticos).
+      \item Verdaderos Positivos (VP): Las anomalías que el modelo identificó correctamente.
+      \item Verdaderos Negativos (VN): Los eventos normales que el modelo clasificó correctamente como normales.
+      \item Falsos Positivos (FP): Eventos normales que el modelo etiquetó erróneamente como anomalías (las "falsas alarmas").
+      \item Falsos Negativos (FN): Las anomalías reales que el modelo no fue capaz de detectar (los errores más críticos).
 \end{itemize}
+
+\begin{table}[ht!]
+      \doublespacing
+      \small
+      \centering
+      \begin{tabular}{ >{\centering\arraybackslash}p{3cm} >{\centering\arraybackslash}p{3cm} >{\centering\arraybackslash}p{3cm} }
+            \hline
+                          & \multicolumn{2}{c}{\textbf{Esperado}}              \\
+            \hline
+            \textbf{Real} & \textbf{P}                            & \textbf{N} \\
+            \hline
+            V             & 18                                    & 45814      \\
+            F             & 3                                     & 6          \\
+            \hline
+      \end{tabular}
+      \caption{Matriz de Confusión del LSTM Autoencoder}
+      \label{tab:confusion_matrix_lstm}
+\end{table}
 
 VP (Verdaderos Positivos): 18
 
@@ -279,27 +332,107 @@ VN (Verdaderos Negativos): 45814
 Estas cifras se traducen en las siguientes métricas de rendimiento:
 
 \begin{itemize}
-  \item  Exactitud (Accuracy): proporción de predicciones correctas respecto al total de casos evaluados.
+      \item  Exactitud (Accuracy): proporción de predicciones correctas respecto al total de casos evaluados.
 
-        $$Accuracy = \frac{TP+TN}{TP+TN+FP+FN}=\frac{(18+45814)}{(18+45814+3+6)}=\frac{45832}{45841}\approx 0.9998$$
+            $$Accuracy = \frac{TP+TN}{TP+TN+FP+FN}=\frac{(18+45814)}{(18+45814+3+6)}\approx 0.9998$$
 
-  \item Tasa de error: proporción de predicciones incorrectas respecto al total.
+      \item Tasa de error: proporción de predicciones incorrectas respecto al total.
 
-        $$Error = \frac{FP+FN}{TP+TN+FP+FN}=\frac{(3+6)}{(18+45814+3+6)}=\frac{9}{45841}\approx 0.0002$$
+            $$Error = \frac{FP+FN}{TP+TN+FP+FN}=\frac{(3+6)}{(18+45814+3+6)}\approx 0.0002$$
 
-  \item Sensibilidad (Recall o Verdaderos Positivos): proporción de eventos de anomalos correctamente detectados.
+      \item Sensibilidad (Recall o Verdaderos Positivos): proporción de eventos de anomalos correctamente detectados.
 
-        $$Recall = \frac{TP}{TP+FN}=\frac{18}{18+6}=\frac{18}{24}=0.75$$
+            $$Recall = \frac{TP}{TP+FN}=\frac{18}{18+6}=0.75$$
 
-  \item Precisión: La proporción de casos realmente positivos entre todos los casos que el modelo predijo como positivos.
+      \item Precisión: La proporción de casos realmente positivos entre todos los casos que el modelo predijo como positivos.
 
-        $$Precision = \frac{TP}{TP+FP}=\frac{18}{18+3}=\frac{18}{21}\approx 0.8571$$
+            $$Precision = \frac{TP}{TP+FP}=\frac{18}{18+3}\approx 0.8571$$
 
-  \item Especificidad: proporción de eventos no críticos correctamente descartados.
+      \item Especificidad: proporción de eventos no críticos correctamente descartados.
 
-        $$Specificity = \frac{TN}{TN+FP}=\frac{45814}{45814+3}=\frac{45814}{45817}\approx 0.9999$$
+            $$Specificity = \frac{TN}{TN+FP}=\frac{45814}{45814+3}\approx 0.9999$$
+
+      \item F1 Score: media armónica entre la precisión y la sensibilidad, útil cuando es importante equilibrar ambas.
+
+            $$F1_{score} = 2 \cdot \frac{Precision \cdot Recall}{Precision + Recall} = 2 \cdot \frac{0.8571 * 0.75}{0.8571+0.75} \approx 0.8$$
 \end{itemize}
 
 El análisis de las métricas de rendimiento cuantifica el desempeño del modelo. La exactitud general es del 99.98\%, aunque este valor es menos indicativo en conjuntos de datos con clases desbalanceadas. Un análisis más específico muestra una Sensibilidad (Recall) del 75.0\%, lo que indica que el modelo identifica a tres de cada cuatro anomalías reales. A su vez, la Precisión es del 85.7\%, lo que significa que sus alertas positivas son correctas en esa proporción. La puntuación F1, como media armónica de ambas, se sitúa en 80.0\%, reflejando el balance entre la capacidad de detección y la fiabilidad de sus predicciones.
 
 \uparagraph{Validación del Isolation Forest}
+
+Para la segunda validación, se evaluó el modelo Isolation Forest (IF), una técnica no supervisada que opera de manera fundamentalmente distinta al autoencoder. En lugar de medir un error de reconstrucción, este modelo asigna una "puntuación de anomalía" a cada evento basándose en qué tan fácil es aislarlo del resto de los datos. Los eventos que son más fáciles de separar (requieren menos divisiones en los árboles de decisión) se consideran más anómalos.
+
+El proceso de validación se aplicó sobre el mismo conjunto de datos, compuesto por 100,809 registros, de los cuales 5,041 (5\%) son anomalías reales. A diferencia del LSTM Autoencoder, el umbral de decisión en el Isolation Forest no se calcula estadísticamente a posteriori, sino que se define a priori mediante el hiperparámetro contamination. Este valor se estableció en 0.05 (5\%), una práctica estándar para configurar este algoritmo. Cualquier evento cuya puntuación de anomalía superara el umbral derivado de esta configuración fue clasificado como anómalo.
+
+\begin{figure}[ht!]
+      \centering
+      \includegraphics[width=0.85\textwidth]{IF/anomalias_tiempo.png}
+      \caption{Gráficas de puntuación de anomalía por evento para el Isolation Forest.}
+      \label{fig:anomalias_if}
+\end{figure}
+
+\begin{itemize}
+      \item Análisis de la Detección
+
+            El análisis de los resultados del Isolation Forest revela un rendimiento significativamente inferior al del LSTM Autoencoder. El modelo identificó un total de 5,041 eventos como anómalos. Sin embargo, un desglose más profundo a través de la matriz de confusión es necesario para entender la verdadera efectividad de estas detecciones.
+
+            Para analizar en detalle el rendimiento del modelo, se utiliza la matriz de confusión. Esta herramienta desglosa los resultados al comparar las predicciones del modelo con la realidad del conjunto de prueba, permitiéndonos visualizar cuatro escenarios clave:
+
+            \begin{table}[h!]
+                  \doublespacing
+                  \small
+                  \centering
+                  \begin{tabular}{ >{\centering\arraybackslash}p{3cm} >{\centering\arraybackslash}p{3cm} >{\centering\arraybackslash}p{3cm} }
+                        \hline
+                                      & \multicolumn{2}{c}{\textbf{Esperado}}              \\
+                        \hline
+                        \textbf{Real} & \textbf{P}                            & \textbf{N} \\
+                        \hline
+                        V             & 2877                                  & 87737      \\
+                        F             & 2164                                  & 8031       \\
+                        \hline
+                  \end{tabular}
+                  \caption{Matriz de Confusión del Isolation Forest}
+                  \label{tab:confusion_matrix_isolation_forest}
+            \end{table}
+
+            VP (Verdaderos Positivos): 2,877
+
+            FP (Falsos Positivos): 2,164
+
+            FN (Falsos Negativos): 8,031
+
+            VN (Verdaderos Negativos): 87,737
+
+            \begin{figure}[ht!]
+                  \centering
+                  \includegraphics[width=0.65\textwidth]{IF/matriz_confusion.png}
+                  \caption{Matriz de Confusión del Isolation Forest}
+                  \label{fig:confusion_matrix_if}
+            \end{figure}
+
+      \item Métricas de Rendimiento
+
+            $$Accuracy = \frac{(2877+87737)}{(2877+87737+2164+8031)}\approx 0.8989$$
+
+            $$Error = \frac{(2164+8031)}{(2877+87737+2164+8031)}\approx 0.101$$
+
+            $$Recall = \frac{2877}{2877+8031}\approx 0.2638$$
+
+            $$Precision = \frac{2877}{2877+2164}\approx 0.5707$$
+
+            $$Specificity = \frac{87737}{87737+2164}\approx 0.9759$$
+
+            $$F1_{score} = 2 \cdot \frac{0.5707 * 0.2638}{0.5707+0.2638} \approx 0.3608$$
+
+\end{itemize}
+
+\begin{figure}[ht!]
+      \centering
+      \includegraphics[width=0.85\textwidth]{IF/roc_auc.png}
+      \caption{Curva ROC y AUC del Isolation Forest.}
+      \label{fig:roc_if}
+\end{figure}
+
+El análisis de las métricas de rendimiento cuantifica el desempeño del modelo. La exactitud general del 89.9\% es un valor engañoso, inflado por la gran cantidad de eventos normales correctamente identificados. Las métricas más importantes revelan un rendimiento deficiente: una Sensibilidad (Recall) de solo el 26.4\%, lo que indica que el modelo no detectó a más de 3 de cada 4 anomalías reales. A su vez, la Precisión es del 57.1\%, lo que significa que casi la mitad de sus alertas son falsas alarmas. La puntuación F1 resultante, del 36.1\%, confirma que el modelo, en su configuración actual, carece del equilibrio y la eficacia necesarios para ser una solución fiable
