@@ -74,9 +74,6 @@
 % TOC Chapter Style
 \cftpagenumbersoff{chapter}
 \setlength{\cftbeforechapskip}{5pt}
-\renewcommand{\cftchapaftersnum}{.}
-\renewcommand{\cftchappresnum}{\upper{Capítulo} }
-\renewcommand{\cftchapnumwidth}{7.25em}
 
 % TOC Sections Style
 \setlength{\cftsecindent}{0pt}
@@ -88,7 +85,7 @@
 \newcommand{\upper}[1]{\uppercase{#1}}
 \usepackage{titlesec}
 \titleformat{\chapter}
-{\normalfont\fontsize{12}{15}\bfseries\centering}{\upper{Capítulo \thechapter}.}{0.3em}{\bigbreak\upper}[\thispagestyle{empty}]
+{\normalfont\fontsize{12}{15}\bfseries\centering}{}{0.3em}{\upper}[\thispagestyle{empty}]
 \titleformat{\section}
 {\normalfont\fontsize{12}{15}\bfseries}{\thesection}{1em}{}
 \titleformat{\subsection}
@@ -99,6 +96,18 @@
 {\normalfont\fontsize{12}{15}\itshape\narrower}{\theparagraph}{1em}{}
 
 % Comandos para crear secciones no numeradas con entrada en el índice
+\newcommand{\uchapter}[1]{
+  \addtocounter{chapter}{1}
+  \phantomsection
+  \chapter*{Capítulo \thechapter. {#1}}
+  \addcontentsline{toc}{chapter}{Capítulo \thechapter. {#1}}
+}
+\newcommand{\uextra}[2]{
+  \addtocounter{chapter}{1}
+  \phantomsection
+  \chapter*{{#1} \thechapter. {#2}}
+  \addcontentsline{toc}{chapter}{{#1} \thechapter. {#2}}
+}
 \newcommand{\usection}[1]{
   \phantomsection
   \section*{#1}
