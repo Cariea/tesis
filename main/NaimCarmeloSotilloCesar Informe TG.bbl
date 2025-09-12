@@ -147,6 +147,32 @@ Carmona, J\BPBI A.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+{CEPAL}%
+}{%
+{CEPAL}%
+}{%
+{\protect \APACyear {2005}}%
+}]{%
+cepal_2005}
+\APACinsertmetastar {%
+cepal_2005}%
+\begin{APACrefauthors}%
+{CEPAL}.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2005}{}{}.
+\newblock
+\APACrefbtitle {Dinámica demográfica y desarrollo en América Latina y el
+  Caribe.} {Dinámica demográfica y desarrollo en américa latina y el
+  caribe.}
+\newblock
+\begin{APACrefURL}
+  \url{https://fiapam.org/wp-content/uploads/2012/10/lcl2235e-p.pdf}
+  \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 {Comisión Venezolana de Normas Industriales (COVENIN)}%
 }{%
 {Comisión Venezolana de Normas Industriales (COVENIN)}%
@@ -582,6 +608,32 @@ naciones_unidas_envejecimiento_2022}%
 \begin{APACrefURL}
   [{2025-09-08}]\url{https://www.un.org/es/global-issues/ageing}
   \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Pe{\~n}a%
+}{%
+Pe{\~n}a%
+}{%
+{\protect \APACyear {2016}}%
+}]{%
+pena2016reciente}
+\APACinsertmetastar {%
+pena2016reciente}%
+\begin{APACrefauthors}%
+Pe{\~n}a, F\BPBI A\BPBI V.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2016}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Reciente evoluci{\'o}n de los hogares unipersonales en
+  Espa{\~n}a: una aproximaci{\'o}n sociol{\'o}gica} {Reciente evoluci{\'o}n de
+  los hogares unipersonales en espa{\~n}a: una aproximaci{\'o}n
+  sociol{\'o}gica}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{WPS Review International on Sustainable Housing and
+  Urban Renewal: RI-SHUR}{}{3}{38--55}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%

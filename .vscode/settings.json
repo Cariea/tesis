@@ -1,4 +1,5 @@
 {
+	"editor.wordWrap": "on",
 	// Latex Workshop
 	"latex-workshop.formatting.latex": "latexindent",
 	"latex-workshop.latex.clean.subfolder.enabled": true,
