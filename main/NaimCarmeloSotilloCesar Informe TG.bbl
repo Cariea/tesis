@@ -1,78 +1,6 @@
 \begin{thebibliography}{}
 
 \bibitem [\protect \citeauthoryear {%
-{Alpha Cephei}%
-}{%
-{Alpha Cephei}%
-}{%
-{\protect \APACyear {2024}}%
-}]{%
-alpha_cephei_vosk_2024}
-\APACinsertmetastar {%
-alpha_cephei_vosk_2024}%
-\begin{APACrefauthors}%
-{Alpha Cephei}.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{2024}{}{}.
-\newblock
-\APACrefbtitle {Vosk models.} {Vosk models.}
-\newblock
-\begin{APACrefURL} [{2025-09-08}]\url{https://alphacephei.com/vosk/models}
-  \end{APACrefURL}
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
-{Apple}%
-}{%
-{Apple}%
-}{%
-{\protect \APACyear {2023}}%
-}]{%
-apple_use_2023}
-\APACinsertmetastar {%
-apple_use_2023}%
-\begin{APACrefauthors}%
-{Apple}.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{2023}{}{}.
-\newblock
-\APACrefbtitle {Use Fall Detection with Apple Watch.} {Use fall detection with
-  apple watch.}
-\newblock
-\begin{APACrefURL} [{2025-09-08}]\url{https://support.apple.com/en-us/108896}
-  \end{APACrefURL}
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
-{Asamblea Nacional Constituyente}%
-}{%
-{Asamblea Nacional Constituyente}%
-}{%
-{\protect \APACyear {1999}}%
-}]{%
-asamblea_nacional_constituyente_constitucion_1999}
-\APACinsertmetastar {%
-asamblea_nacional_constituyente_constitucion_1999}%
-\begin{APACrefauthors}%
-{Asamblea Nacional Constituyente}.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{1999}{}{}.
-\newblock
-\APACrefbtitle {Constitución de la República Bolivariana de Venezuela.}
-  {Constitución de la república bolivariana de venezuela.}
-\newblock
-\begin{APACrefURL}
-  [{2025-09-08}]\url{https://www.oas.org/dil/esp/constitucion_venezuela.pdf}
-  \end{APACrefURL}
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
 Bobadilla~Osses%
 }{%
 Bobadilla~Osses%
@@ -117,6 +45,36 @@ Boehm, B.%
   {A spiral model of software development and enhancement}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{ACM SIGSOFT Software Engineering Notes}{11}{4}{14--24}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Boldt%
+, Borg%
+, Ickin%
+\BCBL {}\ \BBA {} Gustafsson%
+}{%
+Boldt%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2020}}%
+}]{%
+boldt2020anomaly}
+\APACinsertmetastar {%
+boldt2020anomaly}%
+\begin{APACrefauthors}%
+Boldt, M.%
+, Borg, A.%
+, Ickin, S.%
+\BCBL {}\ \BBA {} Gustafsson, J.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2020}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Anomaly detection of event sequences using multiple
+  temporal resolutions and Markov chains} {Anomaly detection of event sequences
+  using multiple temporal resolutions and markov chains}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Knowledge and Information Systems}{62}{2}{669--686}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -173,32 +131,6 @@ cepal_2005}%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
-{Comisión Venezolana de Normas Industriales (COVENIN)}%
-}{%
-{Comisión Venezolana de Normas Industriales (COVENIN)}%
-}{%
-{\protect \APACyear {2005}}%
-}]{%
-covenin_norma_2005}
-\APACinsertmetastar {%
-covenin_norma_2005}%
-\begin{APACrefauthors}%
-{Comisión Venezolana de Normas Industriales (COVENIN)}.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{2005}{}{}.
-\newblock
-\APACrefbtitle {Norma COVENIN 2500-1: Sistemas electrónicos de seguridad –
-  Requisitos generales.} {Norma covenin 2500-1: Sistemas electrónicos de
-  seguridad – requisitos generales.}
-\newblock
-\begin{APACrefURL}
-  [{2025-09-08}]\url{https://www.medicinalaboraldevenezuela.com.ve/normas_covenin.html}
-  \end{APACrefURL}
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
 Doluí%
 \ \BBA {} Kanti~Datta%
 }{%
@@ -226,31 +158,6 @@ Doluí, K.%
   internet of things summit (glots).}
 \newblock
 \begin{APACrefDOI} \doi{10.1109/giots.2017.8016213} \end{APACrefDOI}
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
-Dubs%
-}{%
-Dubs%
-}{%
-{\protect \APACyear {2004}}%
-}]{%
-dubs_estrategia_2004}
-\APACinsertmetastar {%
-dubs_estrategia_2004}%
-\begin{APACrefauthors}%
-Dubs, R.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{2004}{}{}.
-\newblock
-\APACrefbtitle {Una Estrategia Metodológica para el Proyecto Factible.} {Una
-  estrategia metodológica para el proyecto factible.}
-\newblock
-\begin{APACrefURL}
-  [{2025-09-08}]\url{https://historico.upel.edu.ve:81/revistas/index.php/entretemas/article/download/1032/363}
-  \end{APACrefURL}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -286,6 +193,38 @@ García, J.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Gemmeke%
+\ \protect \BOthers {.}}{%
+Gemmeke%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2017}}%
+}]{%
+gemmeke2017audio}
+\APACinsertmetastar {%
+gemmeke2017audio}%
+\begin{APACrefauthors}%
+Gemmeke, J\BPBI F.%
+, Ellis, D\BPBI P.%
+, Freedman, D.%
+, Jansen, A.%
+, Lawrence, W.%
+, Moore, R\BPBI C.%
+\BDBL {}Ritter, M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2017}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Audio set: An ontology and human-labeled dataset for
+  audio events} {Audio set: An ontology and human-labeled dataset for audio
+  events}.{\BBCQ}
+\newblock
+\BIn{} \APACrefbtitle {2017 IEEE international conference on acoustics, speech
+  and signal processing (ICASSP)} {2017 ieee international conference on
+  acoustics, speech and signal processing (icassp)}\ (\BPGS\ 776--780).
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Goldsborough%
 }{%
 Goldsborough%
@@ -307,6 +246,32 @@ Goldsborough, P.%
 \newblock
 \begin{APACrefURL} [{2025-09-08}]\url{https://arxiv.org/pdf/1610.01178}
   \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Heaton%
+}{%
+Heaton%
+}{%
+{\protect \APACyear {2018}}%
+}]{%
+heaton2018ian}
+\APACinsertmetastar {%
+heaton2018ian}%
+\begin{APACrefauthors}%
+Heaton, J.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2018}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Ian goodfellow, yoshua bengio, and aaron courville: Deep
+  learning: The mit press, 2016, 800 pp, isbn: 0262035618} {Ian goodfellow,
+  yoshua bengio, and aaron courville: Deep learning: The mit press, 2016, 800
+  pp, isbn: 0262035618}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Genetic programming and evolvable
+  machines}{19}{1}{305--307}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -338,6 +303,31 @@ Hernández, R.%
 \begin{APACrefURL}
   \url{https://www.esup.edu.pe/wp-content/uploads/2020/12/2.%20Hernandez,%20Fernandez%20y%20Baptista-Metodología%20Investigacion%20Cientifica%206ta%20ed.pdf}
   \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Hochreiter%
+\ \BBA {} Schmidhuber%
+}{%
+Hochreiter%
+\ \BBA {} Schmidhuber%
+}{%
+{\protect \APACyear {1997}}%
+}]{%
+hochreiter1997long}
+\APACinsertmetastar {%
+hochreiter1997long}%
+\begin{APACrefauthors}%
+Hochreiter, S.%
+\BCBT {}\ \BBA {} Schmidhuber, J.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1997}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Long short-term memory} {Long short-term memory}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Neural computation}{9}{8}{1735--1780}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -425,27 +415,89 @@ Igba, J.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
-{Kaggle}%
+Liu%
+, Ting%
+\BCBL {}\ \BBA {} Zhou%
 }{%
-{Kaggle}%
+Liu%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2012}}%
+}]{%
+liu2012isolation}
+\APACinsertmetastar {%
+liu2012isolation}%
+\begin{APACrefauthors}%
+Liu, F\BPBI T.%
+, Ting, K\BPBI M.%
+\BCBL {}\ \BBA {} Zhou, Z\BHBI H.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2012}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Isolation-based anomaly detection} {Isolation-based
+  anomaly detection}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{ACM Transactions on Knowledge Discovery from Data
+  (TKDD)}{6}{1}{1--39}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Luis-Garc{\'\i}a%
+\ \BBA {} G{\'o}mez%
+}{%
+Luis-Garc{\'\i}a%
+\ \BBA {} G{\'o}mez%
 }{%
 {\protect \APACyear {2024}}%
 }]{%
-kaggle_yamnet_2024}
+luis2024desarrollo}
 \APACinsertmetastar {%
-kaggle_yamnet_2024}%
+luis2024desarrollo}%
 \begin{APACrefauthors}%
-{Kaggle}.%
+Luis-Garc{\'\i}a, L\BPBI C.%
+\BCBT {}\ \BBA {} G{\'o}mez, A\BPBI R\BPBI T.%
 \end{APACrefauthors}%
 \unskip\
 \newblock
 \APACrefYearMonthDay{2024}{}{}.
 \newblock
-\APACrefbtitle {YAMNet.} {Yamnet.}
+{\BBOQ}\APACrefatitle {Desarrollo de aplicaciones IoT: metodolog{\'\i}as y
+  estrategias} {Desarrollo de aplicaciones iot: metodolog{\'\i}as y
+  estrategias}.{\BBCQ}
 \newblock
-\begin{APACrefURL}
-  [{2025-09-08}]\url{https://www.kaggle.com/models/google/yamnet}
-  \end{APACrefURL}
+\APACjournalVolNumPages{European Public \& Social Innovation
+  Review}{9}{}{1--18}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Malhotra%
+, Vig%
+, Shroff%
+, Agarwal%
+\BCBL {}\ \protect \BOthers {.}}{%
+Malhotra%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2015}}%
+}]{%
+malhotra2015long}
+\APACinsertmetastar {%
+malhotra2015long}%
+\begin{APACrefauthors}%
+Malhotra, P.%
+, Vig, L.%
+, Shroff, G.%
+, Agarwal, P.%
+\BCBL {}\ \BOthersPeriod {.}\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2015}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Long short term memory networks for anomaly detection in
+  time series} {Long short term memory networks for anomaly detection in time
+  series}.{\BBCQ}
+\newblock
+\BIn{} \APACrefbtitle {Proceedings} {Proceedings}\ (\BVOL~89, \BPG~94).
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -528,65 +580,6 @@ Medina, M.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
-Mondragón%
-, Pérez-Meana%
-, Calderón%
-\BCBL {}\ \BBA {} Jiménez%
-}{%
-Mondragón%
-\ \protect \BOthers {.}}{%
-{\protect \APACyear {2021}}%
-}]{%
-mondragon_clasificacion_2021}
-\APACinsertmetastar {%
-mondragon_clasificacion_2021}%
-\begin{APACrefauthors}%
-Mondragón, F\BPBI J.%
-, Pérez-Meana, H\BPBI M.%
-, Calderón, G.%
-\BCBL {}\ \BBA {} Jiménez, J.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{2021}{}{}.
-\newblock
-{\BBOQ}\APACrefatitle {Clasificación de sonidos ambientales usando la
-  transformada wavelet continúa y redes neuronales convolucionales}
-  {Clasificación de sonidos ambientales usando la transformada wavelet
-  continúa y redes neuronales convolucionales}.{\BBCQ}
-\newblock
-\APACjournalVolNumPages{Información Tecnológica}{32}{2}{61--78}.
-\newblock
-\begin{APACrefDOI} \doi{10.4067/S0718-07642021000200061} \end{APACrefDOI}
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
-{Naciones Unidas}%
-}{%
-{Naciones Unidas}%
-}{%
-{\protect \APACyear {2015}}%
-}]{%
-naciones_unidas_transformar_2015}
-\APACinsertmetastar {%
-naciones_unidas_transformar_2015}%
-\begin{APACrefauthors}%
-{Naciones Unidas}.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{2015}{}{}.
-\newblock
-\APACrefbtitle {Transformar nuestro mundo: la Agenda 2030 para el Desarrollo
-  Sostenible.} {Transformar nuestro mundo: la agenda 2030 para el desarrollo
-  sostenible.}
-\newblock
-\begin{APACrefURL}
-  [{2025-09-08}]\url{https://www.un.org/sustainabledevelopment/es/}
-  \end{APACrefURL}
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
 {Naciones Unidas}%
 }{%
 {Naciones Unidas}%
@@ -634,6 +627,34 @@ Pe{\~n}a, F\BPBI A\BPBI V.%
 \newblock
 \APACjournalVolNumPages{WPS Review International on Sustainable Housing and
   Urban Renewal: RI-SHUR}{}{3}{38--55}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Pons~Puig%
+\ \protect \BOthers {.}}{%
+Pons~Puig%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2019}}%
+}]{%
+pons2019deep}
+\APACinsertmetastar {%
+pons2019deep}%
+\begin{APACrefauthors}%
+Pons~Puig, J.%
+\BCBT {}\ \BOthersPeriod {.}
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2019}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Deep neural networks for music and audio tagging} {Deep
+  neural networks for music and audio tagging}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{IEEE/ACM Transactions on Audio, Speech, and Language
+  Processing}{}{}{}.
+\newblock
+\begin{APACrefURL} \url{https://jordipons.me/media/PhD_Thesis_JordiPons.pdf}
+  \end{APACrefURL}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -721,78 +742,29 @@ Ralla, E.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
-{República Bolivariana de Venezuela}%
+Reis%
+\ \BBA {} Ser{\^o}dio%
 }{%
-{República Bolivariana de Venezuela}%
+Reis%
+\ \BBA {} Ser{\^o}dio%
 }{%
-{\protect \APACyear {2001}}%
-{\protect \APACexlab {{\protect \BCnt {1}}}}}]{%
-republica_bolivariana_venezuela_ley_mensajes_2001}
-\APACinsertmetastar {%
-republica_bolivariana_venezuela_ley_mensajes_2001}%
-\begin{APACrefauthors}%
-{República Bolivariana de Venezuela}.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{2001{\protect \BCnt {1}}}{}{}.
-\newblock
-\APACrefbtitle {Ley de Mensajes de Datos y Firmas Electrónicas.} {Ley de
-  mensajes de datos y firmas electrónicas.}
-\newblock
-\begin{APACrefURL}
-  [{2025-09-08}]\url{https://www.oas.org/juridico/spanish/mesicic3_ven_anexo19.pdf}
-  \end{APACrefURL}
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
-{República Bolivariana de Venezuela}%
-}{%
-{República Bolivariana de Venezuela}%
-}{%
-{\protect \APACyear {2001}}%
-{\protect \APACexlab {{\protect \BCnt {2}}}}}]{%
-republica_bolivariana_venezuela_ley_2001}
-\APACinsertmetastar {%
-republica_bolivariana_venezuela_ley_2001}%
-\begin{APACrefauthors}%
-{República Bolivariana de Venezuela}.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{2001{\protect \BCnt {2}}}{}{}.
-\newblock
-\APACrefbtitle {Ley Especial contra Delitos Informáticos.} {Ley especial
-  contra delitos informáticos.}
-\newblock
-\begin{APACrefURL}
-  [{2025-09-08}]\url{https://www.oas.org/juridico/spanish/mesicic3_ven_anexo18.pdf}
-  \end{APACrefURL}
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
-{República Bolivariana de Venezuela}%
-}{%
-{República Bolivariana de Venezuela}%
-}{%
-{\protect \APACyear {2010}}%
+{\protect \APACyear {2025}}%
 }]{%
-republica_bolivariana_venezuela_ley_organica_2010}
+reis2025edge}
 \APACinsertmetastar {%
-republica_bolivariana_venezuela_ley_organica_2010}%
+reis2025edge}%
 \begin{APACrefauthors}%
-{República Bolivariana de Venezuela}.%
+Reis, M\BPBI J.%
+\BCBT {}\ \BBA {} Ser{\^o}dio, C.%
 \end{APACrefauthors}%
 \unskip\
 \newblock
-\APACrefYearMonthDay{2010}{}{}.
+\APACrefYearMonthDay{2025}{}{}.
 \newblock
-\APACrefbtitle {Ley Orgánica de Telecomunicaciones.} {Ley orgánica de
-  telecomunicaciones.}
+{\BBOQ}\APACrefatitle {Edge AI for Real-Time Anomaly Detection in Smart Homes}
+  {Edge ai for real-time anomaly detection in smart homes}.{\BBCQ}
 \newblock
-\begin{APACrefURL}
-  [{2025-09-08}]\url{https://www.oas.org/juridico/spanish/cyb_ven_ley_telecomunicaciones.pdf}
-  \end{APACrefURL}
+\APACjournalVolNumPages{Future Internet}{17}{4}{179}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -971,32 +943,6 @@ Torija, A.%
 \newblock
 \begin{APACrefURL}
   \url{https://documentacion.sea-acustica.es/publicaciones/Coimbra08/id206.pdf}
-  \end{APACrefURL}
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
-{UPEL}%
-}{%
-{UPEL}%
-}{%
-{\protect \APACyear {2004}}%
-}]{%
-upel_manual_2004}
-\APACinsertmetastar {%
-upel_manual_2004}%
-\begin{APACrefauthors}%
-{UPEL}.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{2004}{}{}.
-\newblock
-\APACrefbtitle {Manual de Trabajos de Grado de Especialización y Maestría y
-  Tesis Doctorales.} {Manual de trabajos de grado de especialización y
-  maestría y tesis doctorales.}
-\newblock
-\begin{APACrefURL}
-  [{2025-09-08}]\url{https://fondoeditorialupel.com/manual-de-trabajos-de-grado-de-especializacion-y-maestria-y-tesis-doctorales/}
   \end{APACrefURL}
 \PrintBackRefs{\CurrentBib}
 
