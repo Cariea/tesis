@@ -69,11 +69,19 @@ Además, la ciencia de datos es esencial en la creación y entrenamiento de mode
 
 Según \citeauthor{hyndman_forecasting_2018} \citeyear{hyndman_forecasting_2018}, las series temporales son secuencias de datos ordenados en el tiempo, y su análisis implica la identificación de patrones como tendencias, estacionalidad y ciclos, para luego utilizarlos en la predicción de valores futuros. Las técnicas predictivas para series temporales son métodos estadísticos y de aprendizaje automático que permiten modelar y predecir el comportamiento futuro de datos que varían en el tiempo. Estas técnicas son fundamentales en aplicaciones donde es necesario anticipar tendencias, patrones o eventos futuros basados en datos históricos.
 
-\begin{itemize}
-    \item **Transformers**: Modelos basados en atención que han demostrado ser efectivos en tareas de predicción de series temporales.
-    \item **LSTM (Long Short-Term Memory)**: Redes neuronales recurrentes que son capaces de aprender dependencias a largo plazo en datos secuenciales.
-    \item **Autoencoders**: Redes neuronales utilizadas para la reducción de dimensionalidad y la detección de anomalías en series temporales.
-    \item **Isolation Forest**: Un algoritmo de detección de anomalías que puede ser aplicado a series temporales para identificar comportamientos inusuales.
-    \item **Encoding**: Técnicas de codificación que permiten representar datos temporales de manera que se conserven sus características temporales.
-    \item **Redis Pub/Sub (colas)**: Un patrón de mensajería que puede ser utilizado para la transmisión en tiempo real de eventos en sistemas de monitoreo.
-\end{itemize}
+\usubsection{Transformers}
+
+Los Transformers son una arquitectura de red neuronal introducida por \citeauthor{vaswani2017attention} \citeyear{vaswani2017attention}, cuyo principio central es el mecanismo de atención, que permite procesar secuencias en paralelo en lugar de manera secuencial, como ocurría en las redes recurrentes. Esto posibilita capturar dependencias de largo alcance en secuencias de datos, mejorando el rendimiento en tareas de procesamiento de lenguaje natural, visión y audio. La capacidad de atender de forma dinámica a distintas partes de la secuencia los hace más eficientes y escalables, superando las limitaciones de las RNN y LSTM en problemas de dependencia a largo plazo. Actualmente, constituyen la base de modelos avanzados de IA como BERT y GPT, así como en aplicaciones emergentes de audio y monitoreo acústico
+
+\usubsection{LSTM (Long Short-Term Memory)}
+
+Las redes neuronales recurrentes (RNN) fueron diseñadas para procesar datos secuenciales, pero sufrían el problema del desvanecimiento del gradiente, lo que dificultaba capturar dependencias de largo plazo \cite{heaton2018ian}. Para resolverlo, \citeauthor{hochreiter1997long} introdujeron las LSTM, que incorporan un mecanismo de memoria a través de una celda con tres puertas: de olvido, entrada y salida. Estas puertas permiten seleccionar qué información descartar, almacenar o transmitir, logrando que el modelo aprenda patrones de secuencia de manera más robusta.
+
+\usubsection{Autoencoders}
+Los autoencoders son redes neuronales no supervisadas diseñadas para aprender una representación comprimida de los datos de entrada (codificación) y luego reconstruirla (decodificación). Su objetivo es minimizar el error de reconstrucción, lo que permite capturar las características más importantes de los datos. En el caso del LSTM Autoencoder, se combinan las capacidades de los autoencoders con las LSTM, resultando especialmente útiles para datos secuenciales. Este tipo de modelo también sirve para simplificar los datos y encontrar patrones importantes, lo que ayuda a tareas como predecir valores futuros, comprimir información o mejorar otros modelos de aprendizaje \cite{malhotra2015long}.
+
+\usubsection{Isolation Forest (Bosque de Aislamiento)}
+Isolation Forest es un método no supervisado de detección de anomalías que aísla observaciones mediante particiones aleatorias en bosques de árboles, donde las instancias atípicas requieren menos divisiones y, por tanto, muestran longitudes de camino esperadas más cortas. Su puntaje de anomalía deriva de la profundidad normalizada de aislamiento y no presupone distribuciones paramétricas ni datos etiquetados, lo que favorece su uso en flujos en línea y alta dimensionalidad \cite{aggarwal2016introduction}.
+
+\usubsection{Redis Pub/Sub}
+Según \citeauthor{carlson2013action} \citeyear{carlson2013action}, Redis ofrece un sistema de publicación-suscripción (Pub/Sub) que permite a los clientes enviar mensajes a canales sin necesidad de conocer a los receptores. Esta arquitectura desacoplada es útil para sistemas distribuidos, notificaciones en tiempo real y flujos de eventos. Los clientes pueden suscribirse a uno o varios canales y recibir mensajes en tiempo real, sin almacenamiento ni persistencia. \citeauthor{carlson2013action} \citeyear{carlson2013action} destaca que este mecanismo se caracteriza por su baja latencia y simplicidad: los mensajes no se almacenan, se entregan en mejor esfuerzo y se pierden si no hay suscriptores activos, lo que lo hace idóneo para eventos efímeros y señales transitorias.

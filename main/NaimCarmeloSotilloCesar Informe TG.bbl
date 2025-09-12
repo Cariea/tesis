@@ -1,6 +1,31 @@
 \begin{thebibliography}{}
 
 \bibitem [\protect \citeauthoryear {%
+Aggarwal%
+}{%
+Aggarwal%
+}{%
+{\protect \APACyear {2016}}%
+}]{%
+aggarwal2016introduction}
+\APACinsertmetastar {%
+aggarwal2016introduction}%
+\begin{APACrefauthors}%
+Aggarwal, C\BPBI C.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2016}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {An introduction to outlier analysis} {An introduction to
+  outlier analysis}.{\BBCQ}
+\newblock
+\BIn{} \APACrefbtitle {Outlier analysis} {Outlier analysis}\ (\BPGS\ 1--34).
+\newblock
+\APACaddressPublisher{}{Springer}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Bobadilla~Osses%
 }{%
 Bobadilla~Osses%
@@ -75,6 +100,28 @@ Boldt, M.%
   using multiple temporal resolutions and markov chains}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Knowledge and Information Systems}{62}{2}{669--686}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Carlson%
+}{%
+Carlson%
+}{%
+{\protect \APACyear {2013}}%
+}]{%
+carlson2013action}
+\APACinsertmetastar {%
+carlson2013action}%
+\begin{APACrefauthors}%
+Carlson, J\BPBI L.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2013}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Action [J]} {Action [j]}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Media. johnwiley. com. au}{}{}{}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -974,6 +1021,36 @@ Upton, E.%
 \begin{APACrefURL}
   \url{https://www.perlego.com/book/997788/raspberry-pi-user-guide-pdf}
   \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Vaswani%
+\ \protect \BOthers {.}}{%
+Vaswani%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2017}}%
+}]{%
+vaswani2017attention}
+\APACinsertmetastar {%
+vaswani2017attention}%
+\begin{APACrefauthors}%
+Vaswani, A.%
+, Shazeer, N.%
+, Parmar, N.%
+, Uszkoreit, J.%
+, Jones, L.%
+, Gomez, A\BPBI N.%
+\BDBL {}Polosukhin, I.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2017}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Attention is all you need} {Attention is all you
+  need}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Advances in neural information processing
+  systems}{30}{}{}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
