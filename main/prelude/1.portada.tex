@@ -5,10 +5,10 @@
 \newcommand{\tutor}{Lárez, Jesús}
 
 \newcommand{\membrete}{
-  \normalsize\selectfont
-  \touppercase{\universidad} \par
-  FACULTAD DE INGENIERÍA \par
-  ESCUELA DE INGENIERÍA INFORMÁTICA \par
+  \normalsize\selectfont\bfseries
+  \universidad \par
+  Facultad de Ingeniería \par
+  Escuela de Ingeniería Informática \par
 }
 
 \newcommand{\prelude}{
@@ -20,25 +20,23 @@
 }
 
 \newcommand{\details}{
-  \begin{tabularx}{\textwidth}{X >{\hsize=1.35\hsize}X}
-    Realizado por & Naim, Carmelo  \\
-                  & Sotillo, César \\
-    Tutor         & \tutor         \\
-    Fecha         & Marzo, 2025    \\
-  \end{tabularx}
+  \begin{table}[h!]
+    \begin{tabular}{p{0.4\textwidth} l}
+      Realizado por & Naim, Carmelo  \\
+                    & Sotillo, César \\
+      Tutor         & \tutor         \\
+      Fecha         & Marzo, 2025    \\
+    \end{tabular}
+  \end{table}
 }
 
 \begin{center}
   \begin{figure}[h]
     \centering
-    \begin{minipage}{0.15\textwidth}
-      \includegraphics[width=\textwidth]{ucab-escudo.jpg}
-    \end{minipage}
-    \begin{minipage}{0.7\textwidth}
-      \centering
-      \renewcommand{\baselinestretch}{1.5}
-      \membrete
-    \end{minipage}
+    \includegraphics[width=0.65\textwidth]{ucab-logo.png} \\
+    \centering
+    \renewcommand{\baselinestretch}{1.5}
+    \membrete
   \end{figure}
   \vspace*{\fill}
   \textbf{\titulo}

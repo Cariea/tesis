@@ -15,6 +15,7 @@
 \usepackage{ltablex}
 \usepackage{booktabs}
 \usepackage{titlesec}
+\usepackage{amsmath, amssymb}
 
 \titlespacing{\chapter}{0pt}{0pt}{40pt}
 
@@ -71,8 +72,8 @@
 \setcounter{tocdepth}{4}
 
 % TOC Chapter Style
-\cftpagenumbersoff{chapter}
 \setlength{\cftbeforechapskip}{5pt}
+\renewcommand{\cftchapdotsep}{\cftdotsep}
 
 % TOC Sections Style
 \setlength{\cftsecindent}{0pt}
@@ -84,7 +85,7 @@
 \newcommand{\upper}[1]{\uppercase{#1}}
 \usepackage{titlesec}
 \titleformat{\chapter}
-{\normalfont\fontsize{12}{15}\bfseries\centering}{}{0.3em}{\upper}[\thispagestyle{empty}]
+{\normalfont\fontsize{12}{15}\bfseries\centering}{}{0.3em}{}[\thispagestyle{empty}]
 \titleformat{\section}
 {\normalfont\fontsize{12}{15}\bfseries}{\thesection}{1em}{}
 \titleformat{\subsection}
@@ -98,7 +99,7 @@
 \newcommand{\uchapter}[1]{
   \addtocounter{chapter}{1}
   \phantomsection
-  \chapter*{Capítulo \thechapter. \break \\ {#1}}
+  \chapter*{Capítulo \thechapter. {#1}}
   \addcontentsline{toc}{chapter}{Capítulo \thechapter. {#1}}
 }
 \newcommand{\uextra}[2]{
@@ -128,6 +129,24 @@
   \addcontentsline{toc}{paragraph}{#1}
 }
 
+\newcommand{\listequationsname}{Índice de Fórmulas}
+\newlistof{myequations}{equ}{\listequationsname}
+\newcommand{\myequations}[1]{
+  \addcontentsline{equ}{myequations}{\protect\numberline{\theequation} #1}\par
+}
+
+\makeatletter
+\renewcommand{\listofmyequations}{%
+  \section*{\hfill\normalsize\bfseries Índice de Fórmulas\hfill}%
+  \vspace{-20pt}
+  \vspace{4em}
+  \@starttoc{equ}
+}
+\makeatother
+
+\setlength{\cftmyequationsindent}{1.5em}
+\setlength{\cftmyequationsnumwidth}{2.5em}
+
 \begin{document}
 
 \pagenumbering{gobble}
@@ -148,12 +167,14 @@
 \clearpage
 \listoffigures
 \clearpage
+\listofmyequations
+\clearpage
 
 \newcounter{abstractpage}
 \setcounter{abstractpage}{\value{page}}
 
 \input{prelude/4.abstract}
-
+\clearpage
 
 \pagestyle{plain}
 \pagenumbering{arabic}

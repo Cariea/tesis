@@ -196,7 +196,7 @@ Gracias a su simplicidad y a no depender de cálculos de distancia o densidad, I
             En esta cuarta iteración del prototipo, se migró la lógica de procesamiento desde el ESP32 hacia una Raspberry Pi, con mayor capacidad computacional, lo que permitió trabajar con señales de audio completas en lugar de limitarse a la intensidad. Se integraron micrófonos digitales de rango completo, capaces de capturar audio a frecuencias más altas y con mayor fidelidad, lo que permitió acceder a un contenido espectral más rico y útil para clasificación detallada.
 
             Con esta infraestructura, se incorporó YAMNet, un modelo de clasificación de audio en tiempo real basado en redes neuronales convolucionales entrenado con el dataset AudioSet de Google. YAMNet permite detectar y clasificar una gran variedad de eventos acústicos o (más de 500 categorías) como gritos, portazos, pasos, objetos cayendo, entre otros. Esta capacidad permitió dar un salto importante en la interpretación contextual del entorno sonoro.
- 
+
             No obstante, Si bien YAMNet ofrecía una detección puntual efectiva de eventos sonoros, surgió la necesidad de dotar a dichos eventos de un significado secuencial y contextual. Para atender esta limitación, se optó por integrar un módulo de modelado probabilístico basado en cadenas de Márkov, con el fin de analizar la secuencia temporal de eventos y determinar si un patrón resultaba coherente con el comportamiento normal del entorno o, por el contrario, representaba una posible anomalía.
 
             La decisión de emplear cadenas de Márkov estuvo fundamentada en dos aspectos principales: por un lado, en la existencia de estudios previos donde este tipo de modelos han sido utilizados para la detección de anomalías en secuencias temporales, destacando por su capacidad de representar probabilísticamente las transiciones entre estados inmediatos. En particular, investigaciones como la de \citeauthor{boldt2020anomaly} \citeyear{boldt2020anomaly}, muestran cómo las cadenas de Márkov permiten identificar patrones irregulares en secuencias de eventos al modelar las transiciones esperadas y comparar estas con la realidad observada. Por otro lado, la elección también estuvo motivada por la recomendación del profesor de estadistica Omar Castro, quien sugirió explorar este enfoque como un primer acercamiento al modelado secuencial de los eventos detectados.
@@ -336,27 +336,53 @@ Estas cifras se traducen en las siguientes métricas de rendimiento:
 \begin{itemize}
       \item  Exactitud (Accuracy): proporción de predicciones correctas respecto al total de casos evaluados.
 
-            $$Accuracy = \frac{TP+TN}{TP+TN+FP+FN}=\frac{(18+45814)}{(18+45814+3+6)}\approx 0.9998$$
+            \begin{align}
+                  Accuracy = \frac{TP+TN}{TP+TN+FP+FN}=\frac{(18+45814)}{(18+45814+3+6)}\approx 0.9998 \notag \\
+                  \label{eq:accuracy}
+            \end{align}
+            \myequations{Fórmula de Accuracy para LSTM Autoencoder}
+
 
       \item Tasa de error: proporción de predicciones incorrectas respecto al total.
 
-            $$Error = \frac{FP+FN}{TP+TN+FP+FN}=\frac{(3+6)}{(18+45814+3+6)}\approx 0.0002$$
+            \begin{align}
+                  Error = \frac{FP+FN}{TP+TN+FP+FN}=\frac{(3+6)}{(18+45814+3+6)}\approx 0.0002 \notag \\
+                  \label{eq:error}
+            \end{align}
+            \myequations{Fórmula de Tasa de Error para LSTM Autoencoder}
 
       \item Sensibilidad (Recall o Verdaderos Positivos): proporción de eventos de anomalos correctamente detectados.
 
-            $$Recall = \frac{TP}{TP+FN}=\frac{18}{18+6}=0.75$$
+            \begin{align}
+                  Recall = \frac{TP}{TP+FN} \notag \\
+                  \label{eq:recall}
+            \end{align}
+            \myequations{Fórmula de Recall para LSTM Autoencoder}
 
       \item Precisión: La proporción de casos realmente positivos entre todos los casos que el modelo predijo como positivos.
 
-            $$Precision = \frac{TP}{TP+FP}=\frac{18}{18+3}\approx 0.8571$$
+            \begin{align}
+                  Precision = \frac{TP}{TP+FP}=\frac{18}{18+3}\approx 0.8571 \notag \\
+                  \label{eq:precision}
+            \end{align}
+            \myequations{Fórmula de Precision para LSTM Autoencoder}
 
       \item Especificidad: proporción de eventos no críticos correctamente descartados.
 
-            $$Specificity = \frac{TN}{TN+FP}=\frac{45814}{45814+3}\approx 0.9999$$
+            \begin{align}
+                  Specificity = \frac{TN}{TN+FP}=\frac{45814}{45814+3}\approx 0.9999 \notag \\
+                  \label{eq:specificity}
+            \end{align}
+            \myequations{Fórmula de Specificity para LSTM Autoencoder}
 
       \item F1 Score: media armónica entre la precisión y la sensibilidad, útil cuando es importante equilibrar ambas.
 
-            $$F1_{score} = 2 \cdot \frac{Precision \cdot Recall}{Precision + Recall} = 2 \cdot \frac{0.8571 * 0.75}{0.8571+0.75} \approx 0.8$$
+            \begin{align}
+                  F1_{score} = 2 \cdot \frac{Precision \cdot Recall}{Precision + Recall} = 2 \cdot \frac{0.8571 * 0.75}{0.8571+0.75} \approx 0.8 \notag \\
+                  \label{eq:f1score}
+            \end{align}
+            \myequations{Fórmula de F1 Score para LSTM Autoencoder}
+
 \end{itemize}
 
 El análisis de las métricas de rendimiento cuantifica el desempeño del modelo. La exactitud general es del 99.98\%, aunque este valor es menos indicativo en conjuntos de datos con clases desbalanceadas. Un análisis más específico muestra una Sensibilidad (Recall) del 75.0\%, lo que indica que el modelo identifica a tres de cada cuatro anomalías reales. A su vez, la Precisión es del 85.7\%, lo que significa que sus alertas positivas son correctas en esa proporción. La puntuación F1, como media armónica de ambas, se sitúa en 80.0\%, reflejando el balance entre la capacidad de detección y la fiabilidad de sus predicciones.
@@ -416,17 +442,42 @@ El proceso de validación se aplicó sobre el mismo conjunto de datos, compuesto
 
       \item Métricas de Rendimiento
 
-            $$Accuracy = \frac{(2877+87737)}{(2877+87737+2164+8031)}\approx 0.8989$$
+            \begin{align}
+                  Accuracy = \frac{(2877+87737)}{(2877+87737+2164+8031)}\approx 0.8989 \notag \\
+                  \label{eq:accuracy_if}
+            \end{align}
+            \myequations{Fórmula de Accuracy para Isolation Forest}
 
-            $$Error = \frac{(2164+8031)}{(2877+87737+2164+8031)}\approx 0.101$$
 
-            $$Recall = \frac{2877}{2877+8031}\approx 0.2638$$
+            \begin{align}
+                  Error = \frac{(2164+8031)}{(2877+87737+2164+8031)}\approx 0.101 \notag \\
+                  \label{eq:error_if}
+            \end{align}
+            \myequations{Fórmula de Tasa de Error para Isolation Forest}
 
-            $$Precision = \frac{2877}{2877+2164}\approx 0.5707$$
+            \begin{align}
+                  Recall = \frac{2877}{2877+8031}\approx 0.2638 \notag \\
+                  \label{eq:recall_if}
+            \end{align}
+            \myequations{Fórmula de Recall para Isolation Forest}
 
-            $$Specificity = \frac{87737}{87737+2164}\approx 0.9759$$
+            \begin{align}
+                  Precision = \frac{2877}{2877+2164}\approx 0.5707 \notag \\
+                  \label{eq:precision_if}
+            \end{align}
+            \myequations{Fórmula de Precision para Isolation Forest}
 
-            $$F1_{score} = 2 \cdot \frac{0.5707 * 0.2638}{0.5707+0.2638} \approx 0.3608$$
+            \begin{align}
+                  Specificity = \frac{87737}{87737+2164}\approx 0.9759 \notag \\
+                  \label{eq:specificity_if}
+            \end{align}
+            \myequations{Fórmula de Specificity para Isolation Forest}
+
+            \begin{align}
+                  F1_{score} = 2 \cdot \frac{Precision * Recall}{Precision+Recall} \notag \\
+                  \label{eq:f1_if}
+            \end{align}
+            \myequations{Fórmula de F1 Score para Isolation Forest}
 
 \end{itemize}
 
