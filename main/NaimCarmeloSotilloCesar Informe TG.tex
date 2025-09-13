@@ -66,6 +66,7 @@
 \setcounter{secnumdepth}{4}
 \setcounter{tocdepth}{4}
 
+
 % TOC Chapter Style
 \setlength{\cftbeforechapskip}{5pt}
 \renewcommand{\cftchapdotsep}{\cftdotsep}
@@ -124,7 +125,7 @@
   \addcontentsline{toc}{paragraph}{#1}
 }
 
-\newcommand{\listequationsname}{Índice de Fórmulas}
+\newcommand{\listequationsname}{Índice de Ecuaciones}
 \newlistof{myequations}{equ}{\listequationsname}
 \newcommand{\myequations}[1]{
   \addcontentsline{equ}{myequations}{\protect\numberline{\theequation} #1}\par
@@ -139,8 +140,16 @@
 }
 \makeatother
 
+\usepackage{calc}
+\renewcommand{\cftfigpresnum}{Figura~}
+\setlength{\cftfignumwidth}{\widthof{Figura IV.1 }}
+
+\renewcommand{\cfttabpresnum}{Tabla~}
+\setlength{\cfttabnumwidth}{\widthof{Tabla IV.1 }}
+
+\renewcommand{\cftmyequationspresnum}{Fórmula }
 \setlength{\cftmyequationsindent}{1.5em}
-\setlength{\cftmyequationsnumwidth}{2.5em}
+\setlength{\cftmyequationsnumwidth}{\widthof{Fórmula IV.1 }}
 
 \begin{document}
 

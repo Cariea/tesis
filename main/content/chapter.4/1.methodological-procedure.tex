@@ -340,7 +340,7 @@ Estas cifras se traducen en las siguientes métricas de rendimiento:
                   Accuracy = \frac{TP+TN}{TP+TN+FP+FN}=\frac{(18+45814)}{(18+45814+3+6)}\approx 0.9998 \notag \\
                   \label{eq:accuracy}
             \end{align}
-            \myequations{Fórmula de Accuracy para LSTM Autoencoder}
+            \myequations{Accuracy para LSTM Autoencoder}
 
 
       \item Tasa de error: proporción de predicciones incorrectas respecto al total.
@@ -349,7 +349,7 @@ Estas cifras se traducen en las siguientes métricas de rendimiento:
                   Error = \frac{FP+FN}{TP+TN+FP+FN}=\frac{(3+6)}{(18+45814+3+6)}\approx 0.0002 \notag \\
                   \label{eq:error}
             \end{align}
-            \myequations{Fórmula de Tasa de Error para LSTM Autoencoder}
+            \myequations{Tasa de Error para LSTM Autoencoder}
 
       \item Sensibilidad (Recall o Verdaderos Positivos): proporción de eventos de anomalos correctamente detectados.
 
@@ -357,7 +357,7 @@ Estas cifras se traducen en las siguientes métricas de rendimiento:
                   Recall = \frac{TP}{TP+FN} \notag \\
                   \label{eq:recall}
             \end{align}
-            \myequations{Fórmula de Recall para LSTM Autoencoder}
+            \myequations{Recall para LSTM Autoencoder}
 
       \item Precisión: La proporción de casos realmente positivos entre todos los casos que el modelo predijo como positivos.
 
@@ -365,7 +365,7 @@ Estas cifras se traducen en las siguientes métricas de rendimiento:
                   Precision = \frac{TP}{TP+FP}=\frac{18}{18+3}\approx 0.8571 \notag \\
                   \label{eq:precision}
             \end{align}
-            \myequations{Fórmula de Precision para LSTM Autoencoder}
+            \myequations{Precision para LSTM Autoencoder}
 
       \item Especificidad: proporción de eventos no críticos correctamente descartados.
 
@@ -373,7 +373,7 @@ Estas cifras se traducen en las siguientes métricas de rendimiento:
                   Specificity = \frac{TN}{TN+FP}=\frac{45814}{45814+3}\approx 0.9999 \notag \\
                   \label{eq:specificity}
             \end{align}
-            \myequations{Fórmula de Specificity para LSTM Autoencoder}
+            \myequations{Specificity para LSTM Autoencoder}
 
       \item F1 Score: media armónica entre la precisión y la sensibilidad, útil cuando es importante equilibrar ambas.
 
@@ -381,7 +381,7 @@ Estas cifras se traducen en las siguientes métricas de rendimiento:
                   F1_{score} = 2 \cdot \frac{Precision \cdot Recall}{Precision + Recall} = 2 \cdot \frac{0.8571 * 0.75}{0.8571+0.75} \approx 0.8 \notag \\
                   \label{eq:f1score}
             \end{align}
-            \myequations{Fórmula de F1 Score para LSTM Autoencoder}
+            \myequations{F1 Score para LSTM Autoencoder}
 
 \end{itemize}
 
@@ -446,38 +446,38 @@ El proceso de validación se aplicó sobre el mismo conjunto de datos, compuesto
                   Accuracy = \frac{(2877+87737)}{(2877+87737+2164+8031)}\approx 0.8989 \notag \\
                   \label{eq:accuracy_if}
             \end{align}
-            \myequations{Fórmula de Accuracy para Isolation Forest}
+            \myequations{Accuracy para Isolation Forest}
 
 
             \begin{align}
                   Error = \frac{(2164+8031)}{(2877+87737+2164+8031)}\approx 0.101 \notag \\
                   \label{eq:error_if}
             \end{align}
-            \myequations{Fórmula de Tasa de Error para Isolation Forest}
+            \myequations{Tasa de Error para Isolation Forest}
 
             \begin{align}
                   Recall = \frac{2877}{2877+8031}\approx 0.2638 \notag \\
                   \label{eq:recall_if}
             \end{align}
-            \myequations{Fórmula de Recall para Isolation Forest}
+            \myequations{Recall para Isolation Forest}
 
             \begin{align}
                   Precision = \frac{2877}{2877+2164}\approx 0.5707 \notag \\
                   \label{eq:precision_if}
             \end{align}
-            \myequations{Fórmula de Precision para Isolation Forest}
+            \myequations{Precision para Isolation Forest}
 
             \begin{align}
                   Specificity = \frac{87737}{87737+2164}\approx 0.9759 \notag \\
                   \label{eq:specificity_if}
             \end{align}
-            \myequations{Fórmula de Specificity para Isolation Forest}
+            \myequations{Specificity para Isolation Forest}
 
             \begin{align}
                   F1_{score} = 2 \cdot \frac{Precision * Recall}{Precision+Recall} \notag \\
                   \label{eq:f1_if}
             \end{align}
-            \myequations{Fórmula de F1 Score para Isolation Forest}
+            \myequations{F1 Score para Isolation Forest}
 
 \end{itemize}
 

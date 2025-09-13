@@ -1,12 +1,12 @@
-\contentsline {myequations}{\numberline {IV.1} Fórmula de Accuracy para LSTM Autoencoder}{46}{equation.4.1}%
-\contentsline {myequations}{\numberline {IV.2} Fórmula de Tasa de Error para LSTM Autoencoder}{47}{equation.4.2}%
-\contentsline {myequations}{\numberline {IV.3} Fórmula de Recall para LSTM Autoencoder}{47}{equation.4.3}%
-\contentsline {myequations}{\numberline {IV.4} Fórmula de Precision para LSTM Autoencoder}{47}{equation.4.4}%
-\contentsline {myequations}{\numberline {IV.5} Fórmula de Specificity para LSTM Autoencoder}{47}{equation.4.5}%
-\contentsline {myequations}{\numberline {IV.6} Fórmula de F1 Score para LSTM Autoencoder}{48}{equation.4.6}%
-\contentsline {myequations}{\numberline {IV.7} Fórmula de Accuracy para Isolation Forest}{49}{equation.4.7}%
-\contentsline {myequations}{\numberline {IV.8} Fórmula de Tasa de Error para Isolation Forest}{50}{equation.4.8}%
-\contentsline {myequations}{\numberline {IV.9} Fórmula de Recall para Isolation Forest}{50}{equation.4.9}%
-\contentsline {myequations}{\numberline {IV.10} Fórmula de Precision para Isolation Forest}{50}{equation.4.10}%
-\contentsline {myequations}{\numberline {IV.11} Fórmula de Specificity para Isolation Forest}{51}{equation.4.11}%
-\contentsline {myequations}{\numberline {IV.12} Fórmula de F1 Score para Isolation Forest}{51}{equation.4.12}%
+\contentsline {myequations}{\numberline {IV.1} Accuracy para LSTM Autoencoder}{46}{equation.4.1}%
+\contentsline {myequations}{\numberline {IV.2} Tasa de Error para LSTM Autoencoder}{47}{equation.4.2}%
+\contentsline {myequations}{\numberline {IV.3} Recall para LSTM Autoencoder}{47}{equation.4.3}%
+\contentsline {myequations}{\numberline {IV.4} Precision para LSTM Autoencoder}{47}{equation.4.4}%
+\contentsline {myequations}{\numberline {IV.5} Specificity para LSTM Autoencoder}{47}{equation.4.5}%
+\contentsline {myequations}{\numberline {IV.6} F1 Score para LSTM Autoencoder}{48}{equation.4.6}%
+\contentsline {myequations}{\numberline {IV.7} Accuracy para Isolation Forest}{49}{equation.4.7}%
+\contentsline {myequations}{\numberline {IV.8} Tasa de Error para Isolation Forest}{50}{equation.4.8}%
+\contentsline {myequations}{\numberline {IV.9} Recall para Isolation Forest}{50}{equation.4.9}%
+\contentsline {myequations}{\numberline {IV.10} Precision para Isolation Forest}{50}{equation.4.10}%
+\contentsline {myequations}{\numberline {IV.11} Specificity para Isolation Forest}{51}{equation.4.11}%
+\contentsline {myequations}{\numberline {IV.12} F1 Score para Isolation Forest}{51}{equation.4.12}%
