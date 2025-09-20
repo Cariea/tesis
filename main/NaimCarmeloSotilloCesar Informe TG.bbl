@@ -961,6 +961,32 @@ Tamayo, M.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Tanenbaum%
+\ \BBA {} Van~Steen%
+}{%
+Tanenbaum%
+\ \BBA {} Van~Steen%
+}{%
+{\protect \APACyear {2007}}%
+}]{%
+tanenbaum2007distributed}
+\APACinsertmetastar {%
+tanenbaum2007distributed}%
+\begin{APACrefauthors}%
+Tanenbaum, A\BPBI S.%
+\BCBT {}\ \BBA {} Van~Steen, M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2007}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Distributed systems: principles and paradigms}
+  {Distributed systems: principles and paradigms}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Pearson Prentice Hall}{}{}{}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Torija%
 , Ruiz%
 \BCBL {}\ \BBA {} Ramos-Diao%
