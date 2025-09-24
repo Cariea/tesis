@@ -14,7 +14,7 @@ El método para detectar la actividad general en el entorno se inspiró en el tr
 En cuanto a los fundamentos teóricos, el sistema se apoya en principios de la inteligencia artificial, campo que, según \citeauthor{russell_artificial_2022} \citeyear{russell_artificial_2022}, se enfoca en el desarrollo de sistemas capaces de percibir y actuar sobre su entorno. En este proyecto, dicha capacidad de percepción se logra mediante una combinación de modelos de aprendizaje profundo (deep learning). Para la clasificación inicial de los sonidos, se emplean arquitecturas como las redes neuronales convolucionales (CNN). Posteriormente, para el análisis de la secuencia de eventos y la detección de anomalías, se integra una combinación de modelos no supervisados como Isolation Forest y redes neuronales recurrentes (LSTM). Esta arquitectura de software, que utiliza distintos componentes de IA para sus tareas de percepción y análisis, se fundamenta en los conceptos teóricos establecidos por autores de referencia en el campo (Russell y Norvig, 2022).
 
 \usubsubsection{Selección de hardware y dispositivos Edge}
- 
+
 Para la implementación del sistema, se realizó una evaluación de hardware con un enfoque en dispositivos de Edge Computing. La elección se centró en plataformas capaces de procesar datos localmente para reducir la latencia y la dependencia de la nube, como lo describen \citeauthor{shi_edge_2016} \citeyear{shi_edge_2016}. En este contexto, se seleccionó la Raspberry Pi como la plataforma de desarrollo, dada su versatilidad para integrar componentes como micrófonos y su amplia conectividad, características que la hacen ideal para aplicaciones de IoT y análisis en tiempo real según \citeauthor{richardson_getting_2016} \citeyear{richardson_getting_2016}.
 
 % La principal ventaja de este enfoque es que permite al sistema aprender las rutinas de su entorno específico, ya que los dispositivos permanecen fijos en un solo lugar. Esto requiere que los modelos de inteligencia artificial se ejecuten con los datos generados en dicho entorno. La alternativa (un gran servidor en la nube) sería muy costosa y poco práctica, pues exigiría mantener un modelo distinto para cada ubicación monitoreada, considerando que el sistema se compone de la interacción entre múltiples modelos. Por el contrario, un dispositivo edge como la Raspberry Pi resuelve este desafío al procesar los modelos localmente, permitiendo que cada unidad aprenda de manera autónoma sobre su entorno particular.
@@ -87,12 +87,14 @@ Una vez definidos los requerimientos, se procedió a la selección de las tecnol
 \usubsubsection{Diseño de la arquitectura del sistema}
 
 La arquitectura implementada se fundamenta en el modelo en capas, donde cada nivel cumple funciones específicas: captura de datos, clasificación de audio, detección de anomalías, gestión de eventos y almacenamiento. Estas capas no se ejecutan como módulos monolíticos, sino como procesos independientes que se comunican mediante un esquema pub/sub interno con Redis, lo que introduce un componente distribuido dentro del propio dispositivo. Según \citeauthor{tanenbaum2007distributed} \citeyear{tanenbaum2007distributed}, este tipo de combinaciones puede entenderse como una arquitectura híbrida, al integrar un estilo cliente-servidor con mecanismos de colaboración descentralizados. Además, el uso de un Raspberry Pi como nodo principal aproxima la solución al concepto de servidores al borde, en los cuales el procesamiento ocurre cerca de la fuente de datos para reducir tiempos de respuesta y la transmisión de información irrelevante. De esta manera, la propuesta logra unir la claridad del enfoque en capas con la flexibilidad de un sistema distribuido basado en microservicios locales.
-    \begin{figure}[ht!]
-            \centering
-            \includegraphics[width=0.40\textwidth]{Arquitectura/Arquitectura.png}
-            \caption{Arquitectura del sistema de monitoreo acústico para generar alertas en casos de emergencia}
-            \label{fig:arquitectura}
-      \end{figure}
+
+\begin{figure}[ht!]
+      \centering
+      \includegraphics[width=0.40\textwidth]{Arquitectura/Arquitectura.png}
+      \caption{Arquitectura del sistema de monitoreo acústico para generar alertas en casos de emergencia}
+      \label{fig:arquitectura}
+\end{figure}
+
 \begin{enumerate}
       \item Capa de captación de audio: Esta capa corresponde al nivel más cercano al hardware y tiene como función principal la adquisición de datos acústicos mediante los micrófonos conectados al dispositivo Raspberry Pi. Se encarga de gestionar la interacción con el sistema operativo para acceder a las señales de audio en tiempo real y ponerlas a disposición del sistema a través de canales de comunicación internos. Su objetivo es abstraer la complejidad del hardware y garantizar que los datos se entreguen de forma continua a las capas superiores.
       \item Capa de clasificación de audio: Se encarga de analizar las señales acústicas para identificar patrones relevantes. En este nivel, múltiples agentes especializados procesan el flujo de audio con el fin de determinar la presencia de actividad, reconocer palabras clave y clasificar eventos característicos (como golpes, vidrios rotos o gritos). Los resultados de este procesamiento se estructuran en mensajes que representan descripciones semánticas de la señal, reduciendo el volumen de datos y facilitando la interpretación en etapas posteriores.
@@ -495,32 +497,4 @@ El análisis de las métricas de rendimiento cuantifica el desempeño del modelo
 
 Para validar el funcionamiento del sistema de monitoreo, se ejecutó un plan de pruebas funcionales. La base de este plan fue la verificación del sistema contra los requerimientos operativos definidos, los cuales se detallan en la Tabla \ref{tab:requerimientos_sistema_acustico}. Cada caso de prueba fue diseñado para constatar de manera objetiva que el comportamiento del prototipo correspondía con su especificación.
 
-La ejecución se realizó en un entorno de laboratorio controlado para garantizar la reproducibilidad de los escenarios. Se simularon secuencias acústicas que representaban tanto condiciones de operación normal como eventos anómalos, con el objetivo de contrastar la salida del sistema la clasificación del evento y la activación de la alerta con el resultado esperado para cada caso. Los resultados obtenidos en este proceso se consolidan en la Tabla \ref{tab:resultados_pruebas_sistema_acustico} del apéndice B.
-
-
-\begin{table}[ht!]
-      \doublespacing
-      \small
-      \centering
-      \begin{tabular}{ |p{1cm}|p{5cm}|p{5cm}|p{3cm}| }
-            \hline
-            \textbf{ID} & \textbf{Descripción}                                                                 & \textbf{Criterio de Aceptación}                                                                 & \textbf{Resultado} \\
-            \hline
-            R1          & El sistema debe monitorear continuamente el entorno acústico.                        & El sistema debe estar activo y registrando datos en todo momento.                             & Cumple             \\
-            \hline
-            R2          & El sistema debe detectar eventos acústicos relevantes.                               & El sistema debe identificar y clasificar eventos acústicos específicos (e.g., gritos, caídas). & Cumple             \\
-            \hline
-            R3          & El sistema debe diferenciar entre eventos normales y anómalos.                       & El sistema debe clasificar correctamente al menos el 80\% de los eventos como normales o anómalos. & Cumple             \\
-            \hline
-            R4          & El sistema debe generar alertas en tiempo real ante la detección de anomalías.       & El sistema debe enviar una alerta dentro de los 5 segundos posteriores a la detección de una anomalía. & Cumple             \\
-            \hline
-            R5          & El sistema debe ser capaz de operar en un entorno doméstico típico.                  & El sistema debe funcionar correctamente en un entorno con ruido ambiental común (e.g., televisión, conversaciones). & Cumple             \\
-            \hline
-            R6          & El sistema debe ser fácil de instalar y configurar.                                  & La instalación y configuración del sistema no deben tomar más de 30 minutos.                   & Cumple             \\
-            \hline
-            R7          & El sistema debe ser energéticamente eficiente para uso continuo.                     & El consumo energético del sistema no debe exceder los 5W en operación continua.                & Cumple             \\
-            \hline
-      \end{tabular}
-      \caption{Requerimientos del Sistema de Monitoreo Acústico}
-      \label{tab:otra}
-\end{table}
+La ejecución se realizó en un entorno de laboratorio controlado para garantizar la reproducibilidad de los escenarios. Se simularon secuencias acústicas que representaban tanto condiciones de operación normal como eventos anómalos, con el objetivo de contrastar la salida del sistema la clasificación del evento y la activación de la alerta con el resultado esperado para cada caso. Los resultados obtenidos en este proceso se consolidan en la Tabla \ref{tab:requerimientos_sistema_acustico} del apéndice B.
