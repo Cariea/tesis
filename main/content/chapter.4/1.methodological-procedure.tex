@@ -14,8 +14,14 @@ El método para detectar la actividad general en el entorno se inspiró en el tr
 En cuanto a los fundamentos teóricos, el sistema se apoya en principios de la inteligencia artificial, campo que, según \citeauthor{russell_artificial_2022} \citeyear{russell_artificial_2022}, se enfoca en el desarrollo de sistemas capaces de percibir y actuar sobre su entorno. En este proyecto, dicha capacidad de percepción se logra mediante una combinación de modelos de aprendizaje profundo (deep learning). Para la clasificación inicial de los sonidos, se emplean arquitecturas como las redes neuronales convolucionales (CNN). Posteriormente, para el análisis de la secuencia de eventos y la detección de anomalías, se integra una combinación de modelos no supervisados como Isolation Forest y redes neuronales recurrentes (LSTM). Esta arquitectura de software, que utiliza distintos componentes de IA para sus tareas de percepción y análisis, se fundamenta en los conceptos teóricos establecidos por autores de referencia en el campo (Russell y Norvig, 2022).
 
 \usubsubsection{Selección de hardware y dispositivos Edge}
-% TODO: Revisar esto despues
-Para la implementación del sistema, se realizó una evaluación de hardware con un enfoque en dispositivos de Edge Computing. La elección se centró en plataformas capaces de procesar datos localmente para reducir la latencia y la dependencia de la nube, como lo describen \citeauthor{shi_edge_2016} \citeyear{shi_edge_2016}. En este contexto, se seleccionó la Raspberry Pi como la plataforma de desarrollo, dada su versatilidad para integrar componentes como micrófonos y su amplia conectividad, características que la hacen ideal para aplicaciones de IoT y análisis en tiempo real según \citeauthor{richardson_getting_2016} \citeyear{richardson_getting_2016}. (incluir que para que el sistema sea consciente de las rutinas del entorno (y es del entorno y no de la persona xq siempre estan fijos en el mismo lugar) debe correr modelos con los datos generandos en ese entorno especifico, lo que  implicaria un gran servidor muy costoso con multiples modelos corriendo por entorno o un dispositivo edge que corra los modelos localmente y aprenda del entorno especifico)
+ 
+Para la implementación del sistema, se realizó una evaluación de hardware con un enfoque en dispositivos de Edge Computing. La elección se centró en plataformas capaces de procesar datos localmente para reducir la latencia y la dependencia de la nube, como lo describen \citeauthor{shi_edge_2016} \citeyear{shi_edge_2016}. En este contexto, se seleccionó la Raspberry Pi como la plataforma de desarrollo, dada su versatilidad para integrar componentes como micrófonos y su amplia conectividad, características que la hacen ideal para aplicaciones de IoT y análisis en tiempo real según \citeauthor{richardson_getting_2016} \citeyear{richardson_getting_2016}.
+
+% La principal ventaja de este enfoque es que permite al sistema aprender las rutinas de su entorno específico, ya que los dispositivos permanecen fijos en un solo lugar. Esto requiere que los modelos de inteligencia artificial se ejecuten con los datos generados en dicho entorno. La alternativa (un gran servidor en la nube) sería muy costosa y poco práctica, pues exigiría mantener un modelo distinto para cada ubicación monitoreada, considerando que el sistema se compone de la interacción entre múltiples modelos. Por el contrario, un dispositivo edge como la Raspberry Pi resuelve este desafío al procesar los modelos localmente, permitiendo que cada unidad aprenda de manera autónoma sobre su entorno particular.
+
+% También se consideraron otros dispositivos edge, como el ESP32, pero se descartó debido a sus limitaciones de memoria y capacidad de procesamiento, que dificultarían la ejecución de modelos complejos de inteligencia artificial. Aunque el ESP32 es adecuado para tareas simples de detección de sonido basadas en umbrales, no cumple con los requisitos necesarios para implementar modelos avanzados como YAMNet o LSTM.
+
+En la siguiente tabla comparamos las características técnicas y costos de los dispositivos evaluados
 
 \usubsubsection{Limitaciones y desafíos técnicos}
 
@@ -80,8 +86,13 @@ Una vez definidos los requerimientos, se procedió a la selección de las tecnol
 
 \usubsubsection{Diseño de la arquitectura del sistema}
 
-La arquitectura implementada se fundamenta en el modelo en capas, donde cada nivel cumple funciones específicas: captura de datos, clasificación de audio, detección de anomalías, gestión de eventos y almacenamiento. Estas capas no se ejecutan como módulos monolíticos, sino como procesos independientes que se comunican mediante un esquema pub/sub interno con Redis, lo que introduce un componente distribuido dentro del propio dispositivo. Según \citeauthor{tanenbaum2007distributed} \citeyear{tanenbaum2007distributed}, este tipo de combinaciones puede entenderse como una arquitectura híbrida, al integrar un estilo cliente-servidor con mecanismos de colaboración descentralizados. Además, el uso de un Raspberry Pi como nodo principal aproxima la solución al concepto de servidores al borde, en los cuales el procesamiento ocurre cerca de la fuente de datos para optimizar tiempos de respuesta y reducir la transmisión de información irrelevante. De esta manera, la propuesta logra unir la claridad del enfoque en capas con la flexibilidad de un sistema distribuido basado en microservicios locales.
-
+La arquitectura implementada se fundamenta en el modelo en capas, donde cada nivel cumple funciones específicas: captura de datos, clasificación de audio, detección de anomalías, gestión de eventos y almacenamiento. Estas capas no se ejecutan como módulos monolíticos, sino como procesos independientes que se comunican mediante un esquema pub/sub interno con Redis, lo que introduce un componente distribuido dentro del propio dispositivo. Según \citeauthor{tanenbaum2007distributed} \citeyear{tanenbaum2007distributed}, este tipo de combinaciones puede entenderse como una arquitectura híbrida, al integrar un estilo cliente-servidor con mecanismos de colaboración descentralizados. Además, el uso de un Raspberry Pi como nodo principal aproxima la solución al concepto de servidores al borde, en los cuales el procesamiento ocurre cerca de la fuente de datos para reducir tiempos de respuesta y la transmisión de información irrelevante. De esta manera, la propuesta logra unir la claridad del enfoque en capas con la flexibilidad de un sistema distribuido basado en microservicios locales.
+    \begin{figure}[ht!]
+            \centering
+            \includegraphics[width=0.40\textwidth]{Arquitectura/Arquitectura.png}
+            \caption{Arquitectura del sistema de monitoreo acústico para generar alertas en casos de emergencia}
+            \label{fig:arquitectura}
+      \end{figure}
 \begin{enumerate}
       \item Capa de captación de audio: Esta capa corresponde al nivel más cercano al hardware y tiene como función principal la adquisición de datos acústicos mediante los micrófonos conectados al dispositivo Raspberry Pi. Se encarga de gestionar la interacción con el sistema operativo para acceder a las señales de audio en tiempo real y ponerlas a disposición del sistema a través de canales de comunicación internos. Su objetivo es abstraer la complejidad del hardware y garantizar que los datos se entreguen de forma continua a las capas superiores.
       \item Capa de clasificación de audio: Se encarga de analizar las señales acústicas para identificar patrones relevantes. En este nivel, múltiples agentes especializados procesan el flujo de audio con el fin de determinar la presencia de actividad, reconocer palabras clave y clasificar eventos característicos (como golpes, vidrios rotos o gritos). Los resultados de este procesamiento se estructuran en mensajes que representan descripciones semánticas de la señal, reduciendo el volumen de datos y facilitando la interpretación en etapas posteriores.
@@ -90,12 +101,6 @@ La arquitectura implementada se fundamenta en el modelo en capas, donde cada niv
       \item Capa de gestión de datos: Esta capa centraliza la persistencia y organización de la información recolectada y procesada por el sistema. Su propósito es almacenar los registros de eventos, tanto normales como anómalos, en estructuras que permitan su posterior análisis. Asimismo, prepara los conjuntos de datos necesarios para el reentrenamiento de los modelos de detección de anomalías, asegurando que el sistema pueda mejorar progresivamente su desempeño y adaptarse a nuevas condiciones acústicas en el entorno.
       \item Capa de notificaciones: Tiene como responsabilidad la comunicación con el usuario final o con sistemas externos de monitoreo. Actualmente, este módulo envía alertas validadas a través de servicios de mensajería como Telegram y protocolos de correo electrónico (SMTP). Su diseño es extensible, lo que permite incorporar otros canales de comunicación en el futuro. La existencia de esta capa garantiza que la información crítica llegue de forma oportuna a los responsables de la toma de decisiones.
 
-            \begin{figure}[ht!]
-                  \centering
-                  \includegraphics[width=0.40\textwidth]{Arquitectura/Arquitectura.png}
-                  \caption{Arquitectura del sistema de monitoreo acústico para generar alertas en casos de emergencia}
-                  \label{fig:arquitectura}
-            \end{figure}
 \end{enumerate}
 
 \usubsubsection{Diseño de la Inteligencia Artificial}
@@ -211,14 +216,14 @@ Gracias a su simplicidad y a no depender de cálculos de distancia o densidad, I
 
       \item Raspberry Pi, Yamnet, Isolation Forest y LSTM
 
-            En esta quinta iteración, nos enfocamos en el desarrollo de una solución más robusta para la detección de anomalías, como respuesta a las limitaciones encontradas con las cadenas de Markov. Para ello, basamos nuestro enfoque en el trabajo de \citeauthor{reis2025edge} \citeyear{reis2025edge}, cuya investigación se centra en arquitecturas de Inteligencia Artificial en el borde (Edge AI) para el monitoreo en tiempo real. Específicamente, su estudio valida el uso de dos tecnologías que adoptamos: Isolation Forest (IF), un modelo de alta eficiencia para la detección de eventos, y un Long Short-Term Memory Autoencoder (LSTM-AE), una red neuronal para el análisis de patrones secuenciales complejos.
+            En esta quinta iteración, nos enfocamos en el desarrollo de una solución más robusta para la detección de anomalías, como respuesta a las limitaciones encontradas con las cadenas de Markov. Para ello, basamos nuestro enfoque en el trabajo de \citeauthor{reis2025edge} \citeyear{reis2025edge}, cuya investigación se centra en arquitecturas de Inteligencia Artificial en el borde (Edge AI) para el monitoreo en tiempo real. Específicamente, su estudio valida el uso de dos tecnologías que adoptamos: Isolation Forest (IF), un modelo para la detección de eventos anomalos basado en arboles, y un Long Short-Term Memory Autoencoder (LSTM), una red neuronal para el análisis de patrones secuenciales complejos.
 
             Para la implementación de estos modelos en nuestro sistema, se replicaron las configuraciones y optimizaciones validadas en dicho estudio para asegurar el rendimiento en la Raspberry Pi.
 
             En el caso del Isolation Forest, adoptamos los hiperparámetros del estudio, configurando el modelo con 100 árboles ($n_estimators$) y un parámetro de contaminación del 3\%. Este último valor asume una proporción esperada de anomalías en nuestros datos, alineándose con los escenarios simulados en la investigación de referencia.
 
-            El segundo modelo implementado es un LSTM Autoencoder, una arquitectura de red neuronal no supervisada especialmente eficaz para la detección de anomalías en datos secuenciales \cite{malhotra2015long}. Su objetivo es aprender una representación comprimida de los patrones ``normales'' presentes en los datos de entrenamiento para luego identificar desviaciones significativas.
-            Para el desarrollo y aplicación del modelo, se adoptó un enfoque metodológico inspirado en el trabajo de \citeauthor{reis2025edge} \citeyear{reis2025edge}, el cual se estructuró en un riguroso proceso de tres etapas: preparación de los datos, construcción y entrenamiento de la arquitectura, y definición del mecanismo de detección.
+            El segundo modelo implementado es un LSTM Autoencoder, una arquitectura de red neuronal no supervisada especialmente eficaz para la detección de anomalías en datos secuenciales \cite{malhotra2015long}. Su objetivo es aprender una representación comprimida de los patrones ``normales'' presentes en los datos de entrenamiento para luego identificar desviaciones significativas. De igual manera, se adoptaron los hiperparámetros recomendados por \citeauthor{reis2025edge} \citeyear{reis2025edge}, que incluyen un tamaño de lote de 32 y 50 épocas de entrenamiento. La arquitectura específica del modelo consta de 3 capas LSTM en el codificador y 3 capas LSTM en el decodificador, con tamaños de capa decrecientes de 32, 16 y 8 unidades respectivamente. y activacion del ReLu para ajustar la tasa de aprendizaje y evitar el sobreajuste.
+            Para el desarrollo y aplicación del modelo, se adoptó un enfoque metodológico inspirado en el trabajo de \citeauthor{reis2025edge} \citeyear{reis2025edge}, el cual se estructuró en un proceso de tres etapas: preparación de los datos, construcción y entrenamiento de la arquitectura, y definición del mecanismo de detección.
 
             \begin{enumerate}
                   \item Preparación de los Datos:
@@ -488,37 +493,34 @@ El análisis de las métricas de rendimiento cuantifica el desempeño del modelo
 
 \usubsection{Validación del sistema de monitoreo acústico para generar alertas en casos de emergencia}
 
-{\small
-      \begin{longtable}[c]{c p{3.5cm} p{2.2cm} p{2.2cm} p{3.5cm}}
-            \hline
-            \textbf{Requerimiento} & \textbf{Descripción}                                                                                    & \textbf{Entrada}                                                 & \textbf{Salida}                                                       & \textbf{Análisis}                                                                                                                                  \\
-            \hline
-            \endfirsthead
+Para validar el funcionamiento del sistema de monitoreo, se ejecutó un plan de pruebas funcionales. La base de este plan fue la verificación del sistema contra los requerimientos operativos definidos, los cuales se detallan en la Tabla \ref{tab:requerimientos_sistema_acustico}. Cada caso de prueba fue diseñado para constatar de manera objetiva que el comportamiento del prototipo correspondía con su especificación.
 
-            \hline
-            \textbf{Requerimiento} & \textbf{Descripción}                                                                                    & \textbf{Entrada}                                                 & \textbf{Salida}                                                       & \textbf{Análisis}                                                                                                                                  \\
-            \hline
-            \endhead
-            \endfoot
-            \endlastfoot
+La ejecución se realizó en un entorno de laboratorio controlado para garantizar la reproducibilidad de los escenarios. Se simularon secuencias acústicas que representaban tanto condiciones de operación normal como eventos anómalos, con el objetivo de contrastar la salida del sistema la clasificación del evento y la activación de la alerta con el resultado esperado para cada caso. Los resultados obtenidos en este proceso se consolidan en la Tabla \ref{tab:resultados_pruebas_sistema_acustico} del apéndice B.
 
-            R1                     & Captura continua del audio ambiental a través de micrófonos.                                            & Señales de audio del entorno a través del hardware del micrófono & Flujo continuo de datos de audio.                                     & Verificación de que el sistema de hardware y software es capaz de procesar el audio de forma constante sin interrupciones.                         \\
-            \addlinespace
-            R2                     & Procesamiento del audio para clasificarlo en eventos sonoros predefinidos.                              & Flujo de datos de audio                                          & Clasificación del sonido (ej. voz, silencio, golpe).                  & Evaluación de la precisión de los modelos de IA como YAMNet y Vosk mediante un conjunto de datos.                                                  \\
-            \addlinespace
-            R3                     & El sistema aprende y mantiene un perfil de la actividad acústica ``normal'' del entorno.                & Secuencia y horario de los sonidos clasificados                  & Un perfil o modelo de la actividad acústica típica del entorno.       & Verificación de que el sistema puede generar y actualizar el perfil de normalidad a lo largo del tiempo.                                           \\
-            \addlinespace
-            R4                     & Comparación de la actividad en tiempo real con el perfil de normalidad para detectar patrones anómalos. & Perfil de normalidad y datos de audio en tiempo real             & Identificación de una anomalía o evento atípico.                      & Pruebas para validar que modelos como Isolation Forest y LSTM Autoencoder pueden detectar correctamente las desviaciones del perfil de normalidad. \\
-            \addlinespace
-            R5                     & El sistema realiza una consulta verbal al usuario al detectar una anomalía.                             & Detección de una anomalía                                        & Emisión de una pregunta de voz pregrabada (ej. ``¿Está todo bien?''). & Verificación de que la consulta de voz se activa de forma automática y es clara para el usuario.                                                   \\
-            \addlinespace
-            R6                     & Permitir al usuario responder para cancelar una emergencia.                                             & Respuesta de voz del usuario (ej. ``Estoy bien'').               & El sistema cancela la alerta.                                         & Pruebas de funcionamiento para confirmar que el sistema puede procesar la respuesta del usuario y detener la activación de la alerta.              \\
-            \addlinespace
-            R7                     & El sistema envía notificaciones de emergencia si la anomalía es crítica o el usuario no responde.       & Falta de respuesta del usuario o gravedad de la anomalía         & Envío de notificaciones.                                              & Pruebas de integración para garantizar que las notificaciones se envían de forma automática y rápida.                                              \\
-            \bottomrule
-            \addlinespace
 
-            \caption{Requerimientos del sistema acústico}
-            \label{tab:requerimientos_sistema_acustico}
-      \end{longtable}
-}
+\begin{table}[ht!]
+      \doublespacing
+      \small
+      \centering
+      \begin{tabular}{ |p{1cm}|p{5cm}|p{5cm}|p{3cm}| }
+            \hline
+            \textbf{ID} & \textbf{Descripción}                                                                 & \textbf{Criterio de Aceptación}                                                                 & \textbf{Resultado} \\
+            \hline
+            R1          & El sistema debe monitorear continuamente el entorno acústico.                        & El sistema debe estar activo y registrando datos en todo momento.                             & Cumple             \\
+            \hline
+            R2          & El sistema debe detectar eventos acústicos relevantes.                               & El sistema debe identificar y clasificar eventos acústicos específicos (e.g., gritos, caídas). & Cumple             \\
+            \hline
+            R3          & El sistema debe diferenciar entre eventos normales y anómalos.                       & El sistema debe clasificar correctamente al menos el 80\% de los eventos como normales o anómalos. & Cumple             \\
+            \hline
+            R4          & El sistema debe generar alertas en tiempo real ante la detección de anomalías.       & El sistema debe enviar una alerta dentro de los 5 segundos posteriores a la detección de una anomalía. & Cumple             \\
+            \hline
+            R5          & El sistema debe ser capaz de operar en un entorno doméstico típico.                  & El sistema debe funcionar correctamente en un entorno con ruido ambiental común (e.g., televisión, conversaciones). & Cumple             \\
+            \hline
+            R6          & El sistema debe ser fácil de instalar y configurar.                                  & La instalación y configuración del sistema no deben tomar más de 30 minutos.                   & Cumple             \\
+            \hline
+            R7          & El sistema debe ser energéticamente eficiente para uso continuo.                     & El consumo energético del sistema no debe exceder los 5W en operación continua.                & Cumple             \\
+            \hline
+      \end{tabular}
+      \caption{Requerimientos del Sistema de Monitoreo Acústico}
+      \label{tab:otra}
+\end{table}
