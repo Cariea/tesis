@@ -1,6 +1,6 @@
 \documentclass[12pt]{report}
 \usepackage[spanish]{babel}
-\usepackage[a4paper, margin=1in]{geometry}
+\usepackage[letterpaper, margin=1in]{geometry}
 \usepackage{graphicx}
 \graphicspath{{images/}}
 \usepackage{times}
@@ -140,20 +140,38 @@
 }
 \makeatother
 
+% Formato de figuras, tablas y ecuaciones
+\usepackage{caption}
+\usepackage{chngcntr}
+
+% Figuras
+\captionsetup[figure]{labelformat=default,labelsep=colon,name=Figura}
+\renewcommand{\thefigure}{\arabic{figure}}
+\counterwithout{figure}{chapter}
+
+% Tablas
+\captionsetup[table]{labelformat=default,labelsep=colon,name=Tabla}
+\renewcommand{\thetable}{\arabic{table}}
+\counterwithout{table}{chapter}
+
+% Ecuaciones
+\renewcommand{\theequation}{\arabic{equation}}
+\counterwithout{equation}{chapter}
+
 \usepackage{calc}
 \renewcommand{\cftfigpresnum}{Figura~}
-\setlength{\cftfignumwidth}{\widthof{Figura IV.1 }}
+\setlength{\cftfignumwidth}{\widthof{Figura 0. }}
 \renewcommand{\cftfigaftersnum}{. }
 
 
 \renewcommand{\cfttabpresnum}{Tabla~}
-\setlength{\cfttabnumwidth}{\widthof{Tabla IV.1 }}
+\setlength{\cfttabnumwidth}{\widthof{Tabla 0. }}
 \renewcommand{\cfttabaftersnum}{. }
 
 \renewcommand{\cftmyequationspresnum}{Fórmula~}
 \setlength{\cftmyequationsindent}{1.5em}
 \renewcommand{\cftmyequationsaftersnum}{. }
-\setlength{\cftmyequationsnumwidth}{\widthof{Fórmula IV.1 }}
+\setlength{\cftmyequationsnumwidth}{\widthof{Fórmula 0. }}
 
 \begin{document}
 
