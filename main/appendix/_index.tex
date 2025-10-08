@@ -24,22 +24,21 @@
 \uextra{Apendice}{Representación cíclica del tiempo mediante funciones trigonométricas}
 \begin{figure}[ht!]
   \centering
-  \includegraphics[width=0.55\textwidth]{Apendices/rc.png}
-  \caption{Visualización discreta del comportamiento cíclico del tiempo} 
-  \caption*{GeoGebra: Generación de puntos discretos sobre la circunferencia usando la expresión: \newline
-  \texttt{Sequence((cos(2$\pi$ * n / 86400), sin(2$\pi$ * n / 86400)), n, 0, 86400, 3600)}}
-  \caption*{La figura incluye dos líneas auxiliares que recorren la circunferencia: una horizontal (coseno) y una vertical (seno), generadas dinámicamente mediante un deslizador \( t \) con paso de 600 segundos. Estas líneas intersectan en el punto \( (x, y) \), representando la posición temporal proyectada en coordenadas trigonométricas.}
-  \label{fig:representacion-ciclica-tiempo}
-\end{figure}
-
-\begin{figure}[ht!]
-  \centering
   \includegraphics[width=0.55\textwidth]{Apendices/sencos.png}
   \caption{Visualización de las funciones seno y coseno  } 
   \caption*{GeoGebra: Generación de las funciones seno y coseno usando las expresiones: \newline
   \texttt{Sequence((x, sin(x)), x, 0, 2$\pi$, $\pi$/6)} y \newline
   \texttt{Sequence((x, cos(x)), x, 0, 2$\pi$, $\pi$/6)}}
   \label{fig: seno-coseno}
+\end{figure}
+\begin{figure}[ht!]
+  \centering
+  \includegraphics[width=0.55\textwidth]{Apendices/rc.png}
+  \caption{Visualización discreta del comportamiento cíclico del tiempo} 
+  \caption*{GeoGebra: Generación de puntos discretos sobre la circunferencia usando la expresión: \newline
+  \texttt{Sequence((cos(2$\pi$ * n / 86400), sin(2$\pi$ * n / 86400)), n, 0, 86400, 3600)}}
+  \caption*{La figura incluye dos líneas auxiliares que recorren la circunferencia: una horizontal (coseno) y una vertical (seno), generadas dinámicamente mediante un deslizador \( t \) con paso de 600 segundos. Estas líneas intersectan en el punto \( (x, y) \), representando la posición temporal proyectada en coordenadas trigonométricas.}
+  \label{fig:representacion-ciclica-tiempo}
 \end{figure}
 
 \begin{figure}[ht!]
@@ -53,6 +52,30 @@
   \caption*{La figura muestra una curva paramétrica continua que representa el tiempo sobre el círculo unitario mediante funciones trigonométricas. Cada instante se proyecta como un punto único definido por \( x(t) = \cos\left(\frac{2\pi t}{86400}\right) \) y \( y(t) = \sin\left(\frac{2\pi t}{86400}\right) \), donde \( t \) es el número de segundos desde las 00:00. Esta codificación garantiza continuidad angular, permitiendo que modelos de simulación o aprendizaje automático interpreten correctamente la naturaleza cíclica del tiempo sin ambigüedades en los extremos del día.}
   \label{fig:curva-tiempo-circular}
 \end{figure}
+
+
+\uextra{Apendice}{Algorimos de los distintos agentes}
+\begin{figure}[ht!]
+  \centering
+  \includegraphics[width=0.95\textwidth]{Apendices/algoritmos/algoritmo_agente_isolation_forest.png}
+  \caption{Algoritmo del agente de detección de anomalías basado en Isolation Forest}
+  \label{fig:algoritmo_agente_isolation_forest}
+\end{figure}
+
+\begin{figure}[ht!]
+  \centering
+  \includegraphics[width=0.95\textwidth]{Apendices/algoritmos/algoritmo_sgente_LSTM.png}
+  \caption{Algoritmo del agente de predicción basado en LSTM}
+  \label{fig:algoritmo_agente_LSTM}
+\end{figure}
+
+\begin{figure}[ht!]
+  \centering
+  \includegraphics[width=0.95\textwidth]{Apendices/algoritmos/algoritmo_agente_silencio.png}
+  \caption{Algoritmo del agente de detección de silencio}
+  \label{fig:algoritmo_agente_silencio}
+\end{figure}
+
 \uextra{Apendice}{Verificación del sistema de monitoreo acústico}
 
 {\small
