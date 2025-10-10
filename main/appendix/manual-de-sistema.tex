@@ -1,0 +1,474 @@
+\uextra{Apéndice}{Manual de Sistema}
+
+\section*{Introducción}
+
+El siguiente documento es la guía de instalación de Alertify, un sistema de monitoreo acústico inteligente diseñado para la identificación de sonidos ambientales y la generación automática de alertas ante eventos sonoros anómalos que puedan indicar una situación de emergencia o vulnerabilidad.
+
+El sistema está especialmente orientado a entornos domésticos o asistidos, proporcionando una solución no invasiva para el monitoreo continuo de personas que puedan requerir asistencia inmediata, como adultos mayores, personas con discapacidad o cualquier individuo en situación de riesgo.
+
+La arquitectura del sistema se compone de los siguientes módulos principales:
+
+\begin{enumerate}
+  \item \textbf{Agentes de captura y detección}, que ejecutan modelos especializados de inteligencia artificial para:
+        \begin{itemize}
+          \item Reconocimiento de voz en tiempo real (Vosk)
+          \item Clasificación de eventos acústicos (YAMNet)
+          \item Detección de anomalías en secuencias sonoras (LSTM, Transformer, Isolation Forest)
+          \item Monitoreo de períodos de silencio prolongado (Silents Agent)
+          \item Persistencia de eventos (Data Agent)
+          \item Gestión de notificaciones de emergencia (Emergency Agent)
+        \end{itemize}
+  \item \textbf{Servidor central}, que actúa como coordinador del sistema, gestionando la comunicación en tiempo real vía WebSocket, el almacenamiento en base de datos PostgreSQL, y la ejecución de tareas programadas.
+\end{enumerate}
+
+La arquitectura está realizada para operar en dispositivos de edge computing como el Raspberry Pi 4 modelo B, garantizando que el procesamiento de audio se realice de forma local y privada, sin almacenar grabaciones ni depender de servicios en la nube para el análisis sensible.
+
+Este manual está dirigido a administradores de sistemas y usuarios técnicos, y proporciona instrucciones completas para la instalación, configuración, operación y resolución de problemas.
+
+\section*{Requisitos}
+
+\subsection*{Hardware}
+
+\begin{enumerate}
+  \item Raspberry Pi 4 Modelo B con las siguientes especificaciones:
+        \begin{itemize}
+          \item Procesador: Broadcom BCM2711, SoC de cuatro núcleos Cortex-A72 (ARM v8) de 64 bits a 1,8 GHz
+          \item Memoria Ram: 4GB
+          \item Almacenamiento: MicroSD 32GB Clase 10 o superior
+          \item Puertos: 2 × USB 3.0, 2 × USB 2.0, 2 × micro-HDMI
+          \item Audio: Entrada de micrófono via USB
+          \item Microfonos: Adafruit Mini Microfono USB 3367
+        \end{itemize}
+  \item Servidor central (mínimo).
+        \begin{itemize}
+          \item Procesador: CPU 2 núcleos / 4 hilos
+          \item Memoria Ram: 4GB
+          \item Almacenamiento: 50GB
+        \end{itemize}
+\end{enumerate}
+
+\subsection*{Software}
+
+\begin{enumerate}
+  \item Raspberry Pi 4 Modelo B:
+        \begin{itemize}
+          \item Sistema operativo: Raspberry Pi OS (64-bit) Bullseye o superior
+          \item Python: Versión 3.9 o 3.10
+          \item Librerias a utilizar: pandas, joblib, scikit-learn, tensorflow, numpy, sounddevice, python-socketio, pyaudio, vosk, aiohttp, psycopg2, aioredis, pyttsx3
+        \end{itemize}
+  \item Servidor:
+        \begin{itemize}
+          \item Node.js: Versión 18 o superior
+          \item NestJs: Framework principal del servidor
+          \item PostgreSQL: Versión 14 o superior (para persistencia de eventos)
+          \item Redis: Versión 6 o superior (para mensajería Pub/Sub)
+          \item Docker: Para contenerización de servicios (opcional pero recomendado)
+        \end{itemize}
+\end{enumerate}
+
+\subsection*{Infraestructura de red}
+
+\begin{enumerate}
+  \item Puertos requeridos
+        \begin{itemize}
+          \item Redis: 6379
+          \item PostgreSQL: 5432
+          \item Servidor NestJS: 3000
+          \item pgAdmin (opcional): 8888
+        \end{itemize}
+  \item Conectividad
+        \begin{itemize}
+          \item Red local estable entre Raspberry Pi y servidor
+          \item Acceso a internet para notificaciones externas (Telegram, SMTP)
+          \item Ancho de banda mínimo para comunicación WebSocket en tiempo real
+        \end{itemize}
+\end{enumerate}
+
+\subsection*{Modelo de IA y recursos.}
+
+\begin{enumerate}
+  \item Modelos Preentrenados
+        \begin{itemize}
+          \item Yamnet: yamnet-agent/yamnet.tflite, yamnet-agent/yamnet\_class\_map.csv
+          \item VOSK (español): vosk-agent/vosk-model-small-es-0.42/
+          \item Modelo de Anomalias:
+                \begin{enumerate}
+                  \item lstm-agent/lstm\_autoencoder\_no\_duplicates\_p99.keras o lstm-agent/lstm\_autoencoder\_p99.keras, y lstm-agent/umbral\_no\_duplicates\_p99.pkl o lstm-agent/umbral\_p99.pkl
+                \end{enumerate}
+        \end{itemize}
+  \item Conectividad
+        \begin{itemize}
+          \item Red local estable entre Raspberry Pi y servidor
+          \item Acceso a internet para notificaciones externas (Telegram, SMTP)
+          \item Ancho de banda mínimo para comunicación WebSocket en tiempo real
+        \end{itemize}
+\end{enumerate}
+
+\section*{Instalación}
+
+\subsection*{Servidor (alertify-server).}
+
+\begin{enumerate}
+  \item Clonar repositorio y abrir carpeta alertify-server.
+  \item Crear/validar archivo .env  (se incluye uno de ejemplo). Revise credenciales y puertos.
+  \item Instalar dependencias (PNPM).
+  \item Levantar Redis y PostgreSQL con Docker Compose.
+  \item Iniciar el servidor NestJS.
+\end{enumerate}
+
+\subsection*{Cliente (alertify-client).}
+
+\begin{enumerate}
+  \item Clonar y abrir carpeta Alertify-client.
+  \item Verificar Python 3.9+ y crear un entorno virtual (opcional).
+  \item Asegurar que los siguientes modelos estén en sus rutas correspondientes.
+  \item Ejecutar los agentes y scripts principales
+\end{enumerate}
+
+\section*{Configuración}
+
+\subsection*{Redis}
+
+Los agentes usan por defecto redis://default:alertify@localhost:6379. Si cambia el host o las credenciales, actualice los scripts o variables de entorno correspondientes.
+
+\subsection*{Configuración de audio}
+
+En silents-agent/silents-agent.py, verificar y ajustar según sea necesario:
+
+\begin{itemize}
+  \item SAMPLE\_RATE
+  \item VARIANCE\_THRESHOLD
+  \item Otros parámetros relacionados con la captura de audio
+\end{itemize}
+
+\section*{Visualización y monitoreo.}
+
+\begin{itemize}
+  \item WebSocket: conectarse con un cliente Socket.IO al servidor para recibir emergency-alert
+  \item pgAdmin (si se usa Docker): http://<host>:8888 para ver base de datos
+  \item Logs de agentes en consola. Para Windows puede usar varias terminales o un gestor de procesos.
+\end{itemize}
+
+\section*{Carpetas y Archivos (alertify-client).}
+
+\subsection*{Archivos en la raíz}
+
+Componentes principales para orquestar y documentar el cliente.
+
+\begin{table}[H]
+  \doublespacing
+  \begin{tabularx}{\textwidth}{l X}
+    \hline
+    \textbf{Archivo} & \textbf{Descripción}                                                                       \\
+    \hline
+    main.py          &
+    Lanza los agentes como procesos independientes, maneja señales de parada y espera su finalización.            \\
+    README.md        &
+    Introducción y notas del cliente                                                                              \\
+    requirements.txt &
+    Lista de dependencias Python necesarias para ejecutar los agentes (pandas, tensorflow, aioredis, vosk, etc.). \\
+    .gitignore       &
+    Reglas de exclusión de Git (archivos temporales, modelos, entornos, etc.).                                    \\
+    \hline
+  \end{tabularx}
+\end{table}
+
+\subsection*{CSV}
+
+Catálogos en CSV utilizados por agentes de audio para mapear clases y categorías.
+
+\begin{table}[H]
+  \doublespacing
+  \begin{tabularx}{\textwidth}{l X}
+    \hline
+    \textbf{Archivo}                & \textbf{Descripción}                          \\
+    \hline
+    Clasificación de categorías.csv &
+    Tabla de categorías de eventos/sonidos normalizados para etiquetado y análisis. \\
+    yamnet\_class\_map.csv          &
+    Etiqueta legible de YAMNet usado por el agente de clasificación.                \\
+    \hline
+  \end{tabularx}
+\end{table}
+
+\subsection*{data\_agent}
+
+Ingesta de eventos desde Redis, persistencia en PostgreSQL y generación periódica de dataset
+
+\begin{table}[H]
+  \doublespacing
+  \begin{tabularx}{\textwidth}{l X}
+    \hline
+    \textbf{Archivo}        & \textbf{Descripción}                                                                                                          \\
+    \hline
+    config.py               & Lee data\_agent/database.ini con ConfigParser y devuelve un dict de conexión PostgreSQL.                                      \\
+    data\_agent.py          & Suscribe a Redis (alertas\_audio, alertas\_vosk), inserta eventos en tabla event y actualiza data/dataset.csv periódicamente. \\
+    generate\_csv.py        & Genera data/dataset.csv on-demand; normaliza zona horaria (America/Caracas) y guarda fechas sin tz.                           \\
+    postgres\_connection.py & Gestiona una conexión global a PostgreSQL con psycopg2 usando la configuración cargada.                                       \\
+    \hline
+  \end{tabularx}
+\end{table}
+
+\subsection*{emergency\_agent}
+
+Agente que gestiona las alertas de emergencia.
+
+\begin{table}[H]
+  \doublespacing
+  \begin{tabularx}{\textwidth}{l X}
+    \hline
+    \textbf{Archivo}    & \textbf{Descripción} \\
+    \hline
+    emergency\_agent.py &
+    Se suscribe a múltiples canales Redis, agrega alertas, permite pausar/reanudar, hace TTS y envía notificaciones a Telegram; expone control por vosk\_commands / emergency\_control.
+    \\
+    \hline
+  \end{tabularx}
+\end{table}
+
+\subsection*{Isolation-forest-agent}
+
+Detección de anomalías de secuencias de eventos con Isolation Forest.
+
+\begin{table}[H]
+  \doublespacing
+  \begin{tabularx}{\textwidth}{l X}
+    \hline
+    \textbf{Archivo}          & \textbf{Descripción}                                                                                                                                                         \\
+    \hline
+    encoder.pkl               &
+    Codificador para transformar etiquetas de eventos a vectores.                                                                                                                                            \\
+    isolation-forest-agent.py &
+    Escucha alertas\_audio, construye features temporales (día/tiempo cíclico), detecta anomalías por batch y publica en alertas\_isolation\_forest; si falta modelo, entrena y guarda anomalies\_model.pkl. \\
+    \hline
+  \end{tabularx}
+\end{table}
+
+\subsection*{lstm-agent}
+
+Detección de anomalías con Autoencoder LSTM en ventanas temporales
+
+\begin{table}[H]
+  \doublespacing
+  \begin{tabularx}{\textwidth}{l X}
+    \hline
+    \textbf{Archivo}                             & \textbf{Descripción}                                                                                                                                   \\
+    \hline
+    encoder.pkl                                  & Codificador para transformar etiquetas a vectores de entrada del modelo.                                                                               \\
+    lstm\_autoencoder\_improved.keras            & Modelo Keras de Autoencoder LSTM (versión mejorada).                                                                                                   \\
+    lstm\_autoencoder\_no\_duplicates\_p99.keras & Variante entrenada filtrando duplicados consecutivos; calibrada a percentil 99.                                                                        \\
+    lstm\_autoencoder\_p99.keras                 & Variante calibrada a percentil 99 con datos estándar.                                                                                                  \\
+    lstm-agent.py                                & Consume alertas\_audio, arma secuencias (longitud fija), calcula MSE de reconstrucción y publica series anómalas en alertas\_lstm si supera el umbral. \\
+    umbral\_improved.pkl                         & Umbral de MSE recomendado para lstm\_autoencoder\_improved.keras.                                                                                      \\
+    umbral\_no\_duplicates\_p99.pkl              & Umbral calibrado para la variante sin duplicados.                                                                                                      \\
+    umbral\_p99.pkl                              & Umbral calibrado para la variante p99 estándar.                                                                                                        \\
+    \hline
+  \end{tabularx}
+\end{table}
+
+\subsection*{silent-agent}
+
+Detección en tiempo real de silencio/actividad a partir de audio del micrófono.
+
+\begin{table}[H]
+  \doublespacing
+  \begin{tabularx}{\textwidth}{l X}
+    \hline
+    \textbf{Archivo} & \textbf{Descripción} \\
+    \hline
+    silents-agent.py &
+    Captura audio, calcula varianza por frame, aplica ventana de estabilidad y periodo de retención, y publica cambios de estado (silencio/actividad) en alertas\_silencio con métricas.
+    \\
+    \hline
+  \end{tabularx}
+\end{table}
+
+\subsection*{Vosk-agent}
+
+Reconocimiento de voz offline con Vosk en español y disparo de eventos por palabras clave.
+
+\begin{table}[H]
+  \doublespacing
+  \begin{tabularx}{\textwidth}{l X}
+    \hline
+    \textbf{Archivo} & \textbf{Descripción} \\
+    \hline
+    vosk-agent.py    &
+    Escucha micrófono con sounddevice y Vosk, detecta palabras clave (auxilio/Estoy bien), publica en alertas\_vosk y envía comandos a vosk\_commands.
+    \\
+    \hline
+  \end{tabularx}
+\end{table}
+
+\subsection*{Vosk-model-small-es-0.42}
+
+\begin{table}[H]
+  \doublespacing
+  \begin{tabularx}{\textwidth}{l X}
+    \hline
+    \textbf{Archivo}               & \textbf{Descripción}                                       \\
+    \hline
+    README                         & Información del modelo y notas del proyecto Vosk.          \\
+    am/final.mdl                   & Modelo acústico entrenado (acoustic model).                \\
+    conf/mfcc.conf                 & Configuración de extracción de características MFCC.       \\
+    conf/model.conf                & Configuración general del modelo.                          \\
+    graph/disambig\_tid.int        & Archivo de desambiguación para el grafo de decodificación. \\
+    graph/Gr.fst                   & Grafo FST principal para decodificación.                   \\
+    graph/HCLr.fst                 & Composición HCL para el decodificador (fonética/lexicón).  \\
+    graph/phones/word\_bounday.int & Límites de palabras por audio.                             \\
+    ivector/final.dubm             & UBM para i-vectors.                                        \\
+    ivector/final.ie               & Extracción de i-vectors.                                   \\
+    ivector/final.mat              & Matriz de proyección para i-vectors.                       \\
+    ivector/global\_cmvn.stats     & Estadísticas para normalización CMVN global.               \\
+    ivector/online\_cmvn.conf      & Configuración CMVN online.                                 \\
+    ivector/splice.conf            & Configuración de splicing de características.              \\
+    \hline
+  \end{tabularx}
+\end{table}
+
+\subsection*{Yamnet-agent}
+
+Clasificación de audio en streaming con YAMNet (TensorFlow Lite) y publicación de eventos.
+
+\begin{table}[H]
+  \doublespacing
+  \begin{tabularx}{\textwidth}{l X}
+    \hline
+    \textbf{Archivo}       & \textbf{Descripción} \\
+    \hline
+    yamnet\_class\_map.csv &
+    Archivo con el nombre de cada clase para interpretar predicciones.
+    \\
+    yamnet-agent.py        &
+    Captura audio, infiere con TFLite, marca emergencias por índices críticos y publica eventos en alertas\_audio.
+    \\
+    yamnet.tflite          &
+    Modelo YAMNet en formato TensorFlow Lite usado por el agente.
+    \\
+    \hline
+  \end{tabularx}
+\end{table}
+
+\section*{Carpetas y Archivos (alertify-server).}
+
+\subsection*{Archivos en la raíz}
+
+Archivos base de configuración, tooling y metadatos del proyecto NestJS/TypeORM.
+
+\begin{table}[H]
+  \doublespacing
+  \begin{tabularx}{\textwidth}{l X}
+    \hline
+    \textbf{Archivo}    & \textbf{Descripción}                                                                           \\
+    \hline
+    package.json        & Scripts de desarrollo/producción (Nest, TypeORM, seeds), dependencias y configuración de Jest. \\
+    pnpm-lock.yaml      & Bloqueo de dependencias (pnpm).                                                                \\
+    docker-compose.yml  & Servicios contenedorizados (p.ej. PostgreSQL/Redis si aplica) para desarrollo.                 \\
+    nest-cli.json       & Configuración del CLI de Nest (paths de compilación).                                          \\
+    tsconfig.json       & Configuración TypeScript principal.                                                            \\
+    tsconfig.build.json & Configuración TypeScript para compilación a producción (dist).                                 \\
+    .eslintrc.js        & Reglas de ESLint.                                                                              \\
+    .prettierrc         & Reglas de formateo Prettier.                                                                   \\
+    .gitignore          &
+    Exclusiones de Git.                                                                                                  \\
+    README.md           &
+    Documentación del servidor.                                                                                          \\
+    \hline
+  \end{tabularx}
+\end{table}
+
+\subsection*{SRC}
+
+Código fuente del servidor (NestJS), organizado por módulos y configuración.
+
+\begin{table}[H]
+  \doublespacing
+  \begin{tabularx}{\textwidth}{l X}
+    \hline
+    \textbf{Archivo} & \textbf{Descripción}                                                                                         \\
+    \hline
+    main.ts          & Inicializa contexto transaccional, configura Swagger en /docs, prefijo api/v1 y levanta el servidor en PORT. \\
+    app.module.ts    & Carga .env, registra TypeORM y el módulo Events, habilita @nestjs/schedule.                                  \\
+    config/          & Configuración de entorno y base de datos (TypeORM, DataSource, variables).                                   \\
+    modules/         & Módulos de funcionalidad (actualmente events).                                                               \\
+    \hline
+  \end{tabularx}
+\end{table}
+
+\subsection*{src/config}
+
+Configuraciones de entorno y base de datos
+
+\begin{table}[H]
+  \doublespacing
+  \begin{tabularx}{\textwidth}{l X}
+    \hline
+    \textbf{Archivo}     & \textbf{Descripción}                                                                                                    \\
+    \hline
+    environment.ts       & Cargar variables desde .env y las exporta como objeto envConfig.                                                        \\
+    database.config.ts   & Opciones DataSourceOptions para PostgreSQL: host/puerto/credenciales/DB, entities, synchronize, migraciones y timezone. \\
+    database.ts          & Vuelve a exportar propiedades básicas de conexión a DB a partir de environment.                                         \\
+    datasource.config.ts & Instancia DataSource (TypeORM) desde database.config para migraciones/CLI.                                              \\
+    typeorm.config.ts    & Config asíncrono de TypeORM para Nest; integra typeorm-transactional con addTransactionalDataSource.                    \\
+    \hline
+  \end{tabularx}
+\end{table}
+
+\subsection*{src/modules/events}
+
+Módulo responsable de WebSockets (Socket.IO), gestión de eventos, emergencias, actividad y configuración de alarmas.
+
+\begin{table}[H]
+  \doublespacing
+  \begin{tabularx}{\textwidth}{l X}
+    \hline
+    \textbf{Archivo}        & \textbf{Descripción}                                                                                                                                                       \\
+    \hline
+    events.module.ts        & Declara EventsGateway y EventsService, registra entidades TypeORM y configura MailerModule con SMTP (env).                                                                 \\
+    events.gateway.ts       & Gateway WebSocket: maneja conexión/desconexión, comandos im-ok, help-call, alarmOn/Off, emite emergency-alert y reproduce TTS (voz).                                       \\
+    events.service.ts       & Lógica de negocio: CRUD de eventos/emergencias, cron jobs para silencios y emergencias, builder de matriz de Markov por environment y notificaciones (Telegram/Email/TTS). \\
+    enums/events.enums.ts   & Enumeración Calls para tipos de llamadas (imOk, helpCall).                                                                                                                 \\
+    querys/events.querys.ts & Consultas SQL: ocurrencias por categoría y transiciones entre categorías (para matriz de Markov).                                                                          \\
+    \hline
+  \end{tabularx}
+\end{table}
+
+\subsection*{Dto}
+
+\begin{table}[H]
+  \doublespacing
+  \begin{tabularx}{\textwidth}{l X}
+    \hline
+    \textbf{Archivo}        & \textbf{Descripción}                                                                                                                                                       \\
+    \hline
+    events.module.ts        & Declara EventsGateway y EventsService, registra entidades TypeORM y configura MailerModule con SMTP (env).                                                                 \\
+    events.gateway.ts       & Gateway WebSocket: maneja conexión/desconexión, comandos im-ok, help-call, alarmOn/Off, emite emergency-alert y reproduce TTS (voz).                                       \\
+    events.service.ts       & Lógica de negocio: CRUD de eventos/emergencias, cron jobs para silencios y emergencias, builder de matriz de Markov por environment y notificaciones (Telegram/Email/TTS). \\
+    enums/events.enums.ts   & Enumeración Calls para tipos de llamadas (imOk, helpCall).                                                                                                                 \\
+    querys/events.querys.ts & Consultas SQL: ocurrencias por categoría y transiciones entre categorías (para matriz de Markov).                                                                          \\
+    \hline
+  \end{tabularx}
+\end{table}
+
+\subsection*{Entities}
+
+\begin{table}[H]
+  \doublespacing
+  \begin{tabularx}{\textwidth}{l X}
+    \hline
+    \textbf{Archivo}                  & \textbf{Descripción}                                                                          \\
+    \hline
+    entities/event.entity.ts          & Entidad Event: environment, category, score, emergency, rms, date y createdAt.                \\
+    entities/emergencies.entity.ts    & Entidad Emergency: environment, category, createdBy, timestamps emited/cancelled y createdAt. \\
+    entities/activity.entity.ts       & Entidad Activity: environment, rms, date y createdAt.                                         \\
+    entities/alarm-settings.entity.ts & Entidad AlarmSettings: estados de alarmas, límite de silencio en horas inHome y createdAt.    \\
+    \hline
+  \end{tabularx}
+\end{table}
+
+\section*{Links a los repositorios}
+
+\begin{enumerate}
+  \item Alertify-client: https://github.com/Cariea/alertify-client
+  \item Alertify-server: https://github.com/Cariea/alertify-server
+\end{enumerate}

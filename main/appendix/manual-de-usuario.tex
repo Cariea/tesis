@@ -1,0 +1,42 @@
+\uextra{Apéndice}{Manual de Usuario}
+
+\section*{Introducción}
+
+Este manual está dirigido a las personas que se encuentran en los ambientes monitoreados por Alertify. Su propósito es explicar de forma sencilla cómo interactuar con el sistema por medio de la voz, qué frases utiliza para solicitar ayuda o cancelar una alerta, y cómo interpretar las señales y respuestas del sistema.
+
+A través de esta guía, aprenderá a usar el sistema de manera segura y efectiva, aprovechando la tecnología de reconocimiento vocal para su tranquilidad y rápida atención en caso de ser necesario.
+
+\section*{¿Qué es un agente?}
+
+Un agente en el contexto del siguiente sistema es un programa inteligente que escucha, interpreta y actúa ante sonidos del ambiente. No es un robot ni una persona, sino un software que:
+
+\begin{itemize}
+  \item Tienen la capacidad de escuchar el sonido del ambiente a través de micrófonos para la detección de palabras clave (“Auxilio”, “ayuda”, “estoy bien”)
+  \item Tienen la capacidad de detectar eventos de interés y periodos de silencio prolongados
+  \item Al detectar algún evento relevante, envía datos al servidor para que este los notifique
+\end{itemize}
+
+\section*{Acciones que puede realizar el usuario}
+
+El sistema está diseñado para responder a comandos de voz específicos que le permiten solicitar asistencia o cancelar una alerta de manera inmediata, sin necesidad de interactuar con ningún dispositivo físico. Su voz actúa como el control principal del sistema, facilitando su uso en situaciones donde pueda tener las manos ocupadas o dificultad para moverse.
+
+Para solicitar ayuda en caso de emergencia, simplemente pronuncie en voz clara y audible alguna de las palabras clave predefinidas: "auxilio" o "ayuda". El sistema está configurado para reconocer estos términos de manera prioritaria. Al detectar cualquiera de estas palabras, el sistema activa inmediatamente el protocolo de emergencia, enviando una notificación automática a la central de monitoreo y a los contactos designados para tales situaciones. Adicionalmente, el sistema puede generar un anuncio sonoro en la central operativa para asegurar una respuesta rápida por parte del personal responsable. Si ha activado una alerta por error o la situación de emergencia ha sido resuelta, puede cancelar el estado de alarma utilizando frases como "estoy bien", "todo bien" o simplemente "bien". Al reconocer estas expresiones, el sistema desactiva las notificaciones activas asociadas a ese ambiente específico e informa a los operadores sobre la cancelación, evitando así movilizaciones innecesarias mientras mantiene el historial del evento para su posterior revisión. Para garantizar el correcto funcionamiento del sistema, se recomienda hablar directamente en dirección al micrófono del ambiente, manteniendo un tono de voz claro y natural. En espacios con niveles elevados de ruido ambiental, puede ser necesario repetir la frase o acercarse ligeramente al dispositivo para asegurar una captura óptima del audio. El sistema está calibrado para reconocer específicamente los comandos antes mencionados, por lo que se sugiere utilizar exclusivamente estas expresiones para interactuar con él.
+
+\section*{Señales que puede emitir el sistema}
+
+\begin{enumerate}
+  \item Aviso de Emergencia: se activa cuando el sistema identifica de manera clara una situación de riesgo inminente. Esto ocurre principalmente cuando detecta alguna de las palabras clave de auxilio como "ayuda" o "auxilio", pero también puede activarse cuando reconoce otros sonidos críticos preconfigurados, como golpes fuertes, cristales rompiéndose o sonidos atípicos que se salen del patrón normal del ambiente. Cuando se genera esta señal, el sistema prioriza la notificación enviando alertas inmediatas a todos los contactos configurados y, dependiendo de la configuración, puede activar un anuncio de voz en la central de monitoreo que especifica el ambiente exacto donde se originó la emergencia. Esta señal está diseñada para obtener una respuesta rápida y directa del personal de atención.
+  \item Aviso de Silencio Prolongado: funciona como un mecanismo preventivo que se activa cuando el sistema detecta una ausencia inusual de actividad sonora en el ambiente durante un período de tiempo determinado. A diferencia del aviso de emergencia, esta señal no indica necesariamente una situación crítica, sino que sirve como recordatorio para verificar que todo se encuentra en orden. Este tipo de aviso es particularmente útil en ambientes donde se espera cierta regularidad de actividad, permitiendo identificar posibles situaciones como personas que podrían necesitar asistencia, pero no pueden vocalizar una petición de ayuda. El sistema envía esta notificación como una alerta de menor prioridad que no activa los protocolos de emergencia completos, pero que merece una verificación por parte del personal designado.
+\end{enumerate}
+
+Cada tipo de señal está calibrada según el nivel de urgencia que representa, permitiendo al personal de monitoreo priorizar su respuesta, mientras mantiene una supervisión comprehensiva del ambiente monitoreado.
+
+\section*{Escenarios comunes}
+
+El sistema está preparado para manejar diversas situaciones que pueden presentarse en el día a día. Comprender cómo actuar en cada escenario le permitirá interactuar de manera efectiva con el sistema y obtener la respuesta adecuada según sus necesidades. A continuación, se describen tres situaciones frecuentes y el procedimiento recomendado para cada una.
+
+Cuando necesite ayuda de manera inmediata, ya sea por una caída, un malestar repentino o cualquier situación que considere una emergencia, su respuesta debe ser clara y directa. En estos casos, pronuncie en voz alta y firme alguna de las palabras clave que el sistema reconoce como prioritaria: "auxilio" o "ayuda". Inmediatamente después de dar esta instrucción vocal, el sistema procesará su solicitud y activará los protocolos establecidos. Es importante que, una vez realizada la solicitud, espere pacientemente la confirmación o la llegada de la atención por parte del personal o los contactos designados, ya que el sistema notificará de manera automática y rápida a las personas encargadas de brindarle asistencia.
+
+Si ya se encuentra fuera de peligro o la situación de emergencia ha sido resuelta, es fundamental que cancele el estado de alerta para evitar movilizaciones innecesarias. Para ello, simplemente exprese en voz clara alguna de las frases de cancelación, como "estoy bien", "todo bien" o "cancelar". Al hacerlo, el sistema interpretará que la situación ha vuelto a la normalidad y procederá a desactivar todas las notificaciones activas asociadas a ese evento. Esta acción informa automáticamente al personal de monitoreo que ya no se requiere intervención, lo que les permite actualizar el estado del incidente y concentrarse en otras posibles emergencias.
+
+En caso de que el sistema active una alerta de manera accidental, lo que se conoce como un falso positivo, es igualmente importante que cancele la notificación. Los falsos positivos pueden ocurrir cuando un ruido fuerte o una conversación es interpretada erróneamente por el sistema como una palabra de auxilio. Si esto sucede, no es necesario que espere a que el personal se comunique con usted; puede tomar la iniciativa y pronunciar cualquiera de las frases de cancelación mencionadas anteriormente. Al hacerlo, el sistema detendrá el envío de notificaciones y registrará el evento como una activación no válida, lo que contribuye a que el sistema aprenda y mejore su precisión con el tiempo.
