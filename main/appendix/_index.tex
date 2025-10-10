@@ -132,7 +132,7 @@
     \textbf{Raspberry Pi 4 model B}                                                                                                                        &
     \textbf{NVIDIA Jetson Nano}                                                                                                                            &
     \textbf{Google Coral (TPU)}                                                                                                                            &
-    \textbf{Arduino (ej. UNO/Mega)}                                                                                                                        &
+    \textbf{Arduino}                                                                                                                        &
     \textbf{ESP32}                                                                                                                                           \\
     \hline
     \endhead
@@ -144,40 +144,24 @@
     Procesador ARM de cuatro núcleos y GPU con 128 núcleos NVIDIA CUDA.                                                                                    &
     Procesador ARM, pero su poder de IA proviene de una TPU especializada.                                                                                 &
     Microcontrolador de 8 o 32 bits.                                                                                                                       &
-    Microcontrolador de 32 bitscon Wi-Fi y Bluetooth.                                                                                                        \\
+    Microcontrolador de 32 bits con Wi-Fi y Bluetooth.                                                                                                        \\
+ 
     \addlinespace
-    Capacidad para IA                                                                                                                                      &
-    Capaz de ejecutar modelos de IA en el CPU con frameworks como TensorFlow.                                                                              &
-    Diseñada para IA con aceleración de hardware (GPU), ideal para modelos complejos de visión por computadora.                                            &
-    Diseñada exclusivamente para la inferencia de IA, con un enfoque en modelos optimizados para la TPU.                                                   &
-    Incapaz de ejecutar modelos de IA.                                                                                                                     &
-    Capaz de ejecutar modelos de IA muy pequeños y optimizados (TinyML).
-    \\
-    \addlinespace
-    Gestión Autónoma de Datos                                                                                                                              &
-    Excelente. Permite el almacenamiento masivo en tarjetas SD y la gestión completa de archivos y bases de datos locales.                                 &
-    Excelente. Como una computadora completa, permite un manejo robusto de datos y almacenamiento.                                                         &
-    Limitada. Como acelerador, depende de un host para la gestión de datos.                                                                                &
-    Nula. No puede gestionar grandes volúmenes de datos.                                                                                                   &
-    Limitada. Permite la transmisión de datos, pero no el almacenamiento o la gestión masiva.                                                                \\
+    Memoria y almacenamiento                                                                                                                            &
+    2-8 GB RAM, microSD hasta 1 TB                                &
+    4 GB RAM, microSD hasta 128 GB                                                                 &
+    1 GB RAM, microSD, almacenamiento interno limitado                                                                            &
+    2-8 KB RAM, sin almacenamiento persistente                                                                                               &
+    512 KB RAM, soporte microSD externo                                                                \\
     \addlinespace
     Costo                                                                                                                                                  &
-    Bajo a Moderado. 65\$ (Amazon)                                                                                                                         &
-    Moderado a Alto. 165\$ aprox. (AliBaba)                                                                                                                &
-    Moderado. 144\$ aprox.                                                                                                                                 &
-    Muy Bajo. 27\$ aprox.                                                                                                                                  &
-    Muy Bajo. Entre 10\$ y 20\$ aprox. (Amazon)
-    \\
-    \addlinespace
-    Versatilidad y Ecosistema                                                                                                                              &
-    Muy Alta. Ecosistema de software muy amplio con soporte para múltiples aplicaciones.                                                                   &
-    Alta. Enfocado en IA y aprendizaje automático.                                                                                                         &
-    Limitado. Ecosistema de software y modelos de IA optimizados para la TPU. La compatibilidad está limitada a los modelos convertidos a TensorFlow Lite. &
-    Baja. Ecosistema enfocado en control y automatización.                                                                                                 &
-    Media. Ecosistema en crecimiento, enfocado en aplicaciones de IoT.                                                                                       \\
-    \bottomrule
-    \addlinespace
-
+     65\$ (Amazon)                                                                                                                         &
+     165\$ (AliBaba)                                                                                                                &
+     144\$                                                                                                                                 &
+     27\$                                                                                                                                  &
+     Entre 10\$ y 20\$ (Amazon)  
+                                                                                                              \\
+                                                                                                               \hline
     \caption{Cuadro comparativo de microcontroladores}
     \label{tab:cuadro_comparativo_microcontroladores}
   \end{longtable}
