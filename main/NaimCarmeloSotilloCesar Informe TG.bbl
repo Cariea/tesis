@@ -26,6 +26,40 @@ Aggarwal, C\BPBI C.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Bezold%
+, Krell-Roesch%
+, Eckert%
+, Jekauc%
+\BCBL {}\ \BBA {} Woll%
+}{%
+Bezold%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2021}}%
+}]{%
+bezold2021sensor}
+\APACinsertmetastar {%
+bezold2021sensor}%
+\begin{APACrefauthors}%
+Bezold, J.%
+, Krell-Roesch, J.%
+, Eckert, T.%
+, Jekauc, D.%
+\BCBL {}\ \BBA {} Woll, A.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2021}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Sensor-based fall risk assessment in older adults with
+  or without cognitive impairment: a systematic review} {Sensor-based fall risk
+  assessment in older adults with or without cognitive impairment: a systematic
+  review}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{European review of aging and physical
+  activity}{18}{1}{15}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Bobadilla~Osses%
 }{%
 Bobadilla~Osses%
@@ -70,6 +104,9 @@ Boehm, B.%
   {A spiral model of software development and enhancement}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{ACM SIGSOFT Software Engineering Notes}{11}{4}{14--24}.
+\newblock
+\begin{APACrefURL} \url{https://www.cse.msu.edu/~cse435/Homework/HW3/boehm.pdf}
+  \end{APACrefURL}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -277,33 +314,7 @@ Goldsborough%
 Goldsborough%
 }{%
 {\protect \APACyear {2016}}%
-{\protect \APACexlab {{\protect \BCnt {1}}}}}]{%
-goldsborough2016}
-\APACinsertmetastar {%
-goldsborough2016}%
-\begin{APACrefauthors}%
-Goldsborough, P.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{2016{\protect \BCnt {1}}}{10}{}.
-\newblock
-{\BBOQ}\APACrefatitle {A Tour of TensorFlow} {A tour of tensorflow}.{\BBCQ}
-\newblock
-\APACjournalVolNumPages{arXiv:1610.01178 [cs]}{}{}{}.
-\newblock
-\begin{APACrefURL} \url{https://arxiv.org/pdf/1610.01178} \end{APACrefURL}
-\newblock
-\begin{APACrefDOI} \doi{10.48550/arXiv.1610.01178} \end{APACrefDOI}
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
-Goldsborough%
-}{%
-Goldsborough%
-}{%
-{\protect \APACyear {2016}}%
-{\protect \APACexlab {{\protect \BCnt {2}}}}}]{%
+}]{%
 goldsborough_tour_2016}
 \APACinsertmetastar {%
 goldsborough_tour_2016}%
@@ -312,7 +323,7 @@ Goldsborough, P.%
 \end{APACrefauthors}%
 \unskip\
 \newblock
-\APACrefYearMonthDay{2016{\protect \BCnt {2}}}{}{}.
+\APACrefYearMonthDay{2016}{}{}.
 \newblock
 \APACrefbtitle {A Tour of TensorFlow, Proseminar Data Mining.} {A tour of
   tensorflow, proseminar data mining.}
@@ -488,34 +499,6 @@ Igba, J.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
-Liu%
-, Ting%
-\BCBL {}\ \BBA {} Zhou%
-}{%
-Liu%
-\ \protect \BOthers {.}}{%
-{\protect \APACyear {2012}}%
-}]{%
-liu2012isolation}
-\APACinsertmetastar {%
-liu2012isolation}%
-\begin{APACrefauthors}%
-Liu, F\BPBI T.%
-, Ting, K\BPBI M.%
-\BCBL {}\ \BBA {} Zhou, Z\BHBI H.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{2012}{}{}.
-\newblock
-{\BBOQ}\APACrefatitle {Isolation-based anomaly detection} {Isolation-based
-  anomaly detection}.{\BBCQ}
-\newblock
-\APACjournalVolNumPages{ACM Transactions on Knowledge Discovery from Data
-  (TKDD)}{6}{1}{1--39}.
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
 Luis-Garc{\'\i}a%
 \ \BBA {} G{\'o}mez%
 }{%
@@ -650,6 +633,35 @@ Medina, M.%
   {\url{https://openaccess.uoc.edu/bitstream/10609/91207/7/mmedinabarTFM0119memoria.pdf}}.
 \newblock
 \APACrefnote{Accessed: 2025-09-08}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Mora%
+\ \BBA {} Losada%
+}{%
+Mora%
+\ \BBA {} Losada%
+}{%
+{\protect \APACyear {2023}}%
+}]{%
+mora2023analisis}
+\APACinsertmetastar {%
+mora2023analisis}%
+\begin{APACrefauthors}%
+Mora, C\BPBI P.%
+\BCBT {}\ \BBA {} Losada, J\BPBI L.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2023}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {An{\'a}lisis de series temporales en estaciones
+  meteorol{\'o}gicas para la predicci{\'o}n de la precipitaci{\'o}n en la
+  ciudad de Manizales, Colombia} {An{\'a}lisis de series temporales en
+  estaciones meteorol{\'o}gicas para la predicci{\'o}n de la precipitaci{\'o}n
+  en la ciudad de manizales, colombia}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Revista de Climatolog{\'\i}a}{23}{}{58--70}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -987,32 +999,6 @@ Tamayo, M.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
-Tanenbaum%
-\ \BBA {} Van~Steen%
-}{%
-Tanenbaum%
-\ \BBA {} Van~Steen%
-}{%
-{\protect \APACyear {2007}}%
-}]{%
-tanenbaum2007distributed}
-\APACinsertmetastar {%
-tanenbaum2007distributed}%
-\begin{APACrefauthors}%
-Tanenbaum, A\BPBI S.%
-\BCBT {}\ \BBA {} Van~Steen, M.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{2007}{}{}.
-\newblock
-{\BBOQ}\APACrefatitle {Distributed systems: principles and paradigms}
-  {Distributed systems: principles and paradigms}.{\BBCQ}
-\newblock
-\APACjournalVolNumPages{Pearson Prentice Hall}{}{}{}.
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
 Torija%
 , Ruiz%
 \BCBL {}\ \BBA {} Ramos-Diao%
@@ -1043,6 +1029,34 @@ Torija, A.%
 \begin{APACrefURL}
   \url{https://documentacion.sea-acustica.es/publicaciones/Coimbra08/id206.pdf}
   \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Tran%
+\ \BBA {} Lundgren%
+}{%
+Tran%
+\ \BBA {} Lundgren%
+}{%
+{\protect \APACyear {2020}}%
+}]{%
+tran2020drill}
+\APACinsertmetastar {%
+tran2020drill}%
+\begin{APACrefauthors}%
+Tran, T.%
+\BCBT {}\ \BBA {} Lundgren, J.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2020}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Drill fault diagnosis based on the scalogram and mel
+  spectrogram of sound signals using artificial intelligence} {Drill fault
+  diagnosis based on the scalogram and mel spectrogram of sound signals using
+  artificial intelligence}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Ieee Access}{8}{}{203655--203666}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
