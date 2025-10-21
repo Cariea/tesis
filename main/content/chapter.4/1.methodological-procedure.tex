@@ -3,7 +3,7 @@
 
 Desde el planteamiento del proyecto se identificó como un problema social relevante la detección de situaciones de emergencia en el hogar, especialmente para personas más expuestas a quedar desatendidas ante situaciones de vulnerabilidad, como adultos mayores que viven solos o personas con condiciones médicas que limitan su movilidad. Estudios como el de \cite{bezold2021sensor}, destacan la prevalencia de caídas y emergencias médicas en estos grupos. Esta realidad evidencio la necesidad de un sistema de monitoreo que funcione de manera autónoma y discreta, sin depender de la intervención del usuario debido a su posible incapacidad para interactuar con un dispositivo durante una emergencia.
 
-Para el análisis del sistema, se comenzó con la revisión de literatura científica y técnica relacionada con la identificación y caracterización de eventos acústicos. Se prestó especial atención a estudios que abordaran la implementación de sistemas en dispositivos de Edge Computing.
+Para el análisis  inicial del sistema, se comenzó con la revisión de literatura científica y técnica relacionada con la identificación y caracterización de eventos acústicos. Se prestó especial atención a estudios que abordaran la implementación de sistemas en dispositivos de Edge Computing.
 
 Esta revisión incluyó estudios sobre el procesamiento de señales de audio y modelos de aprendizaje automático aplicados al reconocimiento de sonidos. Se encontró que era posible representar una señal de audio gráficamente como un espectrograma, que es una representación visual del sonido en función del tiempo y la frecuencia, donde la intensidad se codifica con color o brillo. Esto significa que la información necesaria para distinguir eventos sonoros, que se encuentra en las complejas estructuras de frecuencias del audio, podía ser interpretada mediante técnicas de análisis de imágenes.
 
@@ -15,7 +15,26 @@ Ante esta limitante y asumiendo que las emergencias son eventos poco frecuentes 
 
 Para abordar la necesidad del análisis de secuencias temporales, se revisaron estudios previos sobre predicción de eventos basados en series temporales. El uso de modelos predictivos como ARIMA, SARIMA o Prophet es una práctica establecida en la literatura para el desarrollo de sistemas de alerta temprana mediante el análisis y la predicción de patrones temporales \citeauthor{mora2023analisis} \citeyear{mora2023analisis}. Estos modelos se perfilaban como una estrategia para establecer umbrales de predicción sobre la secuencia de eventos acústicos. El objetivo era determinar qué tan ``típica'' resultaba la ocurrencia en un momento dado, sirviendo así como un detector de patrones de comportamiento anómalo.
 
-En función del analisis realizado, se procedio a definir los requerimientos funcionales y no funcionales del sistema, así como las limitaciones y desafíos técnicos que podrían afectar su desempeño. Estos aspectos se detallan en la sección de diseño del sistema.
+En función del analisis realizado, se procedio a definir los requerimientos del sistema de monitoreo acústico para la detección de emergencias en el hogar.
+
+\usubsection{Requerimientos Funcionales}
+
+\begin{enumerate}
+      \item El sistema debe capturar el audio ambiental de forma continua a través de los micrófonos.
+      \item El sistema debe procesar el audio capturado para su caracterización.
+      \item El sistema debe caracterizar el perfil de la actividad acústica ``típica'' del entorno, basado en la estacionalidad de los eventos sonoros clasificados.
+      \item El sistema debe procesar y comparar la actividad sensada de manera inmediata con el perfil de normalidad para detectar patrones anómalos con la mínima latencia posible.
+      \item El sistema debe enviar notificaciones de emergencia a una lista de contactos predefinidos si se detecta una anomalía o grito de auxilio.
+\end{enumerate}
+
+\usubsection{Requerimientos no funcionales}
+
+\begin{enumerate}
+      \item El sistema debe procesar y analizar los datos de audio en el borde (edge) sin almacenar las grabaciones de audio bruto ni información personal identificable.
+      \item El sistema debe ser capaz de integrar de manera flexible nuevos dispositivos de procesamiento (hardware) y/o de captura (micrófonos).
+      \item El sistema debe contar con una característica de inicio automático después de cualquier corte de energía o reinicio forzado.
+      \item El sistema debe tener un diseño modular que simplifique y agilice las tareas de mantenimiento y actualización de sus componentes.
+\end{enumerate}
 
 \usection{Procedimiento Metodológico}
 
@@ -53,7 +72,7 @@ Con estas limitaciones identificadas, se decidió avanzar hacia una segunda iter
       
       El modelo Prophet logró ajustarse eficazmente a las variaciones periódicas del sonido ambiental, como los patrones de ruido diurnos y nocturnos. Sin embargo, durante las pruebas se identificó una limitación crítica, confirmando el riesgo inicial asociado al pronóstico: el mecanismo interno del modelo para suavizar datos e identificar tendencias a largo plazo provocaba que se descartaran los eventos de corta duración y alta amplitud de interés. Sonidos instantáneos como un golpe, un grito o la rotura de un cristal eran filtrados y no generaban alertas, ya que no formaban parte de un patrón estacional o de una tendencia predecible. Esta observación llevó a la conclusión definitiva de que el enfoque de pronóstico de series temporales, independientemente del modelo (ARIMA o Prophet), no era el adecuado para el objetivo del proyecto. El problema no era predecir la evolución del nivel de ruido, sino la detección de eventos atípicos e instantáneos basados en el contenido acústico. Por lo tanto, el problema se redefinió como uno de detección de anomalías en tiempo real basada en la caracterización de la señal. Para implementar esta nueva estrategia, se propuso un enfoque basado en una arquitectura de redes neuronales (Deep Learning). 
 
-      La Planificación de la siguiente iteración se centró en diseñar un sistema que pudiera clasificar eventos acústicos y detectar anomalías en función de patrones aprendidos del entorno, utilizando modelos de inteligencia artificial.   
+      La Planificación de la siguiente iteración se centró en la implementación de un modelo de clasificación acústica para caracterizar los eventos sonoros, seguido de un análisis temporal de las secuencias de eventos para detectar anomalías basadas en patrones de comportamiento. 
       
 
 \usubsection{Tercera iteración}
@@ -76,7 +95,7 @@ Esta medida representa una aplicación práctica del paradigma de aprendizaje po
             \label{fig:prototipo4}
       \end{figure}
 
-      En esta cuarta iteración del prototipo, se migró la lógica de procesamiento desde el ESP32 hacia una Raspberry Pi, con mayor capacidad computacional, lo que permitió trabajar con señales de audio completas en lugar de limitarse a la intensidad. Se integraron micrófonos digitales de rango completo, capaces de capturar audio a frecuencias más altas y con mayor fidelidad, lo que permitió acceder a un contenido espectral más rico y útil para clasificación detallada.
+      En esta cuarta iteración del prototipo, se migró la lógica de procesamiento desde el ESP32 hacia una Raspberry Pi, con mayor capacidad computacional. Se integraron micrófonos digitales de rango completo, capaces de capturar la senal de audio completa, lo que permitió acceder a un contenido espectral más rico y útil para clasificación detallada.
 
       Con esta infraestructura, se incorporó YAMNet, un modelo de clasificación de audio en tiempo real basado en redes neuronales convolucionales entrenado con el dataset AudioSet de Google. YAMNet permite detectar y clasificar una gran variedad de eventos acústicos o (más de 500 categorías) como gritos, portazos, pasos, objetos cayendo, entre otros. Esta capacidad permitió dar un salto importante en la interpretación contextual del entorno sonoro.
 
@@ -364,6 +383,136 @@ El proceso de evaluación se aplicó sobre el mismo conjunto de datos, compuesto
 \end{figure}
 
 El análisis de las métricas de rendimiento cuantifica el desempeño del modelo. La exactitud general del 89.9\% es un valor engañoso, inflado por la gran cantidad de eventos normales correctamente identificados. Las métricas más importantes revelan un rendimiento deficiente: una Sensibilidad (Recall) de solo el 26.4\%, lo que indica que el modelo no detectó a más de 3 de cada 4 anomalías reales. A su vez, la Precisión es del 57.1\%, lo que significa que casi la mitad de sus alertas son falsas alarmas. La puntuación F1 resultante, del 36.1\%, confirma que el modelo, en su configuración actual, carece de la capacidad necesaria para una detección fiable de anomalías en este contexto.
+
+
+\usubsection{Sexta Iteración}
+      En esta sexta iteración, luego de evaluar los resultados obtenidos con ambos modelos, se decidió adoptar el LSTM Autoencoder como solución principal para la detección de anomalías en el sistema de monitoreo acústico. Esta elección se fundamentó en su desempeño superior durante la fase de evaluación, donde superó significativamente al modelo Isolation Forest en todas las métricas clave.
+
+      Sin embargo, se identificó un riesgo técnico relevante: los hiperparámetros del LSTM Autoencoder fueron adoptados directamente del estudio de \citeauthor{reis2025edge} \citeyear{reis2025edge}, sin una optimización específica para nuestro conjunto de datos. Esto implica que, aunque el modelo mostró un rendimiento sólido, existe la posibilidad de que ajustes finos en estos parámetros puedan mejorar aún más su eficacia en nuestro contexto particular.
+
+      Reconociendo esta limitación, se revisaron estudios sobre optimización de hiperparámetros, lo que derivó en la implementación de un proceso basado en optimización bayesiana. Esta técnica permitió mejorar los resultados obtenidos inicialmente, al encontrar configuraciones más eficientes con menos evaluaciones del modelo.
+
+      La optimización bayesiana, como se describe en el trabajo de \citeauthor{gardner2014bayesian} \citeyear{gardner2014bayesian}, utiliza modelos probabilísticos (usualmente procesos gaussianos) para estimar el comportamiento de la función objetivo y seleccionar los puntos de evaluación mediante funciones de adquisición que balancean exploración y explotación. Este enfoque es especialmente útil cuando tanto la función objetivo como las restricciones son costosas de evaluar, como ocurre en nuestro sistema de monitoreo acústico.
+
+      La evaluación actualizada del modelo, tras aplicar la optimización bayesiana, mostró mejoras significativas en las métricas de rendimiento. Se generaron nuevas gráficas que ilustran estas mejoras, destacando un aumento en la sensibilidad y la puntuación F1, lo que indica un mejor equilibrio entre la detección de anomalías y la reducción de falsas alarmas.
+
+
+\usubsubsection{Evaluacion  del LSTM Autoencoder Optimizado}
+
+      Para evaluar el rendimiento del modelo optimizado, se empleó el mismo conjunto de datos de prueba utilizado anteriormente, asegurando así una comparación directa y objetiva. Este conjunto contenía tanto secuencias de comportamiento normal como una serie de anomalías introducidas artificialmente para simular eventos atípicos.
+
+      El proceso de evaluacion fue idéntico al aplicado previamente, pasando cada una de las 45,841 secuencias de prueba a través del autoencoder optimizado y calculando su error de reconstrucción (MSE). Posteriormente, este error fue comparado con un umbral de anomalía redefinido tras la optimización bayesiana. Cualquier secuencia cuyo error de reconstrucción superara este nuevo umbral fue clasificada como una anomalía.
+
+      % \begin{figure}[ht!]
+      %       \centering
+      %       \includegraphics[width=0.85\textwidth]{LSTM_Optimized/roc_optimized.pdf}
+      %       \caption{Curva ROC y AUC del LSTM Autoencoder Optimizado}
+      %       \label{fig:roc_lstm_optimized}
+      % \end{figure}
+
+      % \begin{figure}[ht!]
+      %       \centering
+      %       \includegraphics[width=0.85\textwidth]{LSTM_Optimized/anomalias_optimized.pdf}
+      %       \caption{Gráficas de MSE por secuencia para el LSTM Autoencoder Optimizado.}
+      %       \label{fig:mse_lstm_optimized}
+      % \end{figure}
+
+      % En la gráfica de la figura \ref{fig:mse_lstm_optimized}, se visualiza el error de reconstrucción para cada secuencia del conjunto de prueba tras la optimización. La línea discontinua roja representa el nuevo umbral de anomalía. Los puntos rojos marcan las secuencias cuyo error superó este límite, siendo clasificadas correctamente como anomalías. Este gráfico confirma visualmente que el modelo optimizado es aún más efectivo para asignar una puntuación de error alta a los eventos que se desvían del comportamiento normal aprendido.
+
+      \begin{table}[ht!]
+            \doublespacing
+            \small
+            \centering
+            \begin{tabular}{ >{\centering\arraybackslash}p{3cm} >{\centering\arraybackslash}p{3cm} >{\centering\arraybackslash}p{3cm} }
+                  \hline
+                                & \multicolumn{2}{c}{\textbf{Esperado}}              \\
+                  \hline
+                  \textbf{Real} & \textbf{P}                            & \textbf{N} \\
+                  \hline
+                  V             & 20                                    & 45810      \\
+                  F             & 1                                     & 10         \\
+                  \hline
+            \end{tabular}
+            \caption{Matriz de Confusión del LSTM Autoencoder Optimizado}
+            \label{tab:confusion_matrix_lstm_optimized}
+      \end{table}
+
+      VP (Verdaderos Positivos): 20
+      FP (Falsos Positivos): 1
+      FN (Falsos Negativos): 10
+      VN (Verdaderos Negativos): 45810
+      Estas cifras se traducen en las siguientes métricas de rendimiento:
+
+      \begin{itemize}
+            \item  Exactitud (Accuracy):
+
+                  \begin{align}
+                        Accuracy = \frac{(20+45810)}{(20+45810+1+10)}\approx 0.9998 \notag \\
+                        \label{eq:accuracy_optimized}
+                  \end{align}
+                  \myequations{Accuracy para LSTM Autoencoder Optimizado}
+            \item Tasa de error (Error Rate):
+
+                  \begin{align}
+                        Error\ Rate = \frac{(1+10)}{(20+45810+1+10)}\approx 0.0002 \notag \\
+                        \label{eq:error_rate_optimized}
+                  \end{align}
+                  \myequations{Tasa de Error para LSTM Autoencoder Optimizado}
+            \item Sensibilidad (Recall):
+
+                  \begin{align}
+                        Recall = \frac{20}{20+10}\approx 0.6667 \notag \\
+                        \label{eq:recall_optimized}
+                  \end{align}
+                  \myequations{Recall para LSTM Autoencoder Optimizado}
+            \item Precisión (Precision): 
+
+                  \begin{align}
+                        Precision = \frac{20}{20+1}\approx 0.9524 \notag \\
+                        \label{eq:precision_optimized}
+                  \end{align}
+                  \myequations{Precision para LSTM Autoencoder Optimizado}
+            \item Especificidad (Specificity): 
+
+                  \begin{align}
+                        Specificity = \frac{45810}{45810+1}\approx 0.9999 \notag \\
+                        \label{eq:specificity_optimized}
+                  \end{align}
+                  \myequations{Specificity para LSTM Autoencoder Optimizado}
+            \item F1 Score:  
+
+                  \begin{align}
+                        F1_{score} = 2 \cdot \frac{Precision * Recall}{Precision+Recall} \notag \\
+                        \label{eq:f1_optimized}
+                  \end{align}
+                  \myequations{F1 Score para LSTM Autoencoder Optimizado}
+      \end{itemize}
+
+      El análisis de las métricas de rendimiento cuantifica el desempeño del modelo optimizado. La exactitud general es del 99.98\%, similar al modelo previo, pero con mejoras notables en las métricas clave. La Sensibilidad (Recall) es del 66.67\%, indicando que el modelo ahora detecta dos de cada tres anomalías reales, un avance significativo. La Precisión ha aumentado a 95.24\%, lo que significa que casi todas sus alertas positivas son correctas. La puntuación F1 refleja este equilibrio mejorado, situándose en un valor más alto que antes, lo que confirma que la optimización bayesiana ha logrado un mejor compromiso entre la detección de anomalías y la reducción de falsas alarmas.
+
+
+
+\usubsection{Diseño final de la arquitectura del sistema}
+
+Con base en los resultados obtenidos durante las fases de desarrollo y evaluación, se procedió a diseñar el sistema final de monitoreo acústico para la detección de anomalías y generación de alertas en casos de emergencia. Este diseño integra tanto el hardware como el software necesarios para su implementación efectiva.
+
+La arquitectura implementada se fundamenta en el modelo en capas, donde cada nivel cumple funciones específicas alineadas con los requisitos funcionales y no funcionales del sistema. La Capa de Captación de Audio (Micrófonos, Raspberry Pi) satisface el RF1 al garantizar la captura continua de audio; la Capa de Clasificación de Audio (Vosk, Yamnet, Activity-Agent) cumple el RF2 y parcialmente el RF4 al procesar y caracterizar la señal; la Capa de Detección de Anomalías (LSTM, IF-Agent) y la Capa de Gestión de Alertas (Emergency-Agent) abordan el núcleo del problema, cumpliendo el RF4 al detectar patrones anómalos; la Capa de Gestión de Datos (Postgres, Redis) facilita el RF3 al almacenar la información necesaria para caracterizar la actividad acústica "típica"; y la Capa de Notificaciones (Telegram, SMTP) garantiza el cumplimiento del RF5 al enviar alertas validadas. Estas capas no se ejecutan como módulos monolíticos, sino como procesos independientes que se comunican mediante un esquema pub/sub interno con Redis, lo que introduce un componente distribuido local. Esta modularidad no solo simplifica el mantenimiento y la actualización de componentes (RNF4), sino que también facilita la integración flexible de nuevos agentes o dispositivos (RNF2), ya que solo necesitan publicar o suscribirse a canales de Redis para interactuar. Además, el uso de un Raspberry Pi como nodo principal aproxima la solución al concepto de servidores al borde (edge computing), lo cual es esencial para cumplir el RNF1: el procesamiento y análisis de datos de audio ocurre localmente, minimizando la latencia (clave para el RF4) y evitando el almacenamiento de grabaciones de audio bruto o información personal identificable. Esta combinación de estilo cliente-servidor con mecanismos de colaboración descentralizados, según \citeauthor{tanenbaum2007distributed} \citeyear{tanenbaum2007distributed}, se entiende como una arquitectura híbrida. Por último, la naturaleza embedded del sistema sobre el Raspberry Pi permite la configuración de inicio automático a nivel de sistema operativo (RNF3), asegurando la continuidad del monitoreo tras fallos o reinicios. De esta manera, la propuesta logra unir la claridad del enfoque en capas con la flexibilidad de un sistema distribuido basado en microservicios locales, satisfaciendo los requisitos funcionales y no funcionales.
+
+\begin{figure}[ht!]
+      \centering
+      \includegraphics[width=0.40\textwidth]{Arquitectura/Arquitectura.png}
+      \caption{Arquitectura del sistema de monitoreo acústico para generar alertas en casos de emergencia}
+      \label{fig:arquitectura}
+\end{figure}
+
+\begin{enumerate}
+      \item Capa de captación de audio: Esta capa corresponde al nivel más cercano al hardware y tiene como función principal la adquisición de datos acústicos mediante los micrófonos conectados al dispositivo Raspberry Pi. Se encarga de gestionar la interacción con el sistema operativo para acceder a las señales de audio en tiempo real y ponerlas a disposición del sistema a través de canales de comunicación internos. Su objetivo es abstraer la complejidad del hardware y garantizar que los datos se entreguen de forma continua a las capas superiores.
+      \item Capa de clasificación de audio: Se encarga de analizar las señales acústicas recibidas de la capa de captación, tomando el flujo de audio en bruto como entrada para su procesamiento inmediato. En este nivel, múltiples agentes especializados (como Yamnet-Agent) procesan el flujo de audio con el fin de determinar la presencia de actividad, reconocer palabras clave y clasificar eventos característicos (como golpes, vidrios rotos o gritos) directamente a través de modelos preentrenados. Los resultados de este procesamiento se estructuran en mensajes que representan descripciones semánticas de la señal (es decir, una representación del sonido en términos de significado o evento), reduciendo drásticamente el volumen de datos y facilitando la interpretación, que se entiende como la traducción de datos brutos a eventos categorizados y listos para el análisis en etapas posteriores.
+      \item Capa de detección de anomalías: En esta capa se aplican modelos de aprendizaje automático cuyos parámetros han sido fijados mediante un entrenamiento offline (como Isolation Forest y LSTM), pero que se ejecutan en tiempo real para la detección de anomalías. Utilizando los datos clasificados por la capa anterior como entrada, el sistema evalúa el comportamiento acústico observado de manera inmediata (online), diferenciando si este corresponde a patrones esperados o si representa una desviación significativa, como se demuestra con el cálculo del Mean Squared Error (MSE) en el LSTM-Agent. Esta capa constituye el núcleo analítico del sistema, ya que transforma datos objetivos en juicios de normalidad o anomalía en el momento en que ocurren. Si bien la detección de la anomalía es el objetivo principal de este nivel, el resultado debe ser complementado y validado por la Capa de Gestión de Alertas para añadir el componente contextual y la toma de decisión final.
+      \item Capa de gestión de alertas: La función de esta capa es servir como el punto de decisión central del sistema, determinando cuáles de las anomalías detectadas deben ser escaladas como alertas finales al usuario. Si bien la implementación actual trata casi toda anomalía detectada por los agentes (Yamnet, LSTM, etc.) como una alerta inmediata, el diseño de la capa está basado en un mecanismo de validación y filtrado contextual. Este diseño aplica un conjunto de reglas (como la hora del día, el tipo de agente que emite la alerta o si el usuario ha pausado el sistema) y es crucial para el manejo de casos específicos, como la alerta por silencio prolongado en horario nocturno, o la interacción con el usuario mediante consultas verbales para validar la situación antes de enviar notificaciones externas. La existencia de esta capa asegura la preparación para la integración futura de variables contextuales adicionales (como detección de presencia o video) y garantiza la reduccion de falsos positivos a medida que se refinan las reglas de filtrado. Su propósito final es asegurar que solo las situaciones críticas, validadas contextual y/o humanamente, generen una respuesta definitiva.
+      \item Capa de gestión de datos: Esta capa centraliza la persistencia y organización de la información recolectada y procesada por el sistema. Su propósito es almacenar los registros de eventos, tanto normales como anómalos, en estructuras que permitan su posterior análisis. Asimismo, prepara los conjuntos de datos necesarios para el reentrenamiento de los modelos de detección de anomalías, asegurando que el sistema pueda mejorar progresivamente su desempeño y adaptarse a nuevas condiciones acústicas en el entorno.
+      \item Capa de notificaciones: Tiene como responsabilidad la comunicación con el usuario final o con sistemas externos de monitoreo. Actualmente, este módulo envía alertas validadas a través de servicios de mensajería como Telegram y protocolos de correo electrónico (SMTP). Su diseño es extensible, lo que permite incorporar otros canales de comunicación en el futuro. La existencia de esta capa garantiza que la información crítica llegue de forma oportuna a los responsables de la toma de decisiones.
+\end{enumerate}
 
 \usubsection{Validación del sistema de monitoreo acústico para generar alertas en casos de emergencia}
 

@@ -277,6 +277,44 @@ García, J.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Gardner%
+, Kusner%
+, Xu%
+, Weinberger%
+\BCBL {}\ \BBA {} Cunningham%
+}{%
+Gardner%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2014}}%
+}]{%
+gardner2014bayesian}
+\APACinsertmetastar {%
+gardner2014bayesian}%
+\begin{APACrefauthors}%
+Gardner, J\BPBI R.%
+, Kusner, M\BPBI J.%
+, Xu, Z\BPBI E.%
+, Weinberger, K\BPBI Q.%
+\BCBL {}\ \BBA {} Cunningham, J\BPBI P.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2014}{{\APACmonth{06}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Bayesian Optimization with Inequality Constraints}
+  {Bayesian optimization with inequality constraints}.{\BBCQ}
+\newblock
+\BIn{} \APACrefbtitle {Proceedings of the 31st International Conference on
+  Machine Learning (ICML)} {Proceedings of the 31st international conference on
+  machine learning (icml)}\ (\BVOL~32, \BPGS\ 937--945).
+\newblock
+\APACaddressPublisher{}{JMLR Workshop and Conference Proceedings}.
+\newblock
+\begin{APACrefURL} \url{https://proceedings.mlr.press/v32/gardner14.html}
+  \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Gemmeke%
 \ \protect \BOthers {.}}{%
 Gemmeke%
@@ -496,6 +534,34 @@ Igba, J.%
   gearboxes}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Renewable Energy}{91}{}{90--106}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Liu%
+, Ting%
+\BCBL {}\ \BBA {} Zhou%
+}{%
+Liu%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2012}}%
+}]{%
+liu2012isolation}
+\APACinsertmetastar {%
+liu2012isolation}%
+\begin{APACrefauthors}%
+Liu, F\BPBI T.%
+, Ting, K\BPBI M.%
+\BCBL {}\ \BBA {} Zhou, Z\BHBI H.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2012}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Isolation-based anomaly detection} {Isolation-based
+  anomaly detection}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{ACM Transactions on Knowledge Discovery from Data
+  (TKDD)}{6}{1}{1--39}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -996,6 +1062,32 @@ Tamayo, M.%
 \begin{APACrefURL}
   \url{https://www.gob.mx/cms/uploads/attachment/file/227860/El_proceso__de_la_investigaci_n_cient_fica_Mario_Tamayo.pdf}
   \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Tanenbaum%
+\ \BBA {} Van~Steen%
+}{%
+Tanenbaum%
+\ \BBA {} Van~Steen%
+}{%
+{\protect \APACyear {2007}}%
+}]{%
+tanenbaum2007distributed}
+\APACinsertmetastar {%
+tanenbaum2007distributed}%
+\begin{APACrefauthors}%
+Tanenbaum, A\BPBI S.%
+\BCBT {}\ \BBA {} Van~Steen, M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2007}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Distributed systems: principles and paradigms}
+  {Distributed systems: principles and paradigms}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Pearson Prentice Hall}{}{}{}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
