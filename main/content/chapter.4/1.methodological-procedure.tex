@@ -403,21 +403,21 @@ El análisis de las métricas de rendimiento cuantifica el desempeño del modelo
 
       El proceso de evaluacion fue idéntico al aplicado previamente, pasando cada una de las 45,841 secuencias de prueba a través del autoencoder optimizado y calculando su error de reconstrucción (MSE). Posteriormente, este error fue comparado con un umbral de anomalía redefinido tras la optimización bayesiana. Cualquier secuencia cuyo error de reconstrucción superara este nuevo umbral fue clasificada como una anomalía.
 
-      % \begin{figure}[ht!]
-      %       \centering
-      %       \includegraphics[width=0.85\textwidth]{LSTM_Optimized/roc_optimized.pdf}
-      %       \caption{Curva ROC y AUC del LSTM Autoencoder Optimizado}
-      %       \label{fig:roc_lstm_optimized}
-      % \end{figure}
+      \begin{figure}[ht!]
+            \centering
+            \includegraphics[width=0.85\textwidth]{LSTM/roc_optimized.png}
+            \caption{Curva ROC y AUC del LSTM Autoencoder V2.}
+            \label{fig:roc_lstm_optimized}
+      \end{figure}
 
-      % \begin{figure}[ht!]
-      %       \centering
-      %       \includegraphics[width=0.85\textwidth]{LSTM_Optimized/anomalias_optimized.pdf}
-      %       \caption{Gráficas de MSE por secuencia para el LSTM Autoencoder Optimizado.}
-      %       \label{fig:mse_lstm_optimized}
-      % \end{figure}
+      \begin{figure}[ht!]
+            \centering
+            \includegraphics[width=0.85\textwidth]{LSTM/animalias_optimized.png}
+            \caption{Gráficas de MSE por secuencia para el LSTM Autoencoder V2.}
+            \label{fig:mse_lstm_optimized}
+      \end{figure}
 
-      % En la gráfica de la figura \ref{fig:mse_lstm_optimized}, se visualiza el error de reconstrucción para cada secuencia del conjunto de prueba tras la optimización. La línea discontinua roja representa el nuevo umbral de anomalía. Los puntos rojos marcan las secuencias cuyo error superó este límite, siendo clasificadas correctamente como anomalías. Este gráfico confirma visualmente que el modelo optimizado es aún más efectivo para asignar una puntuación de error alta a los eventos que se desvían del comportamiento normal aprendido.
+      En la gráfica de la figura \ref{fig:mse_lstm_optimized}, se visualiza el error de reconstrucción para cada secuencia del conjunto de prueba tras la optimización. La línea discontinua roja representa el nuevo umbral de anomalía. Los puntos rojos marcan las secuencias cuyo error superó este límite, siendo clasificadas correctamente como anomalías. Este gráfico confirma visualmente que el modelo optimizado es aún más efectivo para asignar una puntuación de error alta a los eventos que se desvían del comportamiento normal aprendido.
 
       \begin{table}[ht!]
             \doublespacing
@@ -429,67 +429,59 @@ El análisis de las métricas de rendimiento cuantifica el desempeño del modelo
                   \hline
                   \textbf{Real} & \textbf{P}                            & \textbf{N} \\
                   \hline
-                  V             & 20                                    & 10      \\
-                  F             & 1                                     & 45810         \\
+                  V             & 19                                    & 0  \\
+                  F             & 2                                     & 45820         \\
                   \hline
             \end{tabular}
-            \caption{Matriz de Confusión del LSTM Autoencoder Optimizado}
+            \caption{Matriz de Confusión del LSTM Autoencoder V2}
             \label{tab:confusion_matrix_lstm_optimized}
       \end{table}
 
-      VP (Verdaderos Positivos): 20
-      FP (Falsos Positivos): 1
-      FN (Falsos Negativos): 10
-      VN (Verdaderos Negativos): 45810
+      VP (Verdaderos Positivos): 19
+      FP (Falsos Positivos): 2
+      FN (Falsos Negativos): 0
+      VN (Verdaderos Negativos): 45820
       Estas cifras se traducen en las siguientes métricas de rendimiento:
 
       \begin{itemize}
             \item  Exactitud (Accuracy):
 
                   \begin{align}
-                        Accuracy = \frac{(20+45810)}{(20+45810+1+10)}\approx 0.9998 \notag \\
+                        Accuracy = \frac{(19+45820)}{(19+45820+2+0)}\approx 0.9999 \notag \\
                         \label{eq:accuracy_optimized}
                   \end{align}
-                  \myequations{Accuracy para LSTM Autoencoder Optimizado}
+                  \myequations{Accuracy para LSTM Autoencoder V2}
             \item Tasa de error (Error Rate):
 
                   \begin{align}
-                        Error\ Rate = \frac{(1+10)}{(20+45810+1+10)}\approx 0.0002 \notag \\
+                        Error\ Rate = \frac{(2+0)}{(19+45820+2+0)}\approx 0.00004 \notag \\
                         \label{eq:error_rate_optimized}
                   \end{align}
-                  \myequations{Tasa de Error para LSTM Autoencoder Optimizado}
+                  \myequations{Tasa de Error para LSTM Autoencoder V2}
             \item Sensibilidad (Recall):
 
                   \begin{align}
-                        Recall = \frac{20}{20+10}\approx 0.6667 \notag \\
+                        Recall = \frac{19}{19+0}\approx 1.0000 \notag \\
                         \label{eq:recall_optimized}
                   \end{align}
-                  \myequations{Recall para LSTM Autoencoder Optimizado}
+                  \myequations{Recall para LSTM Autoencoder V2}
             \item Precisión (Precision): 
 
                   \begin{align}
-                        Precision = \frac{20}{20+1}\approx 0.9524 \notag \\
+                        Precision = \frac{19}{19+2}\approx 0.9048 \notag \\
                         \label{eq:precision_optimized}
                   \end{align}
-                  \myequations{Precision para LSTM Autoencoder Optimizado}
+                  \myequations{Precision para LSTM Autoencoder V2}
             \item Especificidad (Specificity): 
 
                   \begin{align}
-                        Specificity = \frac{45810}{45810+1}\approx 0.9999 \notag \\
+                        Specificity = \frac{45820}{45820+2}\approx 0.9999 \notag \\
                         \label{eq:specificity_optimized}
                   \end{align}
-                  \myequations{Specificity para LSTM Autoencoder Optimizado}
-            \item F1 Score:  
-
-                  \begin{align}
-                        F1_{score} = 2 \cdot \frac{Precision * Recall}{Precision+Recall} \notag \\
-                        \label{eq:f1_optimized}
-                  \end{align}
-                  \myequations{F1 Score para LSTM Autoencoder Optimizado}
+                  \myequations{Specificity para LSTM Autoencoder V2}
       \end{itemize}
 
-      El análisis de las métricas de rendimiento cuantifica el desempeño del modelo optimizado. La exactitud general es del 99.98\%, similar al modelo previo, pero con mejoras notables en las métricas clave. La Sensibilidad (Recall) es del 66.67\%, indicando que el modelo ahora detecta dos de cada tres anomalías reales, un avance significativo. La Precisión ha aumentado a 95.24\%, lo que significa que casi todas sus alertas positivas son correctas. La puntuación F1 refleja este equilibrio mejorado, situándose en un valor más alto que antes, lo que confirma que la optimización bayesiana ha logrado un mejor compromiso entre la detección de anomalías y la reducción de falsas alarmas.
-
+      El análisis de las métricas de rendimiento cuantifica el desempeño del modelo V2. La exactitud general es del 99.98\%, similar al modelo previo, pero con mejoras notables en las métricas clave. La Sensibilidad (Recall) es del 100\%, indicando que el modelo ahora detecta todas las anomalías reales, un avance significativo. La Precisión ha aumentado a 90.48\%, lo que significa que casi todas sus alertas positivas son correctas. La puntuación F1 refleja este equilibrio mejorado, situándose en un valor más alto que antes, lo que confirma que los nuevos parametros han mejorado la capacidad del modelo para detectar anomalías de manera fiable y a reducir las falsas alarmas.
 
 
 \usubsection{Diseño final de la arquitectura del sistema}
@@ -514,10 +506,10 @@ La arquitectura implementada se fundamenta en el modelo en capas, donde cada niv
       \item Capa de notificaciones: Tiene como responsabilidad la comunicación con el usuario final o con sistemas externos de monitoreo. Actualmente, este módulo envía alertas validadas a través de servicios de mensajería como Telegram y protocolos de correo electrónico (SMTP). Su diseño es extensible, lo que permite incorporar otros canales de comunicación en el futuro. La existencia de esta capa garantiza que la información crítica llegue de forma oportuna a los responsables de la toma de decisiones.
 \end{enumerate}
 
-\usubsection{Validación del sistema de monitoreo acústico para generar alertas en casos de emergencia}
+% \usubsection{Validación del sistema de monitoreo acústico para generar alertas en casos de emergencia}
 
-Para validar el funcionamiento del sistema de monitoreo acústico y su capacidad de generar alertas de emergencia, se procedió con un proceso de verificación. Este proceso se basó en el contraste directo del comportamiento del prototipo con los requerimientos operativos definidos, detallados en la Tabla \ref{tab:requerimientos_sistema_acustico}.
+% Para validar el funcionamiento del sistema de monitoreo acústico y su capacidad de generar alertas de emergencia, se procedió con un proceso de verificación. Este proceso se basó en el contraste directo del comportamiento del prototipo con los requerimientos operativos definidos, detallados en la Tabla \ref{tab:requerimientos_sistema_acustico}.
 
-La validación se concretó a través de la evaluación de los modelos de clasificación acústica en un entorno controlado mediante el uso de datos sintéticos. Se simularon escenarios acústicos, abarcando tanto condiciones de operación normal como eventos anómalos. El propósito fue verificar de manera objetiva si la salida del sistema, la clasificación del evento y la consecuente activación de la alerta correspondían con el resultado esperado, asegurando la correspondencia con su especificación.
+% La validación se concretó a través de la evaluación de los modelos de clasificación acústica en un entorno controlado mediante el uso de datos sintéticos. Se simularon escenarios acústicos, abarcando tanto condiciones de operación normal como eventos anómalos. El propósito fue verificar de manera objetiva si la salida del sistema, la clasificación del evento y la consecuente activación de la alerta correspondían con el resultado esperado, asegurando la correspondencia con su especificación.
 
-Los resultados obtenidos de esta verificación se consolidan en la Tabla \ref{tab:requerimientos_sistema_acustico}.
+% Los resultados obtenidos de esta verificación se consolidan en la Tabla \ref{tab:requerimientos_sistema_acustico}.
