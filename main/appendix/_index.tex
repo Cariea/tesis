@@ -94,17 +94,13 @@
 
     R1                     & Captura continua del audio ambiental a través de micrófonos.                                            & Señales de audio del entorno a través del hardware del micrófono. & Eventos discretos etiquedados del audio.                              & El sistema debe estar activo y registrando datos en todo momento.                     \\
     \addlinespace
-    R2                     & Procesamiento del audio para clasificarlo en eventos sonoros predefinidos.                              & Flujo de datos de audio.                                          & Clasificación del sonido (ej. voz, silencio, golpe).                  & El sistema debe etiquetar correctamente la señal de audio que recibe en todo momento. \\
+    R2                     & Procesamiento del audio capturado para su caracterización.                              & Flujo de datos de audio.                                          & Clasificación del sonido (ej. voz, silencio, golpe).                  & El sistema debe etiquetar correctamente la señal de audio que recibe en todo momento. \\
     \addlinespace
-    R3                     & El sistema debe conocer en todo momento el estado de actividad del entorno.                             & Señal de audio.                                                   & Hay ruido o silencio.                                                 & El sistema reconoce cuando hay ruido o silencio.                                      \\
+    R3                     & Caracterizar el perfil de la actividad acústica "típica" del entorno, basado en la estacionalidad de los eventos sonoros clasificados.                & Secuencia de eventos sonoros clasificados & Perfil acústico del comportamiento normal del entorno               & El sistema construye un modelo del patrón sonoro habitual considerando variaciones temporales y estacionalidad.            \\
     \addlinespace
-    R4                     & Comparación de la actividad en tiempo real con el perfil de normalidad para detectar patrones anómalos. & Secuencia de eventos en tiempo real                               & Identificación de una anomalía o evento atípico.                      & Detectar si una secuencia de eventos es normal o anómala.                             \\
+    R4                     & procesar y comparar la actividad sensada de manera inmediata con el perfil de normalidad para detectar patrones anómalos con la mínima latencia posible                               & Identificación de una anomalía o evento atípico.                      & Detectar desviaciones significativas del patrón normal con baja latencia para respuesta oportuna.                             \\
     \addlinespace
-    R5                     & El sistema realiza una consulta verbal al usuario al detectar una anomalía.                             & Señal de audio.                                                   & Emisión de una pregunta de voz pregrabada (ej. ``¿Está todo bien?''). & El sistema consulta el estado del usuario antes de enviar una alerta.                 \\
-    \addlinespace
-    R6                     & Permitir cancelar una alerta de emergencia por comando de voz.                                          & Respuesta de voz del usuario (ej. ``Estoy bien'').                & No se envía alerta.                                                   & El sistema cancela la alerta.                                                         \\
-    \addlinespace
-    R7                     & El sistema envía notificaciones de emergencia si la anomalía es crítica o el usuario no responde.       & Falta de respuesta del usuario o gravedad de la anomalía          & Envío de notificaciones.                                              & El sistema es capaz de enviar una alerta sin la intervención del usuario.             \\
+    R5                     & El sistema envía notificaciones de emergencia si la anomalía es crítica o el usuario no responde.       & Falta de respuesta del usuario o gravedad de la anomalía          & Envío de notificaciones.                                              & El sistema es capaz de enviar una alerta sin la intervención del usuario.             \\
     \bottomrule
     \addlinespace
 
