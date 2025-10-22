@@ -207,8 +207,8 @@ Para analizar en detalle el rendimiento del modelo, no es suficiente con saber e
             \hline
             \textbf{Real} & \textbf{P}                            & \textbf{N} \\
             \hline
-            V             & 18                                    & 45814      \\
-            F             & 3                                     & 6          \\
+            V             & 18                                    & 6      \\
+            F             & 3                                     & 45814          \\
             \hline
       \end{tabular}
       \caption{Matriz de Confusión del LSTM Autoencoder}
@@ -311,8 +311,8 @@ El proceso de evaluación se aplicó sobre el mismo conjunto de datos, compuesto
                         \hline
                         \textbf{Real} & \textbf{P}                            & \textbf{N} \\
                         \hline
-                        V             & 2877                                  & 87737      \\
-                        F             & 2164                                  & 8031       \\
+                        V             & 2877                                  & 8031      \\
+                        F             & 2164                                  & 87737       \\
                         \hline
                   \end{tabular}
                   \caption{Matriz de Confusión del Isolation Forest}
@@ -327,12 +327,12 @@ El proceso de evaluación se aplicó sobre el mismo conjunto de datos, compuesto
 
             VN (Verdaderos Negativos): 87,737
 
-            \begin{figure}[ht!]
-                  \centering
-                  \includegraphics[width=0.65\textwidth]{IF/matriz_confusion.png}
-                  \caption{Matriz de Confusión del Isolation Forest}
-                  \label{fig:confusion_matrix_if}
-            \end{figure}
+            % \begin{figure}[ht!]
+            %       \centering
+            %       \includegraphics[width=0.65\textwidth]{IF/matriz_confusion.png}
+            %       \caption{Matriz de Confusión del Isolation Forest}
+            %       \label{fig:confusion_matrix_if}
+            % \end{figure}
 
       \item Métricas de Rendimiento
 
@@ -429,8 +429,8 @@ El análisis de las métricas de rendimiento cuantifica el desempeño del modelo
                   \hline
                   \textbf{Real} & \textbf{P}                            & \textbf{N} \\
                   \hline
-                  V             & 20                                    & 45810      \\
-                  F             & 1                                     & 10         \\
+                  V             & 20                                    & 10      \\
+                  F             & 1                                     & 45810         \\
                   \hline
             \end{tabular}
             \caption{Matriz de Confusión del LSTM Autoencoder Optimizado}
