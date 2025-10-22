@@ -18,7 +18,6 @@ La arquitectura del sistema se compone de los siguientes módulos principales:
           \item Persistencia de eventos (Data Agent)
           \item Gestión de notificaciones de emergencia (Emergency Agent)
         \end{itemize}
-  \item \textbf{Servidor central}, que actúa como coordinador del sistema, gestionando la comunicación en tiempo real vía WebSocket, el almacenamiento en base de datos PostgreSQL, y la ejecución de tareas programadas.
 \end{enumerate}
 
 La arquitectura está realizada para operar en dispositivos de edge computing como el Raspberry Pi 4 modelo B, garantizando que el procesamiento de audio se realice de forma local y privada, sin almacenar grabaciones ni depender de servicios en la nube para el análisis sensible.
@@ -60,9 +59,7 @@ Este manual está dirigido a administradores de sistemas y usuarios técnicos, y
         \begin{itemize}
           \item Node.js: Versión 18 o superior
           \item NestJs: Framework principal del servidor
-          \item PostgreSQL: Versión 14 o superior (para persistencia de eventos)
           \item Redis: Versión 6 o superior (para mensajería Pub/Sub)
-          \item Docker: Para contenerización de servicios (opcional pero recomendado)
         \end{itemize}
 \end{enumerate}
 
@@ -72,9 +69,7 @@ Este manual está dirigido a administradores de sistemas y usuarios técnicos, y
   \item Puertos requeridos
         \begin{itemize}
           \item Redis: 6379
-          \item PostgreSQL: 5432
           \item Servidor NestJS: 3000
-          \item pgAdmin (opcional): 8888
         \end{itemize}
   \item Conectividad
         \begin{itemize}
@@ -93,7 +88,7 @@ Este manual está dirigido a administradores de sistemas y usuarios técnicos, y
           \item VOSK (español): vosk-agent/vosk-model-small-es-0.42/
           \item Modelo de Anomalias:
                 \begin{enumerate}
-                  \item lstm-agent/lstm\_autoencoder\_no\_duplicates\_p99.keras o lstm-agent/lstm\_autoencoder\_p99.keras, y lstm-agent/umbral\_no\_duplicates\_p99.pkl o lstm-agent/umbral\_p99.pkl
+                  \item lstm-agent/lstm\_autoencoder.keras y lstm-agent/umbral.pkl
                 \end{enumerate}
         \end{itemize}
   \item Conectividad
@@ -110,9 +105,9 @@ Este manual está dirigido a administradores de sistemas y usuarios técnicos, y
 
 \begin{enumerate}
   \item Clonar repositorio y abrir carpeta alertify-server.
-  \item Crear/validar archivo .env  (se incluye uno de ejemplo). Revise credenciales y puertos.
+  \item Crear/validar archivo ''.env''. Revise credenciales y puertos.
   \item Instalar dependencias (PNPM).
-  \item Levantar Redis y PostgreSQL con Docker Compose.
+  \item Levantar Redis.
   \item Iniciar el servidor NestJS.
 \end{enumerate}
 
@@ -255,13 +250,9 @@ Detección de anomalías con Autoencoder LSTM en ventanas temporales
     \textbf{Archivo}                             & \textbf{Descripción}                                                                                                                                   \\
     \hline
     encoder.pkl                                  & Codificador para transformar etiquetas a vectores de entrada del modelo.                                                                               \\
-    lstm\_autoencoder\_improved.keras            & Modelo Keras de Autoencoder LSTM (versión mejorada).                                                                                                   \\
-    lstm\_autoencoder\_no\_duplicates\_p99.keras & Variante entrenada filtrando duplicados consecutivos; calibrada a percentil 99.                                                                        \\
-    lstm\_autoencoder\_p99.keras                 & Variante calibrada a percentil 99 con datos estándar.                                                                                                  \\
+    lstm\_autoencoder.keras                     & Modelo Keras de Autoencoder LSTM.                                                                                                                      \\
     lstm-agent.py                                & Consume alertas\_audio, arma secuencias (longitud fija), calcula MSE de reconstrucción y publica series anómalas en alertas\_lstm si supera el umbral. \\
-    umbral\_improved.pkl                         & Umbral de MSE recomendado para lstm\_autoencoder\_improved.keras.                                                                                      \\
-    umbral\_no\_duplicates\_p99.pkl              & Umbral calibrado para la variante sin duplicados.                                                                                                      \\
-    umbral\_p99.pkl                              & Umbral calibrado para la variante p99 estándar.                                                                                                        \\
+    umbral.pkl                                   & Umbral de MSE recomendado para lstm\_autoencoder.keras.                                                                                                \\
     \hline
   \end{tabularx}
 \end{table}
@@ -424,44 +415,9 @@ Módulo responsable de WebSockets (Socket.IO), gestión de eventos, emergencias,
     \hline
     \textbf{Archivo}        & \textbf{Descripción}                                                                                                                                                       \\
     \hline
-    events.module.ts        & Declara EventsGateway y EventsService, registra entidades TypeORM y configura MailerModule con SMTP (env).                                                                 \\
     events.gateway.ts       & Gateway WebSocket: maneja conexión/desconexión, comandos im-ok, help-call, alarmOn/Off, emite emergency-alert y reproduce TTS (voz).                                       \\
-    events.service.ts       & Lógica de negocio: CRUD de eventos/emergencias, cron jobs para silencios y emergencias, builder de matriz de Markov por environment y notificaciones (Telegram/Email/TTS). \\
+    events.service.ts       & Lógica de negocio: CRUD de eventos/emergencias, cron jobs para silencios y emergencias, y notificaciones (Telegram/Email/TTS). \\
     enums/events.enums.ts   & Enumeración Calls para tipos de llamadas (imOk, helpCall).                                                                                                                 \\
-    querys/events.querys.ts & Consultas SQL: ocurrencias por categoría y transiciones entre categorías (para matriz de Markov).                                                                          \\
-    \hline
-  \end{tabularx}
-\end{table}
-
-\subsection*{Dto}
-
-\begin{table}[H]
-  \doublespacing
-  \begin{tabularx}{\textwidth}{l X}
-    \hline
-    \textbf{Archivo}        & \textbf{Descripción}                                                                                                                                                       \\
-    \hline
-    events.module.ts        & Declara EventsGateway y EventsService, registra entidades TypeORM y configura MailerModule con SMTP (env).                                                                 \\
-    events.gateway.ts       & Gateway WebSocket: maneja conexión/desconexión, comandos im-ok, help-call, alarmOn/Off, emite emergency-alert y reproduce TTS (voz).                                       \\
-    events.service.ts       & Lógica de negocio: CRUD de eventos/emergencias, cron jobs para silencios y emergencias, builder de matriz de Markov por environment y notificaciones (Telegram/Email/TTS). \\
-    enums/events.enums.ts   & Enumeración Calls para tipos de llamadas (imOk, helpCall).                                                                                                                 \\
-    querys/events.querys.ts & Consultas SQL: ocurrencias por categoría y transiciones entre categorías (para matriz de Markov).                                                                          \\
-    \hline
-  \end{tabularx}
-\end{table}
-
-\subsection*{Entities}
-
-\begin{table}[H]
-  \doublespacing
-  \begin{tabularx}{\textwidth}{l X}
-    \hline
-    \textbf{Archivo}                  & \textbf{Descripción}                                                                          \\
-    \hline
-    entities/event.entity.ts          & Entidad Event: environment, category, score, emergency, rms, date y createdAt.                \\
-    entities/emergencies.entity.ts    & Entidad Emergency: environment, category, createdBy, timestamps emited/cancelled y createdAt. \\
-    entities/activity.entity.ts       & Entidad Activity: environment, rms, date y createdAt.                                         \\
-    entities/alarm-settings.entity.ts & Entidad AlarmSettings: estados de alarmas, límite de silencio en horas inHome y createdAt.    \\
     \hline
   \end{tabularx}
 \end{table}
