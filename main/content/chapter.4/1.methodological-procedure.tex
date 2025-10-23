@@ -15,7 +15,7 @@ Ante esta limitante y asumiendo que las emergencias son eventos poco frecuentes 
 
 Para abordar la necesidad del análisis de secuencias temporales, se revisaron estudios previos sobre predicción de eventos basados en series temporales. El uso de modelos predictivos como ARIMA, SARIMA o Prophet es una práctica establecida en la literatura para el desarrollo de sistemas de alerta temprana mediante el análisis y la predicción de patrones temporales \citeauthor{mora2023analisis} \citeyear{mora2023analisis}. Estos modelos se perfilaban como una estrategia para establecer umbrales de predicción sobre la secuencia de eventos acústicos. El objetivo era determinar qué tan ``típica'' resultaba la ocurrencia en un momento dado, sirviendo así como un detector de patrones de comportamiento anómalo.
 
-En función del analisis realizado, se procedio a definir los requerimientos del sistema de monitoreo acústico para la detección de emergencias en el hogar.
+En función del analisis realizado, se procedio a definir los requerimientos del sistema de monitoreo acústico para la detección de emergencias en el hogar. Mismos requerimientos en los que se basará la verificación del sistema en etapas posteriores. Veanse en la tabla \ref{tab:requerimientos_sistema_acustico}
 
 \usubsection{Requerimientos Funcionales}
 
@@ -49,7 +49,7 @@ En función del analisis realizado, se procedio a definir los requerimientos del
 
 El objetivo principal de la primera iteración fue validar la hipótesis de que se podían detectar anomalías en el comportamiento sonoro del entorno mediante el análisis de series temporales de intensidad. La estrategia consistió en utilizar un modelo estadístico para predecir el comportamiento sonoro "normal", de modo que cualquier diferencia significativa entre el valor predicho y el valor real observado fuera clasificada como una anomalía. El principal riesgo identificado en esta etapa fue la capacidad del modelo estadístico para funcionar adecuadamente en un entorno tan dinámico y variable como el doméstico.
 
-Los componentes con los que contó esta iteración fueron un microcontrolador ESP32 y un micrófono que capturaba la intensidad de sonido. Esta serie temporal de niveles de intensidad sonora fue procesada por un modelo ARIMA (AutoRegressive Integrated Moving Average) para predecir el comportamiento esperado. Si la diferencia entre el valor predicho y el valor real superaba un umbral predefinido, se generaba una alerta.
+Los componentes con los que contó esta iteración fueron un microcontrolador ESP32 y un micrófono que capturaba la intensidad de sonido. Véase en la figura \ref{fig:prototipo1}. Esta serie temporal de niveles de intensidad sonora fue procesada por un modelo ARIMA (AutoRegressive Integrated Moving Average) para predecir el comportamiento esperado. Si la diferencia entre el valor predicho y el valor real superaba un umbral predefinido, se generaba una alerta.
 
 El diseño del prototipo para probar este enfoque se inspiró en metodologías documentadas para sistemas IoT \cite{luis2024desarrollo} y consistió en un dispositivo de captura basado en un microcontrolador ESP32, que transmitía los datos a un servidor local (Raspberry Pi 4) para su análisis con el modelo ARIMA.Sin embargo, durante la fase de evaluación, este enfoque demostró ser fundamentalmente inviable. El problema de fondo no fue solo que el modelo ARIMA tuviera limitaciones funcionales, sino que su propio proceso de parametrización resultó ser incompatible con la naturaleza del problema de investigación.
 
@@ -68,7 +68,7 @@ Con estas limitaciones identificadas, se decidió avanzar hacia una segunda iter
             \label{fig:prototipo2}
       \end{figure}
 
-      En la Segunda Iteración, el objetivo fue superar la rigidez del modelo ARIMA, que resultó incompatible con la dinámica del entorno doméstico, manteniendo el enfoque de análisis de series temporales. La principal limitación, que se convirtió en el riesgo metodológico de esta etapa, radicaba en la pregunta de si la naturaleza dinámica y no estacionaria de los eventos domésticos podría ser modelada adecuadamente por cualquier librería de pronóstico que requiriera patrones estables. Se mantuvo la arquitectura de hardware de Edge Computing basada en el microcontrolador ESP32 y se aplicaron mejoras en la captura de datos. Se integraron micrófonos omnidireccionales INMP441 para asegurar una captura de señales acústicas de alta fidelidad. A nivel de software, se reemplazó el modelo ARIMA por Prophet, una librería de pronóstico de series temporales desarrollada por Facebook, elegida por su capacidad para manejar estacionalidad y tendencias complejas, buscando mayor flexibilidad para modelar el entorno.
+      En la Segunda Iteración, el objetivo fue superar la rigidez del modelo ARIMA, que resultó incompatible con la dinámica del entorno doméstico, manteniendo el enfoque de análisis de series temporales. La principal limitación, que se convirtió en el riesgo metodológico de esta etapa, radicaba en la pregunta de si la naturaleza dinámica y no estacionaria de los eventos domésticos podría ser modelada adecuadamente por cualquier librería de pronóstico que requiriera patrones estables. Se mantuvo la arquitectura de hardware de Edge Computing basada en el microcontrolador ESP32 y se aplicaron mejoras en la captura de datos. Se integraron micrófonos omnidireccionales INMP441 para asegurar una captura de señales acústicas de alta fidelidad, véase en la figura \ref{fig:prototipo2}. A nivel de software, se reemplazó el modelo ARIMA por Prophet, una librería de pronóstico de series temporales desarrollada por Facebook, elegida por su capacidad para manejar estacionalidad y tendencias complejas, buscando mayor flexibilidad para modelar el entorno.
       
       El modelo Prophet logró ajustarse eficazmente a las variaciones periódicas del sonido ambiental, como los patrones de ruido diurnos y nocturnos. Sin embargo, durante las pruebas se identificó una limitación crítica, confirmando el riesgo inicial asociado al pronóstico: el mecanismo interno del modelo para suavizar datos e identificar tendencias a largo plazo provocaba que se descartaran los eventos de corta duración y alta amplitud de interés. Sonidos instantáneos como un golpe, un grito o la rotura de un cristal eran filtrados y no generaban alertas, ya que no formaban parte de un patrón estacional o de una tendencia predecible. Esta observación llevó a la conclusión definitiva de que el enfoque de pronóstico de series temporales, independientemente del modelo (ARIMA o Prophet), no era el adecuado para el objetivo del proyecto. El problema no era predecir la evolución del nivel de ruido, sino la detección de eventos atípicos e instantáneos basados en el contenido acústico. Por lo tanto, el problema se redefinió como uno de detección de anomalías en tiempo real basada en la caracterización de la señal. Para implementar esta nueva estrategia, se propuso un enfoque basado en una arquitectura de redes neuronales (Deep Learning). 
 
@@ -95,7 +95,7 @@ Esta medida representa una aplicación práctica del paradigma de aprendizaje po
             \label{fig:prototipo4}
       \end{figure}
 
-      En esta cuarta iteración del prototipo, se migró la lógica de procesamiento desde el ESP32 hacia una Raspberry Pi, con mayor capacidad computacional. Se integraron micrófonos digitales de rango completo, capaces de capturar la senal de audio completa, lo que permitió acceder a un contenido espectral más rico y útil para clasificación detallada.
+      En esta cuarta iteración del prototipo, se migró la lógica de procesamiento desde el ESP32 hacia una Raspberry Pi, con mayor capacidad computacional. Se integraron micrófonos digitales de rango completo, capaces de capturar la senal de audio completa, lo que permitió acceder a un contenido espectral  completo. Véase en la figura \ref{fig:prototipo4}.
 
       Con esta infraestructura, se incorporó YAMNet, un modelo de clasificación de audio en tiempo real basado en redes neuronales convolucionales entrenado con el dataset AudioSet de Google. YAMNet permite detectar y clasificar una gran variedad de eventos acústicos o (más de 500 categorías) como gritos, portazos, pasos, objetos cayendo, entre otros. Esta capacidad permitió dar un salto importante en la interpretación contextual del entorno sonoro.
 
@@ -279,6 +279,8 @@ Estas cifras se traducen en las siguientes métricas de rendimiento:
 
 El análisis de las métricas de rendimiento cuantifica el desempeño del modelo. La exactitud general es del 99.98\%, aunque este valor es menos indicativo en conjuntos de datos con clases desbalanceadas. Un análisis más específico muestra una Sensibilidad (Recall) del 75.0\%, lo que indica que el modelo identifica a tres de cada cuatro anomalías reales. A su vez, la Precisión es del 85.7\%, lo que significa que sus alertas positivas son correctas en esa proporción. La puntuación F1, como media armónica de ambas, se sitúa en 80.0\%, reflejando el balance entre la capacidad de detección y la fiabilidad de sus predicciones.
 
+Por último, la curva ROC (figura \ref{fig:roc_lstm}) y su AUC de 0.792 confirman que el modelo tiene una buena capacidad para distinguir entre comportamientos normales y anómalos, situándose cerca del umbral deseado de 0.8. En conjunto, estos resultados validan la efectividad del LSTM Autoencoder para la detección de anomalías en secuencias de eventos en nuestro contexto específico.
+
 \uparagraph{Evaluacion del Isolation Forest}
 
 Para la  evaluación del modelo Isolation Forest (IF), una técnica no supervisada que opera de manera fundamentalmente distinta al autoencoder. En lugar de medir un error de reconstrucción, este modelo asigna una ``puntuación de anomalía'' a cada evento basándose en qué tan fácil es aislarlo del resto de los datos. Los eventos que son más fáciles de separar (requieren menos divisiones en los árboles de decisión) se consideran más anómalos.
@@ -384,11 +386,15 @@ El proceso de evaluación se aplicó sobre el mismo conjunto de datos, compuesto
 
 El análisis de las métricas de rendimiento cuantifica el desempeño del modelo. La exactitud general del 89.9\% es un valor engañoso, inflado por la gran cantidad de eventos normales correctamente identificados. Las métricas más importantes revelan un rendimiento deficiente: una Sensibilidad (Recall) de solo el 26.4\%, lo que indica que el modelo no detectó a más de 3 de cada 4 anomalías reales. A su vez, la Precisión es del 57.1\%, lo que significa que casi la mitad de sus alertas son falsas alarmas. La puntuación F1 resultante, del 36.1\%, confirma que el modelo, en su configuración actual, carece de la capacidad necesaria para una detección fiable de anomalías en este contexto.
 
+La curva ROC (figura \ref{fig:roc_if}) y su AUC de 0.612 refuerzan esta conclusión, situando al modelo muy por debajo del umbral deseado de 0.8. En conjunto, estos resultados indican que el Isolation Forest, con los hiperparámetros adoptados, no es adecuado para la detección de anomalías en secuencias de eventos en nuestro contexto específico.
+
+En la figura \ref{fig:anomalias_if}, se visualiza la puntuación de anomalía asignada por el modelo a cada evento del conjunto de prueba. Los puntos rojos marcan los eventos cuya puntuación superó este límite, siendo clasificados como anomalías. Este gráfico ilustra cómo el modelo asigna puntuaciones más altas a ciertos eventos, pero la distribución de estas puntuaciones no es lo suficientemente clara como para distinguir   entre comportamientos normales y anómalos.
+
 
 \usubsection{Sexta Iteración}
       En esta sexta iteración, luego de evaluar los resultados obtenidos con ambos modelos, se decidió adoptar el LSTM Autoencoder como solución principal para la detección de anomalías en el sistema de monitoreo acústico. Esta elección se fundamentó en su desempeño superior durante la fase de evaluación, donde superó significativamente al modelo Isolation Forest en todas las métricas clave.
 
-      Sin embargo, se identificó un riesgo técnico relevante: los hiperparámetros del LSTM Autoencoder fueron adoptados directamente del estudio de \citeauthor{reis2025edge} \citeyear{reis2025edge}, sin una optimización específica para nuestro conjunto de datos. Esto implica que, aunque el modelo mostró un rendimiento sólido, existe la posibilidad de que ajustes finos en estos parámetros puedan mejorar aún más su eficacia en nuestro contexto particular.
+      Sin embargo, se identificó un riesgo técnico relevante: los hiperparámetros del LSTM Autoencoder fueron adoptados directamente del estudio de \citeauthor{reis2025edge} \citeyear{reis2025edge}, sin una adaptación específica para nuestro conjunto de datos. Esto implica que, aunque el modelo mostró un rendimiento sólido, existe la posibilidad de que ajustes finos en estos parámetros puedan mejorar aún más su eficacia en nuestro contexto particular.
 
       Reconociendo esta limitación, se revisaron estudios sobre optimización de hiperparámetros, lo que derivó en la implementación de un proceso basado en optimización bayesiana. Esta técnica permitió mejorar los resultados obtenidos inicialmente, al encontrar configuraciones más eficientes con menos evaluaciones del modelo.
 
@@ -397,11 +403,11 @@ El análisis de las métricas de rendimiento cuantifica el desempeño del modelo
       La evaluación actualizada del modelo, tras aplicar la optimización bayesiana, mostró mejoras significativas en las métricas de rendimiento. Se generaron nuevas gráficas que ilustran estas mejoras, destacando un aumento en la sensibilidad y la puntuación F1, lo que indica un mejor equilibrio entre la detección de anomalías y la reducción de falsas alarmas.
 
 
-\usubsubsection{Evaluacion  del LSTM Autoencoder Optimizado}
+\usubsubsection{Evaluacion  del LSTM Autoencoder V2}
 
-      Para evaluar el rendimiento del modelo optimizado, se empleó el mismo conjunto de datos de prueba utilizado anteriormente, asegurando así una comparación directa y objetiva. Este conjunto contenía tanto secuencias de comportamiento normal como una serie de anomalías introducidas artificialmente para simular eventos atípicos.
+      Para evaluar el rendimiento del modelo  V2, se empleó el mismo conjunto de datos de prueba utilizado anteriormente, asegurando así una comparación directa y objetiva. Este conjunto contenía tanto secuencias de comportamiento normal como una serie de anomalías introducidas artificialmente para simular eventos atípicos.
 
-      El proceso de evaluacion fue idéntico al aplicado previamente, pasando cada una de las 45,841 secuencias de prueba a través del autoencoder optimizado y calculando su error de reconstrucción (MSE). Posteriormente, este error fue comparado con un umbral de anomalía redefinido tras la optimización bayesiana. Cualquier secuencia cuyo error de reconstrucción superara este nuevo umbral fue clasificada como una anomalía.
+      El proceso de evaluacion fue idéntico al aplicado previamente, pasando cada una de las 45,841 secuencias de prueba a través del autoencoder V2 y calculando su error de reconstrucción (MSE). Posteriormente, este error fue comparado con un umbral de anomalía redefinido tras la optimización bayesiana. Cualquier secuencia cuyo error de reconstrucción superara este nuevo umbral fue clasificada como una anomalía.
 
       \begin{figure}[ht!]
             \centering
@@ -483,6 +489,9 @@ El análisis de las métricas de rendimiento cuantifica el desempeño del modelo
 
       El análisis de las métricas de rendimiento cuantifica el desempeño del modelo V2. La exactitud general es del 99.98\%, similar al modelo previo, pero con mejoras notables en las métricas clave. La Sensibilidad (Recall) es del 100\%, indicando que el modelo ahora detecta todas las anomalías reales, un avance significativo. La Precisión ha aumentado a 90.48\%, lo que significa que casi todas sus alertas positivas son correctas. La puntuación F1 refleja este equilibrio mejorado, situándose en un valor más alto que antes, lo que confirma que los nuevos parametros han mejorado la capacidad del modelo para detectar anomalías de manera fiable y a reducir las falsas alarmas.
 
+      La curva ROC (figura \ref{fig:roc_lstm_optimized}) y su AUC de 1.0 confirman que el modelo optimizado tiene una capacidad excelente para distinguir entre comportamientos normales y anómalos, superando ampliamente el umbral deseado de 0.8. En conjunto, estos resultados validan la efectividad del LSTM Autoencoder V2 para la detección de anomalías en secuencias de eventos en nuestro contexto específico.
+
+      La figura \ref{fig:mse_lstm_optimized} ilustra la mejora en la distribución de errores de reconstrucción tras la optimización. La reducción en el número de falsas alarmas y la eliminación de falsos negativos destacan la eficacia del proceso de optimización bayesiana en la mejora del rendimiento del modelo.
 
 \usubsection{Diseño final de la arquitectura del sistema}
 
@@ -505,6 +514,8 @@ La arquitectura implementada se fundamenta en el modelo en capas, donde cada niv
       \item Capa de gestión de datos: Esta capa centraliza la persistencia y organización de la información recolectada y procesada por el sistema. Su propósito es almacenar los registros de eventos, tanto normales como anómalos, en estructuras que permitan su posterior análisis. Asimismo, prepara los conjuntos de datos necesarios para el reentrenamiento de los modelos de detección de anomalías, asegurando que el sistema pueda mejorar progresivamente su desempeño y adaptarse a nuevas condiciones acústicas en el entorno.
       \item Capa de notificaciones: Tiene como responsabilidad la comunicación con el usuario final o con sistemas externos de monitoreo. Actualmente, este módulo envía alertas validadas a través de servicios de mensajería como Telegram y protocolos de correo electrónico (SMTP). Su diseño es extensible, lo que permite incorporar otros canales de comunicación en el futuro. La existencia de esta capa garantiza que la información crítica llegue de forma oportuna a los responsables de la toma de decisiones.
 \end{enumerate}
+
+En la figura \ref{fig:arquitectura} se ilustra la arquitectura completa del sistema de monitoreo acústico, destacando las interacciones entre las diferentes capas y los agentes involucrados en el proceso de detección y notificación de anomalías.
 
 % \usubsection{Validación del sistema de monitoreo acústico para generar alertas en casos de emergencia}
 
