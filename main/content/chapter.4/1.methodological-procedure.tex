@@ -95,7 +95,7 @@ Esta medida representa una aplicación práctica del paradigma de aprendizaje po
             \label{fig:prototipo4}
       \end{figure}
 
-      En esta cuarta iteración del prototipo, se migró la lógica de procesamiento desde el ESP32 hacia una Raspberry Pi, con mayor capacidad computacional. Se integraron micrófonos digitales de rango completo, capaces de capturar la senal de audio completa, lo que permitió acceder a un contenido espectral  completo. Véase en la figura \ref{fig:prototipo4}.
+      En esta cuarta iteración del prototipo, se migró la lógica de procesamiento desde el ESP32 hacia una Raspberry Pi, con mayor capacidad computacional, véase en la figura \ref{fig:raspberry-architecture}. Se integraron micrófonos digitales de rango completo, capaces de capturar la senal de audio completa, lo que permitió acceder a un contenido espectral  completo. Véase en la figura \ref{fig:prototipo4}.
 
       Con esta infraestructura, se incorporó YAMNet, un modelo de clasificación de audio en tiempo real basado en redes neuronales convolucionales entrenado con el dataset AudioSet de Google. YAMNet permite detectar y clasificar una gran variedad de eventos acústicos o (más de 500 categorías) como gritos, portazos, pasos, objetos cayendo, entre otros. Esta capacidad permitió dar un salto importante en la interpretación contextual del entorno sonoro.
 
@@ -116,7 +116,7 @@ Esta medida representa una aplicación práctica del paradigma de aprendizaje po
 
       Para la implementación de estos modelos en nuestro sistema, se replicaron las configuraciones de hiperparámetros validadas en dicho estudio para asegurar el rendimiento en la Raspberry Pi.
 
-      En el caso del Isolation Forest, adoptamos los hiperparámetros del estudio, configurando el modelo con 100 árboles ($n_estimators$) y un parámetro de contaminación del 3\%. Este último valor asume una proporción esperada de anomalías en nuestros datos, alineándose con los escenarios simulados en la investigación de referencia.
+      En el caso del Isolation Forest, adoptamos los hiperparámetros del estudio, configurando el modelo con 100 árboles ($n_estimators$) y un parámetro de contaminación del 3\%. Este último valor asume una proporción esperada de anomalías en nuestros datos, alineándose con los escenarios simulados en la investigación de referencia, Vease en la figura \ref{fig:isolation-forest-algorithm}
 
       El segundo modelo implementado es un LSTM Autoencoder, una arquitectura de red neuronal no supervisada especialmente eficaz para la detección de anomalías en datos secuenciales \cite{malhotra2015long}. Su objetivo es aprender una representación comprimida de los patrones ``normales'' presentes en los datos de entrenamiento para luego identificar desviaciones significativas. De igual manera, se adoptaron los hiperparámetros recomendados por \citeauthor{reis2025edge} \citeyear{reis2025edge}, que incluyen un tamaño de lote de 32 y 50 épocas de entrenamiento. La arquitectura específica del modelo consta de 3 capas LSTM en el codificador y 3 capas LSTM en el decodificador, con tamaños de capa decrecientes de 32, 16 y 8 unidades respectivamente. y activacion del ReLu para ajustar la tasa de aprendizaje y evitar el sobreajuste.
       Para el desarrollo y aplicación del modelo, se adoptó un enfoque metodológico inspirado en el trabajo de \citeauthor{reis2025edge} \citeyear{reis2025edge}, el cual se estructuró en un proceso de tres etapas: preparación de los datos, construcción y entrenamiento de la arquitectura, y definición del mecanismo de detección.
@@ -168,7 +168,7 @@ En esta etapa de evaluacion, nos centramos por completo en el desempeño de dete
 Para evaluar el rendimiento del modelo, se empleó un conjunto de datos de prueba, el cual es una porción de los datos que el modelo no observó durante su entrenamiento. Este conjunto contenía tanto secuencias de comportamiento normal como una serie de anomalías que fueron introducidas artificialmente en el dataset para simular eventos atípicos.
 El proceso consistió en pasar cada una de las 45,841 secuencias de prueba a través del autoencoder ya entrenado y calcular su error de reconstrucción (MSE). Posteriormente, este error fue comparado con un umbral de anomalía definido estadísticamente a partir de la distribución de errores del conjunto de entrenamiento (específicamente, el percentil 99.95). Cualquier secuencia cuyo error de reconstrucción superara este umbral fue clasificada como una anomalía.
 
-La selección de este percentil (99.95) no fue un valor arbitrario. Para definir el umbral de decisión, se realizó un análisis de la Curva ROC (Receiver Operating Characteristic). Esta herramienta permite evaluar el balance entre la capacidad de detectar anomalías reales (Tasa de Verdaderos Positivos) y la tasa de falsas alarmas (Tasa de Falsos Positivos) para diferentes umbrales. Se probaron varios percentiles y se seleccionó aquel que maximizaba el Área Bajo la Curva (AUC), una métrica que resume la capacidad global del modelo para distinguir entre clases. Como se muestra en la gráfica, el umbral del 99.95\% permitió alcanzar un AUC de 0.792, un valor cercano al objetivo de 0.8, lo que confirma que el umbral elegido posiciona al modelo en un punto de operación con un sólido equilibrio entre sensibilidad y especificidad.
+La selección de este percentil (99.95) no fue un valor arbitrario. Para definir el umbral de decisión, se realizó un análisis de la Curva ROC (Receiver Operating Characteristic). Esta herramienta permite evaluar el balance entre la capacidad de detectar anomalías reales (Tasa de Verdaderos Positivos) y la tasa de falsas alarmas (Tasa de Falsos Positivos) para diferentes umbrales. Se probaron varios percentiles y se seleccionó aquel que maximizaba el Área Bajo la Curva (AUC), una métrica que resume la capacidad global del modelo para distinguir entre clases. Como se muestra en la gráfica, el umbral del 99.95\% permitió alcanzar un AUC de 0.79, un valor cercano al objetivo de 0.8, lo que confirma que el umbral elegido posiciona al modelo en un punto de operación con un sólido equilibrio entre sensibilidad y especificidad.
 
 \begin{figure}[ht!]
       \centering
@@ -419,28 +419,25 @@ En la figura \ref{fig:anomalias_if}, se visualiza la puntuación de anomalía as
 
 
 \usubsubsection{Evaluacion  del LSTM Autoencoder V2}
-
       Para evaluar el rendimiento del modelo  V2, se empleó el mismo conjunto de datos de prueba utilizado anteriormente, asegurando así una comparación directa y objetiva. Este conjunto contenía tanto secuencias de comportamiento normal como una serie de anomalías introducidas artificialmente para simular eventos atípicos.
-
       El proceso de evaluacion fue idéntico al aplicado previamente, pasando cada una de las 45,841 secuencias de prueba a través del autoencoder V2 y calculando su error de reconstrucción (MSE). Posteriormente, este error fue comparado con un umbral de anomalía redefinido tras la optimización bayesiana. Cualquier secuencia cuyo error de reconstrucción superara este nuevo umbral fue clasificada como una anomalía.
-
-      \begin{figure}[ht!]
+      \begin{figure}[H]
             \centering
-            \includegraphics[width=0.85\textwidth]{LSTM/roc_optimized.png}
+            \includegraphics[width=0.50\textwidth]{LSTM/roc_optimized.png}
             \caption{Curva ROC y AUC del LSTM Autoencoder V2.}
             \label{fig:roc_lstm_optimized}
       \end{figure}
 
-      \begin{figure}[ht!]
+      \begin{figure}[H]
             \centering
-            \includegraphics[width=0.85\textwidth]{LSTM/animalias_optimized.png}
+            \includegraphics[width=0.50\textwidth]{LSTM/animalias_optimized.png}
             \caption{Gráficas de MSE por secuencia para el LSTM Autoencoder V2.}
             \label{fig:mse_lstm_optimized}
       \end{figure}
 
       En la gráfica de la figura \ref{fig:mse_lstm_optimized}, se visualiza el error de reconstrucción para cada secuencia del conjunto de prueba tras la optimización. La línea discontinua roja representa el nuevo umbral de anomalía. Los puntos rojos marcan las secuencias cuyo error superó este límite, siendo clasificadas correctamente como anomalías. Este gráfico confirma visualmente que el modelo optimizado es aún más efectivo para asignar una puntuación de error alta a los eventos que se desvían del comportamiento normal aprendido.
 
-      \begin{table}[ht!]
+      \begin{table}[H]
             \doublespacing
             \small
             \centering
@@ -466,35 +463,30 @@ En la figura \ref{fig:anomalias_if}, se visualiza la puntuación de anomalía as
 
       \begin{itemize}
             \item  Exactitud (Accuracy):
-
                   \begin{align}
                         Accuracy = \frac{(19+45820)}{(19+45820+2+0)}\approx 0.9999 \notag \\
                         \label{eq:accuracy_optimized}
                   \end{align}
                   \myequations{Accuracy para LSTM Autoencoder V2}
             \item Tasa de error (Error Rate):
-
                   \begin{align}
                         Error\ Rate = \frac{(2+0)}{(19+45820+2+0)}\approx 0.00004 \notag \\
                         \label{eq:error_rate_optimized}
                   \end{align}
                   \myequations{Tasa de Error para LSTM Autoencoder V2}
             \item Sensibilidad (Recall):
-
                   \begin{align}
                         Recall = \frac{19}{19+0}\approx 1.0000 \notag \\
                         \label{eq:recall_optimized}
                   \end{align}
                   \myequations{Recall para LSTM Autoencoder V2}
             \item Precisión (Precision): 
-
                   \begin{align}
                         Precision = \frac{19}{19+2}\approx 0.9048 \notag \\
                         \label{eq:precision_optimized}
                   \end{align}
                   \myequations{Precision para LSTM Autoencoder V2}
             \item Especificidad (Specificity): 
-
                   \begin{align}
                         Specificity = \frac{45820}{45820+2}\approx 0.9999 \notag \\
                         \label{eq:specificity_optimized}
