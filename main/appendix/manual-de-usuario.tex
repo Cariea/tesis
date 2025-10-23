@@ -2,34 +2,90 @@
 
 \section*{Introducción}
 
-Este manual está dirigido a las personas que se encuentran en los ambientes monitoreados por Alertify. Su propósito es explicar de forma sencilla cómo interactuar con el sistema por medio de la voz, qué frases utiliza para solicitar ayuda o cancelar una alerta, y cómo interpretar las señales y respuestas del sistema.
+Este sistema es una solución basada en inteligencia artificial, diseñada para identificar sonidos ambientales y generar alertas en situaciones de emergencia que puedan indicar que una persona se encuentra en una posición de vulnerabilidad.
 
-A través de esta guía, aprenderá a usar el sistema de manera segura y efectiva, aprovechando la tecnología de reconocimiento vocal para su tranquilidad y rápida atención en caso de ser necesario.
+El objetivo principal del sistema es ofrecer un monitoreo continuo, discreto y no invasivo, capaz de detectar eventos sonoros anómalos (gritos de auxilio, caídas, rotura de cristales o silencios prolongados) y notificar de manera inmediata a contactos de emergencia predefinidos.
 
-\section*{¿Qué es un agente?}
-
-Un agente en el contexto del siguiente sistema es un programa inteligente que escucha, interpreta y actúa ante sonidos del ambiente. No es un robot ni una persona, sino un software que:
+El sistema integra tres componentes clave:
 
 \begin{itemize}
-  \item Tienen la capacidad de escuchar el sonido del ambiente a través de micrófonos para la detección de palabras clave (“Auxilio”, “ayuda”, “estoy bien”)
-  \item Tienen la capacidad de detectar eventos de interés y periodos de silencio prolongados
-  \item Al detectar algún evento relevante, envía datos al servidor para que este los notifique
+  \item Un módulo de clasificación acústica que utiliza modelos preentrenados como YAMNet y Vosk para identificar sonidos y palabras clave.
+  \item Un módulo de detección de anomalías basado en modelos de inteligencia artificial como LSTM e Isolation Forest, que analiza secuencias de sonidos para identificar comportamientos atípicos.
+  \item Un módulo de notificaciones que envía alertas en tiempo real a través de Telegram, correo electrónico o SMS.
 \end{itemize}
 
-\section*{Acciones que puede realizar el usuario}
+Este manual contiene las instrucciones necesarias para interactuar con el sistema, comprender sus señales y responder adecuadamente en diferentes situaciones.
 
-El sistema está diseñado para responder a comandos de voz específicos que le permiten solicitar asistencia o cancelar una alerta de manera inmediata, sin necesidad de interactuar con ningún dispositivo físico. Su voz actúa como el control principal del sistema, facilitando su uso en situaciones donde pueda tener las manos ocupadas o dificultad para moverse.
+\section*{Desarrolladores del sistema}
 
-Para solicitar ayuda en caso de emergencia, simplemente pronuncie en voz clara y audible alguna de las palabras clave predefinidas: "auxilio" o "ayuda". El sistema está configurado para reconocer estos términos de manera prioritaria. Al detectar cualquiera de estas palabras, el sistema activa inmediatamente el protocolo de emergencia, enviando una notificación automática a la central de monitoreo y a los contactos designados para tales situaciones. Adicionalmente, el sistema puede generar un anuncio sonoro en la central operativa para asegurar una respuesta rápida por parte del personal responsable. Si ha activado una alerta por error o la situación de emergencia ha sido resuelta, puede cancelar el estado de alarma utilizando frases como "estoy bien", "todo bien" o simplemente "bien". Al reconocer estas expresiones, el sistema desactiva las notificaciones activas asociadas a ese ambiente específico e informa a los operadores sobre la cancelación, evitando así movilizaciones innecesarias mientras mantiene el historial del evento para su posterior revisión. Para garantizar el correcto funcionamiento del sistema, se recomienda hablar directamente en dirección al micrófono del ambiente, manteniendo un tono de voz claro y natural. En espacios con niveles elevados de ruido ambiental, puede ser necesario repetir la frase o acercarse ligeramente al dispositivo para asegurar una captura óptima del audio. El sistema está calibrado para reconocer específicamente los comandos antes mencionados, por lo que se sugiere utilizar exclusivamente estas expresiones para interactuar con él.
+El Sistema de Monitoreo Acústico fue desarrollado por los tesistas Carmelo Naim y César Sotillo, estudiantes de Ingeniería Informática de la Universidad Católica Andrés Bello, como parte de su Trabajo de Grado, realizado entre 2024 y octubre de 2025.
 
-Cada tipo de señal está calibrada según el nivel de urgencia que representa, permitiendo al personal de monitoreo priorizar su respuesta, mientras mantiene una supervisión comprehensiva del ambiente monitoreado.
+\section*{Requisitos previos}
 
-\section*{Escenarios comunes}
+Antes de comenzar a utilizar el sistema, asegúrese de cumplir con los siguientes requisitos:
 
-El sistema está preparado para manejar diversas situaciones que pueden presentarse en el día a día. Comprender cómo actuar en cada escenario le permitirá interactuar de manera efectiva con el sistema y obtener la respuesta adecuada según sus necesidades. A continuación, se describen algunas situaciones frecuentes y el procedimiento recomendado para cada una.
+Conocimiento previo:
 
-Cuando necesite ayuda de manera inmediata, su respuesta debe ser clara y directa. En estos casos, pronuncie en voz alta y firme alguna de las palabras clave que el sistema reconoce como prioritaria: "auxilio" o "ayuda". Inmediatamente después de dar esta instrucción vocal, el sistema procesará su solicitud y activará los protocolos establecidos. Es importante que, una vez realizada la solicitud, espere pacientemente la confirmación o la llegada de la atención por parte del personal o los contactos designados, ya que el sistema notificará de manera automática y rápida a las personas encargadas de brindarle asistencia.
+\begin{itemize}
+  \item No se requieren conocimientos técnicos avanzados.
+  \item Es recomendable familiarizarse con los comandos de voz que el sistema reconoce.
+\end{itemize}
 
-Si ya la situación de emergencia ha sido resuelta, es fundamental que cancele el estado de alerta para evitar movilizaciones innecesarias. Para ello, simplemente exprese en voz clara alguna de las frases de cancelación, como "estoy bien". Al hacerlo, el sistema interpretará que la situación ha vuelto a la normalidad y procederá a desactivar todas las notificaciones activas asociadas a ese evento. Esta acción informa automáticamente al personal de monitoreo que ya no se requiere intervención, lo que les permite actualizar el estado del incidente y concentrarse en otras posibles emergencias.
+Requisitos del sistema:
 
-En caso de que el sistema active una alerta de manera accidental, lo que se conoce como un falso positivo, es igualmente importante que cancele la notificación. Los falsos positivos pueden ocurrir cuando un ruido fuerte o una conversación es interpretada erróneamente por el sistema como una palabra de auxilio. Si esto sucede, no es necesario que espere a que el personal se comunique con usted; puede tomar la iniciativa y pronunciar cualquiera de las frases de cancelación mencionadas anteriormente. Al hacerlo, el sistema detendrá el envío de notificaciones y registrará el evento como una activación no válida, lo que contribuye a que el sistema aprenda y mejore su precisión con el tiempo.
+\begin{itemize}
+  \item Hardware: Dispositivo Raspberry Pi 4, micrófonos USB, conexión estable a internet y energía eléctrica continua
+  \item Software: Aplicación de mensajería Telegram instalada en el teléfono del usuario o contacto designado.
+  \item Red: Conexión Wi-Fi o Ethernet.
+\end{itemize}
+
+\section*{Requisitos previos}
+
+El sistema opera de manera autónoma y no requiere una interfaz gráfica para su funcionamiento cotidiano. Sin embargo, el usuario puede interactuar con él mediante comandos de voz y recibir notificaciones.
+
+Componentes principales:
+
+\begin{itemize}
+  \item Agentes de audio: Programas que escuchan continuamente el ambiente y clasifican sonidos.
+  \item Sistema de alertas: Envía notificaciones automáticas cuando detecta una posible emergencia.
+  \item Interacción por voz: Permite al usuario cancelar alertas o confirmar su estado.
+\end{itemize}
+
+Flujo de interaccion:
+
+\begin{itemize}
+  \item El agente de audio escucha continuamente el ambiente.
+  \item Al detectar un sonido clasifica.
+  \item Si se identifica una anomalia, se activa el sistema de alertas.
+  \item El usuario recibe una notificación.
+  \item El usuario puede interactuar por voz para cancelar la alerta y confirmar su estado.
+\end{itemize}
+
+\section*{Problemas comunes}
+
+A continuación, se presentan algunos problemas que pueden surgir durante el uso del sistema y sus posibles soluciones:
+
+\begin{enumerate}
+  \item El sistema no responde a comandos de voz
+  \begin{itemize}
+    \item Causa: Ruido ambiental alto o micrófono obstruido.
+    \item Solución: Hable en un tono claro y dirigido hacia el micrófono. Reduzca el ruido de fondo si es posible.
+  \end{itemize}
+  \item Falsos positivos
+  \begin{itemize}
+    \item Causa: El sistema puede estar interpretando eventos comunes como anomalías.
+    \item Solución: Cancela la alerta usando el comando de voz "Estoy bien".
+  \end{itemize}
+  \item No se reciben notificaciones en Telegram
+  \begin{itemize}
+    \item Causa: Problemas de conexión a Internet.
+    \item Solución: Verifique la conexión a Internet.
+  \end{itemize}
+\end{enumerate}
+
+\section*{Notas importantes}
+\begin{itemize}
+  \item Asegúrese de que el micrófono esté correctamente conectado y configurado en su dispositivo. Además de estar colocado en un lugar adecuado para captar el sonido.
+  \item Mantenga el software del sistema actualizado el software del sistema para mejorar la precisión en la detección.
+  \item El sistema no almacena grabaciones de audio. Todo el procesamiento se realiza de forma local y en tiempo real.
+\end{itemize}
