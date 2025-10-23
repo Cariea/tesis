@@ -15,7 +15,7 @@ Ante esta limitante y asumiendo que las emergencias son eventos poco frecuentes 
 
 Para abordar la necesidad del análisis de secuencias temporales, se revisaron estudios previos sobre predicción de eventos basados en series temporales. El uso de modelos predictivos como ARIMA, SARIMA o Prophet es una práctica establecida en la literatura para el desarrollo de sistemas de alerta temprana mediante el análisis y la predicción de patrones temporales \citeauthor{mora2023analisis} \citeyear{mora2023analisis}. Estos modelos se perfilaban como una estrategia para establecer umbrales de predicción sobre la secuencia de eventos acústicos. El objetivo era determinar qué tan ``típica'' resultaba la ocurrencia en un momento dado, sirviendo así como un detector de patrones de comportamiento anómalo.
 
-En función del analisis realizado, se procedio a definir los requerimientos del sistema de monitoreo acústico para la detección de emergencias en el hogar. Mismos requerimientos en los que se basará la verificación del sistema en etapas posteriores. Veanse en la tabla \ref{tab:requerimientos_sistema_acustico}
+En función del analisis realizado, se procedio a definir los requerimientos del sistema de monitoreo acústico para la detección de emergencias en el hogar. La verificacion de los mismos se encuentra en la tabla \ref{tab:requerimientos_sistema_acustico}
 
 \usubsection{Requerimientos Funcionales}
 
@@ -127,7 +127,7 @@ Esta medida representa una aplicación práctica del paradigma de aprendizaje po
                   Por ejemplo, si convertimos los días de la semana a números (domingo=0, lunes=1, ..., sábado=6), el modelo interpretaría que el sábado (6) y el domingo (0) son valores muy distantes, cuando en realidad son adyacentes. Este tipo de malentendido impide que la red aprenda patrones que ocurren en la transición del fin de semana.
                   Para resolver este problema, el enfoque consiste en representar las variables temporales de una manera que refleje su naturaleza cíclica. En lugar de ver el tiempo como una línea recta, lo tratamos como un círculo, similar a las manecillas de un reloj. Esto se logra mediante funciones matemáticas (seno y coseno) que asignan a cada instante una coordenada única en un círculo. De esta forma:
                   El sábado queda matemáticamente ``cerca'' del domingo.
-                  Las 23:59 quedan justo al lado de las 00:00.
+                  Las 23:59 quedan justo al lado de las 00:00. Vease el Apendice A
                   Este preprocesamiento es fundamental, pues permite que el modelo LSTM capture patrones de comportamiento continuos y lógicos, como los que ocurren durante la madrugada o en el cambio de un día para otro.
                   Convirtiendo Categorías en Señales Claras
                   De manera similar, el modelo no puede procesar etiquetas de texto como ``uso de microondas'' o ``sensor de movimiento''. Un error común sería asignarles un número a cada una (ej: microondas=1, sensor=2), ya que esto crearía una falsa relación matemática (como si el ``sensor'' fuera el doble del ``microondas'').
@@ -499,6 +499,8 @@ Con base en los resultados obtenidos durante las fases de desarrollo y evaluaci�
 
 La arquitectura implementada se fundamenta en el modelo en capas, donde cada nivel cumple funciones específicas alineadas con los requisitos funcionales y no funcionales del sistema. La Capa de Captación de Audio (Micrófonos, Raspberry Pi) satisface el RF1 al garantizar la captura continua de audio; la Capa de Clasificación de Audio (Vosk, Yamnet, Activity-Agent) cumple el RF2 y parcialmente el RF4 al procesar y caracterizar la señal; la Capa de Detección de Anomalías (LSTM, IF-Agent) y la Capa de Gestión de Alertas (Emergency-Agent) abordan el núcleo del problema, cumpliendo el RF4 al detectar patrones anómalos; la Capa de Gestión de Datos (Postgres, Redis) facilita el RF3 al almacenar la información necesaria para caracterizar la actividad acústica "típica"; y la Capa de Notificaciones (Telegram, SMTP) garantiza el cumplimiento del RF5 al enviar alertas validadas. Estas capas no se ejecutan como módulos monolíticos, sino como procesos independientes que se comunican mediante un esquema pub/sub interno con Redis, lo que introduce un componente distribuido local. Esta modularidad no solo simplifica el mantenimiento y la actualización de componentes (RNF4), sino que también facilita la integración flexible de nuevos agentes o dispositivos (RNF2), ya que solo necesitan publicar o suscribirse a canales de Redis para interactuar. Además, el uso de un Raspberry Pi como nodo principal aproxima la solución al concepto de servidores al borde (edge computing), lo cual es esencial para cumplir el RNF1: el procesamiento y análisis de datos de audio ocurre localmente, minimizando la latencia (clave para el RF4) y evitando el almacenamiento de grabaciones de audio bruto o información personal identificable. Esta combinación de estilo cliente-servidor con mecanismos de colaboración descentralizados, según \citeauthor{tanenbaum2007distributed} \citeyear{tanenbaum2007distributed}, se entiende como una arquitectura híbrida. Por último, la naturaleza embedded del sistema sobre el Raspberry Pi permite la configuración de inicio automático a nivel de sistema operativo (RNF3), asegurando la continuidad del monitoreo tras fallos o reinicios. De esta manera, la propuesta logra unir la claridad del enfoque en capas con la flexibilidad de un sistema distribuido basado en microservicios locales, satisfaciendo los requisitos funcionales y no funcionales.
 
+Los algoritmos de los distintos agentes se encuentran en el apendice D
+
 \begin{figure}[ht!]
       \centering
       \includegraphics[width=0.40\textwidth]{Arquitectura/Arquitectura.png}
@@ -516,6 +518,18 @@ La arquitectura implementada se fundamenta en el modelo en capas, donde cada niv
 \end{enumerate}
 
 En la figura \ref{fig:arquitectura} se ilustra la arquitectura completa del sistema de monitoreo acústico, destacando las interacciones entre las diferentes capas y los agentes involucrados en el proceso de detección y notificación de anomalías.
+
+
+\usubsubsection{Selección de hardware y dispositivos Edge}
+
+Para la implementación del sistema, se realizó una evaluación de hardware con un enfoque en dispositivos de Edge Computing. La elección se centró en plataformas capaces de procesar datos localmente para reducir la latencia y la dependencia de la nube, como lo describen \citeauthor{shi_edge_2016} \citeyear{shi_edge_2016}. En este contexto, se seleccionó la Raspberry Pi como la plataforma de desarrollo, dada su versatilidad para integrar componentes como micrófonos y su amplia conectividad, características que la hacen ideal para aplicaciones de IoT y análisis en tiempo real según \citeauthor{richardson_getting_2016} \citeyear{richardson_getting_2016}.
+
+La principal ventaja de este enfoque es que permite al sistema aprender las rutinas de su entorno específico, ya que los dispositivos permanecen fijos en un solo lugar. Esto requiere que los modelos de inteligencia artificial se ejecuten con los datos generados en dicho entorno. La alternativa (un gran servidor en la nube) sería muy costosa y poco práctica, pues exigiría mantener un modelo distinto para cada ubicación monitoreada, considerando que el sistema se compone de la interacción entre múltiples modelos. Por el contrario, un dispositivo edge como la Raspberry Pi resuelve este desafío al procesar los modelos localmente, permitiendo que cada unidad aprenda de manera autónoma sobre su entorno particular.
+
+También se consideraron otros dispositivos edge, como el ESP32, pero se descartó debido a sus limitaciones de memoria y capacidad de procesamiento, que dificultarían la ejecución de modelos complejos de inteligencia artificial. Aunque el ESP32 es adecuado para tareas simples de detección de sonido basadas en umbrales, no cumple con los requisitos necesarios para implementar modelos avanzados como YAMNet o LSTM.
+
+La comparación entre los distintos dispositivos edge se resume en el apendice C.
+
 
 % \usubsection{Validación del sistema de monitoreo acústico para generar alertas en casos de emergencia}
 

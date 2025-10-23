@@ -320,7 +320,7 @@ Gemmeke%
 Gemmeke%
 \ \protect \BOthers {.}}{%
 {\protect \APACyear {2017}}%
-}]{%
+{\protect \APACexlab {{\protect \BCnt {2}}}}}]{%
 gemmeke2017audio}
 \APACinsertmetastar {%
 gemmeke2017audio}%
@@ -335,7 +335,7 @@ Gemmeke, J\BPBI F.%
 \end{APACrefauthors}%
 \unskip\
 \newblock
-\APACrefYearMonthDay{2017}{}{}.
+\APACrefYearMonthDay{2017{\protect \BCnt {2}}}{}{}.
 \newblock
 {\BBOQ}\APACrefatitle {Audio set: An ontology and human-labeled dataset for
   audio events} {Audio set: An ontology and human-labeled dataset for audio
@@ -344,6 +344,37 @@ Gemmeke, J\BPBI F.%
 \BIn{} \APACrefbtitle {2017 IEEE international conference on acoustics, speech
   and signal processing (ICASSP)} {2017 ieee international conference on
   acoustics, speech and signal processing (icassp)}\ (\BPGS\ 776--780).
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Gemmeke%
+\ \protect \BOthers {.}}{%
+Gemmeke%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2017}}%
+{\protect \APACexlab {{\protect \BCnt {1}}}}}]{%
+Gemmeke2017AudioSet}
+\APACinsertmetastar {%
+Gemmeke2017AudioSet}%
+\begin{APACrefauthors}%
+Gemmeke, J\BPBI F.%
+, Ellis, D\BPBI P\BPBI W.%
+, Freedman, D.%
+, Jansen, A.%
+, Lawrence, W.%
+, Moore, R\BPBI C.%
+\BDBL {}Ritter, M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2017{\protect \BCnt {1}}}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {{Audio Set: An Ontology and Human-Labeled Dataset for
+  Audio Events}} {{Audio Set: An Ontology and Human-Labeled Dataset for Audio
+  Events}}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Proceedings of the IEEE International Conference on
+  Acoustics, Speech and Signal Processing (ICASSP)}{}{}{776-780}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -368,6 +399,30 @@ Goldsborough, P.%
 \newblock
 \begin{APACrefURL} [{2025-09-08}]\url{https://arxiv.org/pdf/1610.01178}
   \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+{Google}%
+}{%
+{Google}%
+}{%
+{\protect \APACyear {{\protect \bibnodate {}}}}%
+}]{%
+Google_yamnet}
+\APACinsertmetastar {%
+Google_yamnet}%
+\begin{APACrefauthors}%
+{Google}.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{{\protect \bibnodate {}}}{}{}.
+\newblock
+\APACrefbtitle {{YAMNet}.} {{YAMNet}.}
+\newblock
+\APAChowpublished {\url{https://www.kaggle.com/models/google/yamnet}}.
+\newblock
+\APACrefnote{Recuperado el 21 de octubre de 2025}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -450,6 +505,38 @@ Hochreiter, S.%
 {\BBOQ}\APACrefatitle {Long short-term memory} {Long short-term memory}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Neural computation}{9}{8}{1735--1780}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Howard%
+\ \protect \BOthers {.}}{%
+Howard%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2017}}%
+}]{%
+Howard2017MobileNets}
+\APACinsertmetastar {%
+Howard2017MobileNets}%
+\begin{APACrefauthors}%
+Howard, A\BPBI G.%
+, Zhu, M.%
+, Chen, B.%
+, Wang, W.%
+, Weyand, T.%
+, Andreetto, M.%
+\BDBL {}Adam, H.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2017}{Apr}{}.
+\newblock
+{\BBOQ}\APACrefatitle {{MobileNets: Efficient Convolutional Neural Networks for
+  Mobile Vision Applications}} {{MobileNets: Efficient Convolutional Neural
+  Networks for Mobile Vision Applications}}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{arXiv preprint}{}{}{}.
+\newblock
+\begin{APACrefURL} \url{https://arxiv.org/abs/1704.04861} \end{APACrefURL}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
