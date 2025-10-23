@@ -1,0 +1,26 @@
+\titleformat{\chapter}
+{\normalfont\fontsize{12}{15}\centering}{Anexo\thechapter.}{0.3em}{}[]
+ 
+
+
+
+\clearpage
+\thispagestyle{empty}
+\begin{center}
+  \vspace*{\fill}
+  \phantomsection
+  Anexos
+  \addcontentsline{toc}{chapter}{Anexos}
+  \vspace*{\fill}
+\end{center}
+\clearpage
+
+\appendix
+
+\uextra{Anexo}{Dispositivo Raspberry Pi 4 Model B}
+\begin{figure}[ht!]
+  \centering
+  \includegraphics[width=0.95\textwidth]{Anexos/1.arquitectura-raspberry.png}
+  \caption{Arquitectura del Raspberry Pi 4 Model B}
+  \label{fig:raspberry-architecture}
+\end{figure}
