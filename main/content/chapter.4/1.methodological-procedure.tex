@@ -82,7 +82,7 @@ El objetivo de esta tercera iteración fue abordar la necesidad de la caracteriz
 
 Sin embargo, a medida que avanzaba el desarrollo, la investigación sobre la robustez de los clasificadores acústicos reveló la verdadera magnitud del desafío. Se hizo evidente que para que un modelo pudiera generalizar y operar de manera fiable, necesitaría ser entrenado con un volumen de datos masivo. La literatura académica confirma que la efectividad de los modelos de aprendizaje profundo para audio depende directamente de la escala y diversidad de los datos, requiriendo a menudo millones de ejemplos para capturar la enorme variabilidad de los sonidos del mundo real \cite{gemmeke2017audio}. La tarea de construir un dataset de esa magnitud, confirmando el riesgo inicial, era logísticamente inviable para el proyecto.
 
-Fue precisamente durante esta etapa de investigación que se identificó YAMNet, una arquitectura de clasificación acústica ya pre-entrenada por Google. Este modelo fue entrenado sobre el corpus AudioSet, un extenso conjunto de datos que, como describen \citeauthor{gemmeke2017audio} \citeyear{gemmeke2017audio}, contiene más de dos millones de clips de audio de $10$ segundos etiquetados a partir de una ontología de $527$ clases de eventos sonoros. El descubrimiento de YAMNet ofreció una solución directa al problema de la adquisición de datos a gran escala que se había identificado como el principal obstáculo.Ante esta situación, continuar con el desarrollo de un modelo propio habría significado un esfuerzo redundante e ineficiente. Por lo tanto, se tomó la decisión de descartar el enfoque personalizado y pivotar hacia la integración de YAMNet. 
+Fue precisamente durante esta etapa de investigación que se identificó YAMNet, una arquitectura de clasificación acústica ya pre-entrenada por Google. Este modelo fue entrenado sobre el corpus AudioSet, un extenso conjunto de datos que, como describen \citeauthor{gemmeke2017audio} \citeyear{gemmeke2017audio}, contiene más de dos millones de clips de audio de $10$ segundos etiquetados a partir de una ontología de $527$ clases de eventos sonoros. El descubrimiento de YAMNet ofreció una solución directa al problema de la adquisición de datos a gran escala que se había identificado como el principal obstáculo.Ante esta situación, continuar con el desarrollo de un modelo propio habría significado un esfuerzo redundante. Por lo tanto, se tomó la decisión de descartar el enfoque personalizado y pivotar hacia la integración de YAMNet. 
 
 Esta medida representa una aplicación práctica del paradigma de aprendizaje por transferencia (transfer learning), que permite aprovechar el conocimiento de un modelo ya entrenado en un gran dataset para resolver un problema específico, tal como analizan \citeauthor{pons2019deep} \citeyear{pons2019deep} en su trabajo sobre el impacto del tamaño del dataset en audio. Este pivote tecnológico permitió enfocar los recursos restantes del proyecto en la implementación del sistema final sobre una base tecnológica robusta y ya validada, y superar la limitación de la falta de contexto que afectó a las iteraciones basadas en series temporales.
 
@@ -384,23 +384,38 @@ El proceso de evaluación se aplicó sobre el mismo conjunto de datos, compuesto
       \label{fig:roc_if}
 \end{figure}
 
-El análisis de las métricas de rendimiento cuantifica el desempeño del modelo. La exactitud general del 89.9\% es un valor engañoso, inflado por la gran cantidad de eventos normales correctamente identificados. Las métricas más importantes revelan un rendimiento deficiente: una Sensibilidad (Recall) de solo el 26.4\%, lo que indica que el modelo no detectó a más de 3 de cada 4 anomalías reales. A su vez, la Precisión es del 57.1\%, lo que significa que casi la mitad de sus alertas son falsas alarmas. La puntuación F1 resultante, del 36.1\%, confirma que el modelo, en su configuración actual, carece de la capacidad necesaria para una detección fiable de anomalías en este contexto.
+El análisis de las métricas de rendimiento cuantifica el desempeño del modelo. La exactitud general del 89.9\% es un valor engañoso, inflado por la gran cantidad de eventos normales correctamente identificados. Las métricas más importantes revelan un rendimiento bajo: una Sensibilidad (Recall) de solo el 26.4\%, lo que indica que el modelo no detectó a más de 3 de cada 4 anomalías reales. A su vez, la Precisión es del 57.1\%, lo que significa que casi la mitad de sus alertas son falsas alarmas. La puntuación F1 resultante, del 36.1\%, confirma que el modelo, en su configuración actual, carece de la capacidad necesaria para una detección fiable de anomalías en este contexto.
 
 La curva ROC (figura \ref{fig:roc_if}) y su AUC de 0.612 refuerzan esta conclusión, situando al modelo muy por debajo del umbral deseado de 0.8. En conjunto, estos resultados indican que el Isolation Forest, con los hiperparámetros adoptados, no es adecuado para la detección de anomalías en secuencias de eventos en nuestro contexto específico.
 
-En la figura \ref{fig:anomalias_if}, se visualiza la puntuación de anomalía asignada por el modelo a cada evento del conjunto de prueba. Los puntos rojos marcan los eventos cuya puntuación superó este límite, siendo clasificados como anomalías. Este gráfico ilustra cómo el modelo asigna puntuaciones más altas a ciertos eventos, pero la distribución de estas puntuaciones no es lo suficientemente clara como para distinguir   entre comportamientos normales y anómalos.
+En la figura \ref{fig:anomalias_if}, se visualiza la puntuación de anomalía asignada por el modelo a cada evento del conjunto de prueba. Los puntos rojos marcan los eventos cuya puntuación superó este límite, siendo clasificados como anomalías. Este gráfico ilustra cómo el modelo asigna puntuaciones más altas a ciertos eventos, pero la distribución de estas puntuaciones no es lo suficientemente clara como para distinguir entre comportamientos normales y anómalos.
 
 
 \usubsection{Sexta Iteración}
       En esta sexta iteración, luego de evaluar los resultados obtenidos con ambos modelos, se decidió adoptar el LSTM Autoencoder como solución principal para la detección de anomalías en el sistema de monitoreo acústico. Esta elección se fundamentó en su desempeño superior durante la fase de evaluación, donde superó significativamente al modelo Isolation Forest en todas las métricas clave.
 
       Sin embargo, se identificó un riesgo técnico relevante: los hiperparámetros del LSTM Autoencoder fueron adoptados directamente del estudio de \citeauthor{reis2025edge} \citeyear{reis2025edge}, sin una adaptación específica para nuestro conjunto de datos. Esto implica que, aunque el modelo mostró un rendimiento sólido, existe la posibilidad de que ajustes finos en estos parámetros puedan mejorar aún más su eficacia en nuestro contexto particular.
+       \begin{figure}[ht!]
+            \centering
+            \includegraphics[width=0.85\textwidth]{Apendices/hiper_original.png}
+            \caption{Parametros originales.}
+            \label{fig:parametros_originales}
+      \end{figure}
 
-      Reconociendo esta limitación, se revisaron estudios sobre optimización de hiperparámetros, lo que derivó en la implementación de un proceso basado en optimización bayesiana. Esta técnica permitió mejorar los resultados obtenidos inicialmente, al encontrar configuraciones más eficientes con menos evaluaciones del modelo.
+      Estos parametros se visualizan en la figura \ref{fig:parametros_originales}.
+
+      Reconociendo esta limitación, se revisaron estudios sobre optimización de hiperparámetros, lo que derivó en la implementación de un proceso basado en optimización bayesiana. Esta técnica permitió mejorar los resultados obtenidos inicialmente, al encontrar mejores configuraciones más con menos evaluaciones del modelo.
 
       La optimización bayesiana, como se describe en el trabajo de \citeauthor{gardner2014bayesian} \citeyear{gardner2014bayesian}, utiliza modelos probabilísticos (usualmente procesos gaussianos) para estimar el comportamiento de la función objetivo y seleccionar los puntos de evaluación mediante funciones de adquisición que balancean exploración y explotación. Este enfoque es especialmente útil cuando tanto la función objetivo como las restricciones son costosas de evaluar, como ocurre en nuestro sistema de monitoreo acústico.
 
-      La evaluación actualizada del modelo, tras aplicar la optimización bayesiana, mostró mejoras significativas en las métricas de rendimiento. Se generaron nuevas gráficas que ilustran estas mejoras, destacando un aumento en la sensibilidad y la puntuación F1, lo que indica un mejor equilibrio entre la detección de anomalías y la reducción de falsas alarmas.
+      Luego de aplicar este proceso de optimización, se obtuvieron nuevos valores para los hiperparámetros del LSTM Autoencoder, los cuales se detallan a continuación:
+
+      \begin{figure}
+            \centering
+            \includegraphics[width=0.85\textwidth]{Apendices/hiper_optimized.png}
+            \caption{Parametros nuevos.}
+            \label{fig:parametros_nuevos}
+      \end{figure}
 
 
 \usubsubsection{Evaluacion  del LSTM Autoencoder V2}
