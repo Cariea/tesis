@@ -1,8 +1,5 @@
 \titleformat{\chapter}
 {\normalfont\fontsize{12}{15}\centering}{Anexo\thechapter.}{0.3em}{}[]
- 
-
-
 
 \clearpage
 \thispagestyle{empty}
@@ -33,22 +30,552 @@
   \label{fig:isolation-forest-algorithm}
 \end{figure}
 
-% \uextra{Anexo}{Categorías de sonido del modelo YAMNet}
-% \uextra{Anexo}{Categorías de sonido del modelo YAMNet}
-% \begin{figure}[ht!]
-%   \centering
-%   \includegraphics[width=1\textwidth]{Anexos/Clasificación de categorías.pdf}
-%   \caption{Categorías de sonido del modelo YAMNet}
-%   \label{fig:yamnet-categories}
-% \end{figure}
-
 \uextra{Anexo}{Numero de datos de entrenamiento por categoría de sonido}
 \begin{figure}[ht!]
-    \centering
-    \includegraphics[width=0.95\textwidth]{Anexos/yamnet_number_examples.png}
+  \centering
+  \includegraphics[width=0.95\textwidth]{Anexos/yamnet_number_examples.png}
   \caption{Número de datos de entrenamiento por categoría de sonido}
   \label{fig:training-data-per-category}
 \end{figure}
 
-
 \uextra{Anexo}{Categorías de sonido del modelo YAMNet}
+
+\begin{longtable}{c l}
+  \caption{Lista de Índices y Categorías de Sonido}
+  \label{tab:categorias_sonido}                                                 \\
+  \hline
+  \textbf{Índice} & \textbf{Categoría}                                          \\
+  \hline
+  \endfirsthead
+  \multicolumn{2}{c}%
+  {\tablename\ \thetable\ -- Continuación}                                      \\
+  \hline
+  \textbf{Índice} & \textbf{Categoría}                                          \\
+  \hline
+  \endhead
+  \hline \multicolumn{2}{r}{Continuación en la página siguiente}                \\ \hline
+  \endfoot
+  \hline
+  \endlastfoot
+  0               & Hablar                                                      \\
+  1               & Niño hablando; bebe hablando                                \\
+  2               & Conversacion                                                \\
+  3               & Narracion; monologo                                         \\
+  4               & Balbuceo                                                    \\
+  5               & sintetizador de voz                                         \\
+  6               & Vociferar                                                   \\
+  7               & Bramido                                                     \\
+  8               & Alarido                                                     \\
+  9               & Gritar                                                      \\
+  10              & Niños vociferando                                           \\
+  11              & Grito                                                       \\
+  12              & Susurro                                                     \\
+  13              & Risa                                                        \\
+  14              & Bebe riendo                                                 \\
+  15              & Risilla                                                     \\
+  16              & Risa disimulada                                             \\
+  17              & Carcajada                                                   \\
+  18              & Risa moderada                                               \\
+  19              & Llorando; sollozando                                        \\
+  20              & Llanto de bebe; llanto de infante                           \\
+  21              & Gemido                                                      \\
+  22              & Llorar; gemir                                               \\
+  23              & Suspiro                                                     \\
+  24              & Cantando                                                    \\
+  25              & Coro                                                        \\
+  26              & Tiroles                                                     \\
+  27              & Corear                                                      \\
+  28              & Mantra                                                      \\
+  29              & Niños cantando                                              \\
+  30              & canto sintetico                                             \\
+  31              & Golpecitos                                                  \\
+  32              & Tarareo                                                     \\
+  33              & Quejido                                                     \\
+  34              & Gruñido                                                     \\
+  35              & Silbido                                                     \\
+  36              & Respiracion                                                 \\
+  37              & Resuello                                                    \\
+  38              & Ronquidos                                                   \\
+  39              & Resoplido                                                   \\
+  40              & Jadear                                                      \\
+  41              & Bufido                                                      \\
+  42              & Tos                                                         \\
+  43              & Despejar la garganta                                        \\
+  44              & Esturnudo                                                   \\
+  45              & Oler                                                        \\
+  46              & Correr                                                      \\
+  47              & Barajar                                                     \\
+  48              & Caminar; pasos                                              \\
+  49              & Masticar; mordisquear                                       \\
+  50              & Morder                                                      \\
+  51              & Gargarizar                                                  \\
+  52              & Ruido estomacal                                             \\
+  53              & Eructos; eructar                                            \\
+  54              & Hipo                                                        \\
+  55              & Pedo                                                        \\
+  56              & Manos                                                       \\
+  57              & Chasquear los dedos                                         \\
+  58              & Aplaudir                                                    \\
+  59              & Sonidos del corazon; latidos del corazon                    \\
+  60              & Soplo cardiaco                                              \\
+  61              & Animar                                                      \\
+  62              & Ovacion                                                     \\
+  63              & Charla                                                      \\
+  64              & Multitud                                                    \\
+  65              & Alboroto; ruido del habla; balbuceo del habla               \\
+  66              & Niños jugando                                               \\
+  67              & Animal                                                      \\
+  68              & Animales domesticos; mascotas                               \\
+  69              & Perro                                                       \\
+  70              & Ladrar                                                      \\
+  71              & Chillido                                                    \\
+  72              & Aullido                                                     \\
+  73              & Guau-guau                                                   \\
+  74              & Gruñendo                                                    \\
+  75              & Gemido (perro)                                              \\
+  76              & Gato                                                        \\
+  77              & Ronroneo                                                    \\
+  78              & Miau                                                        \\
+  79              & Siseo                                                       \\
+  80              & Chillar                                                     \\
+  81              & Ganado; animales de granja; animales de trabajo             \\
+  82              & Caballo                                                     \\
+  83              & Clip-clop                                                   \\
+  84              & Relincho; Relinchito                                        \\
+  85              & Ganado bovino                                               \\
+  86              & Muu                                                         \\
+  87              & Cencerro                                                    \\
+  88              & Cerdo                                                       \\
+  89              & Oink                                                        \\
+  90              & Cabra                                                       \\
+  91              & Baa (Cabra; Oveja)                                          \\
+  92              & Oveja                                                       \\
+  93              & Ave de corral                                               \\
+  94              & Pollo; gallo                                                \\
+  95              & Cacareo                                                     \\
+  96              & Cacareo; quiquirikii                                        \\
+  97              & Pavo                                                        \\
+  98              & Gluglu                                                      \\
+  99              & Pato                                                        \\
+  100             & Cuac                                                        \\
+  101             & Ganso                                                       \\
+  102             & Graznido                                                    \\
+  103             & Animales Salvajes                                           \\
+  104             & Gatos rugiendo (leones; tigres)                             \\
+  105             & Rugido                                                      \\
+  106             & Pájaro                                                      \\
+  107             & Vocalizacion de pájaros; canto de pájaros; canto de pájaros \\
+  108             & Trino                                                       \\
+  109             & Graznido                                                    \\
+  110             & Paloma; tórtola                                             \\
+  111             & Coo                                                         \\
+  112             & Cuervo                                                      \\
+  113             & Caw                                                         \\
+  114             & Búho                                                        \\
+  115             & Hoot                                                        \\
+  116             & Vuelo de pájaro; batir de alas                              \\
+  117             & Caninos; perros; lobos                                      \\
+  118             & Roedores; ratas; ratones                                    \\
+  119             & Raton                                                       \\
+  120             & Golpeteo                                                    \\
+  121             & Insecto                                                     \\
+  122             & Grillo                                                      \\
+  123             & Mosquito                                                    \\
+  124             & Mosca; Mosca doméstica                                      \\
+  125             & Zumbido                                                     \\
+  126             & Abeja; avispa; etc.                                         \\
+  127             & Rana                                                        \\
+  128             & Croar                                                       \\
+  129             & Serpiente                                                   \\
+  130             & Cascabel                                                    \\
+  131             & Vocalizacion de ballenas                                    \\
+  132             & Música                                                      \\
+  133             & Instrumento musical                                         \\
+  134             & Instrumento de cuerda pulsada                               \\
+  135             & Guitarra                                                    \\
+  136             & Guitarra eléctrica                                          \\
+  137             & Bajo                                                        \\
+  138             & Guitarra acústica                                           \\
+  139             & Guitarra de acero; guitarra slide                           \\
+  140             & Tapping (técnica de guitarra)                               \\
+  141             & Rasguear                                                    \\
+  142             & Banjo                                                       \\
+  143             & Sitar                                                       \\
+  144             & Mandolin                                                    \\
+  145             & Zither                                                      \\
+  146             & Ukulele                                                     \\
+  147             & Teclado (musical)                                           \\
+  148             & Piano                                                       \\
+  149             & Piano eléctrico                                             \\
+  150             & Órgano                                                      \\
+  151             & Órgano eléctrico                                            \\
+  152             & Órgano de hammond                                           \\
+  153             & Sintetizador                                                \\
+  154             & Sampler                                                     \\
+  155             & Clavecin                                                    \\
+  156             & Percusión                                                   \\
+  157             & Batería                                                     \\
+  158             & Caja de ritmos                                              \\
+  159             & Tambor                                                      \\
+  160             & Caja (instrumento)                                          \\
+  161             & Rimshot                                                     \\
+  162             & Redoble de tambores                                         \\
+  163             & Bombo                                                       \\
+  164             & Tímpanos                                                    \\
+  165             & Tabla                                                       \\
+  166             & Platillo                                                    \\
+  167             & Hi-hat                                                      \\
+  168             & Bloque de madera                                            \\
+  169             & Pandereta                                                   \\
+  170             & Sonajero (instrumento)                                      \\
+  171             & Maraca                                                      \\
+  172             & Gong                                                        \\
+  173             & Campanas tubulares                                          \\
+  174             & Percusión de mazo                                           \\
+  175             & Marimba; xilófono                                           \\
+  176             & Campanas                                                    \\
+  177             & Vibrófono                                                   \\
+  178             & Cacerola                                                    \\
+  179             & Orquesta                                                    \\
+  180             & instrumento de latín                                        \\
+  181             & Corno francés                                               \\
+  182             & Trompeta                                                    \\
+  183             & Trombón                                                     \\
+  184             & Instrumento de cuerda frotada                               \\
+  185             & Sección de cuerdas                                          \\
+  186             & Violín; violín tradicional                                  \\
+  187             & Pizzicato                                                   \\
+  188             & Violonchelo                                                 \\
+  189             & Contrabajo                                                  \\
+  190             & Instrumento de viento; instrumento de viento de madera      \\
+  191             & Flauta                                                      \\
+  192             & Saxofón                                                     \\
+  193             & Clarinete                                                   \\
+  194             & Arpa                                                        \\
+  195             & Campana                                                     \\
+  196             & Campana de la iglesia                                       \\
+  197             & Cascabel                                                    \\
+  198             & Timbre de bicicleta                                         \\
+  199             & Diapasón                                                    \\
+  200             & Campanilla                                                  \\
+  201             & Carillón de viento                                          \\
+  202             & Cambio de repique (campanología)                            \\
+  203             & Armónica                                                    \\
+  204             & Acordeón                                                    \\
+  205             & Gaita                                                       \\
+  206             & Didyeridú                                                   \\
+  207             & Shofar                                                      \\
+  208             & Theremin                                                    \\
+  209             & Cuenco tibetano                                             \\
+  210             & Scratching (movimiento de discos)                           \\
+  211             & Música pop                                                  \\
+  212             & Música hip hop                                              \\
+  213             & Beatboxing                                                  \\
+  214             & Música rock                                                 \\
+  215             & Heavy metal                                                 \\
+  216             & Punk rock                                                   \\
+  217             & Grunge                                                      \\
+  218             & Rock progresivo                                             \\
+  219             & Rock and roll                                               \\
+  220             & Rock psicodélico                                            \\
+  221             & ritmo y blues                                               \\
+  222             & música soul                                                 \\
+  223             & Reggae                                                      \\
+  224             & País                                                        \\
+  225             & Música swing                                                \\
+  226             & pasto azul                                                  \\
+  227             & Canguelo                                                    \\
+  228             & Música folklórica                                           \\
+  229             & música del medio oriente                                    \\
+  230             & Jazz                                                        \\
+  231             & Disco                                                       \\
+  232             & Música clásica                                              \\
+  233             & ópera                                                       \\
+  234             & música electrónica                                          \\
+  235             & música house                                                \\
+  236             & tecno                                                       \\
+  237             & dubstep                                                     \\
+  238             & batería y bajo                                              \\
+  239             & electrónica                                                 \\
+  240             & música electrónica de baile                                 \\
+  241             & música ambiental                                            \\
+  242             & música trance                                               \\
+  243             & música de latinoamérica                                     \\
+  244             & música salsa                                                \\
+  245             & Flamenco                                                    \\
+  246             & Blues                                                       \\
+  247             & música para niños                                           \\
+  248             & Música de la nueva era                                      \\
+  249             & Música vocal                                                \\
+  250             & a capella                                                   \\
+  251             & Música de África                                            \\
+  252             & afrobeat                                                    \\
+  253             & música cristiana                                            \\
+  254             & música gospel                                               \\
+  255             & Música de Asia                                              \\
+  256             & música carnática                                            \\
+  257             & Música de Bollywood                                         \\
+  258             & ska                                                         \\
+  259             & música tradicional                                          \\
+  260             & música independiente                                        \\
+  261             & Canción                                                     \\
+  262             & Música de fondo                                             \\
+  263             & tema musical                                                \\
+  264             & Jingle (música)                                             \\
+  265             & Música de banda sonora                                      \\
+  266             & Canción de cuna                                             \\
+  267             & música de videojuegos                                       \\
+  268             & música navideña                                             \\
+  269             & música de baile                                             \\
+  270             & música de boda                                              \\
+  271             & música feliz                                                \\
+  272             & música triste                                               \\
+  273             & música tierna                                               \\
+  274             & música emocionante                                          \\
+  275             & música enojada                                              \\
+  276             & música aterradora                                           \\
+  277             & Viento                                                      \\
+  278             & hojas susurrantes                                           \\
+  279             & Ruido del viento (micrófono)                                \\
+  280             & Tormenta                                                    \\
+  281             & Trueno                                                      \\
+  282             & Agua                                                        \\
+  283             & Lluvia                                                      \\
+  284             & Gota de agua                                                \\
+  285             & Lluvia en superficie                                        \\
+  286             & Arroyo                                                      \\
+  287             & Cascada                                                     \\
+  288             & Océano                                                      \\
+  289             & olas; surf                                                  \\
+  290             & Vapor                                                       \\
+  291             & Gluglu                                                      \\
+  292             & Fuego                                                       \\
+  293             & Crepitar                                                    \\
+  294             & Vehículo                                                    \\
+  295             & Barco; Vehículo acuático                                    \\
+  296             & Velero; velero                                              \\
+  297             & Bote de remos; canoa; kayak                                 \\
+  298             & Lancha motora; lancha rápida                                \\
+  299             & Barco                                                       \\
+  300             & Vehículo de motor (carretera)                               \\
+  301             & Auto                                                        \\
+  302             & Bocina de vehículo; bocina de coche; bocina                 \\
+  303             & Sonar                                                       \\
+  304             & alarma de coche                                             \\
+  305             & elevalunas eléctricos; elevalunas eléctricos                \\
+  306             & derrapando                                                  \\
+  307             & Chirrido de neumáticos                                      \\
+  308             & Coche pasando por                                           \\
+  309             & Coche de carreras; carreras de autos.                       \\
+  310             & Camión                                                      \\
+  311             & Freno de aire                                               \\
+  312             & Bocina de aire; bocina de camión                            \\
+  313             & Pitidos de marcha atrás                                     \\
+  314             & Camión de helados; furgoneta de helados.                    \\
+  315             & Autobús                                                     \\
+  316             & vehículo de emergencia                                      \\
+  317             & Coche de policía (sirena)                                   \\
+  318             & Ambulancia (sirena)                                         \\
+  319             & Camión de bomberos; camión de bomberos (sirena)             \\
+  320             & Motocicleta                                                 \\
+  321             & Ruido del tráfico; ruido de la carretera.                   \\
+  322             & Transporte ferroviario                                      \\
+  323             & Tren                                                        \\
+  324             & silbato de tren                                             \\
+  325             & Bocina de tren                                              \\
+  326             & Vagón de ferrocarril; vagón de tren.                        \\
+  327             & Ruedas de tren chirriando                                   \\
+  328             & Metro; metro; metro                                         \\
+  329             & Aeronave                                                    \\
+  330             & motor de avión                                              \\
+  331             & motor a reacción                                            \\
+  332             & Hélice                                                      \\
+  333             & Helicóptero                                                 \\
+  334             & Avión de ala fija; avión.                                   \\
+  335             & Bicicleta                                                   \\
+  336             & Monopatín                                                   \\
+  337             & Motor                                                       \\
+  338             & Motor ligero (alta frecuencia)                              \\
+  339             & Taladro dental; taladro de dentista.                        \\
+  340             & Cortacésped                                                 \\
+  341             & motosierra                                                  \\
+  342             & Motor medio (frecuencia media)                              \\
+  343             & Motor pesado (baja frecuencia)                              \\
+  344             & Golpeteo del motor                                          \\
+  345             & Arranque del motor                                          \\
+  346             & De marcha en vacío                                          \\
+  347             & Acelerando; acelerando; vroom                               \\
+  348             & Puerta                                                      \\
+  349             & Timbre de la puerta                                         \\
+  350             & ding dong                                                   \\
+  351             & Puerta corrediza                                            \\
+  352             & Golpe                                                       \\
+  353             & Golpear                                                     \\
+  354             & Grifo                                                       \\
+  355             & Chirrido                                                    \\
+  356             & Armario abierto o cerrado                                   \\
+  357             & Cajón abierto o cerrado                                     \\
+  358             & Platos; ollas y sartenes                                    \\
+  359             & cubiertos; cubiertos                                        \\
+  360             & Picar (comida)                                              \\
+  361             & Freír (comida)                                              \\
+  362             & Microondas                                                  \\
+  363             & Licuadora                                                   \\
+  364             & Grifo de agua; grifo                                        \\
+  365             & Fregadero (llenado o lavado)                                \\
+  366             & Bañera (llenado o lavado)                                   \\
+  367             & Secador de pelo                                             \\
+  368             & Descarga del inodoro                                        \\
+  369             & Cepillo de dientes                                          \\
+  370             & cepillo de dientes eléctrico                                \\
+  371             & Aspiradora                                                  \\
+  372             & Cremallera (ropa)                                           \\
+  373             & Llaves tintineando                                          \\
+  374             & Moneda (cayendo)                                            \\
+  375             & Tijeras                                                     \\
+  376             & Afeitadora eléctrica; afeitadora eléctrica.                 \\
+  377             & barajar cartas                                              \\
+  378             & Mecanografía                                                \\
+  379             & Máquina de escribir                                         \\
+  380             & teclado de computadora                                      \\
+  381             & Escribiendo                                                 \\
+  382             & Alarma                                                      \\
+  383             & Teléfono                                                    \\
+  384             & Suena el timbre del teléfono                                \\
+  385             & Tono de llamada                                             \\
+  386             & Marcación telefónica; DTMF                                  \\
+  387             & Tono de marcación                                           \\
+  388             & señal de ocupado                                            \\
+  389             & Despertador                                                 \\
+  390             & Sirena                                                      \\
+  391             & sirena de defensa civil                                     \\
+  392             & Zumbador                                                    \\
+  393             & Detector de humo; alarma de humo.                           \\
+  394             & Alarma de incendios                                         \\
+  395             & Sirena                                                      \\
+  396             & Silbar                                                      \\
+  397             & silbato de vapor                                            \\
+  398             & Mecanismos                                                  \\
+  399             & Trinquete; trinquete                                        \\
+  400             & Reloj                                                       \\
+  401             & Garrapata                                                   \\
+  402             & tic-tac                                                     \\
+  403             & Engranajes                                                  \\
+  404             & poleas                                                      \\
+  405             & Máquina de coser                                            \\
+  406             & ventilador mecánico                                         \\
+  407             & Aire acondicionado                                          \\
+  408             & Caja registradora                                           \\
+  409             & Impresora                                                   \\
+  410             & Cámara                                                      \\
+  411             & Cámara réflex de un solo objetivo                           \\
+  412             & Herramientas                                                \\
+  413             & Martillo                                                    \\
+  414             & Martillo neumático                                          \\
+  415             & Aserradura                                                  \\
+  416             & Limar (escofina)                                            \\
+  417             & Lijado                                                      \\
+  418             & Herramienta eléctrica                                       \\
+  419             & Perforar                                                    \\
+  420             & Explosión                                                   \\
+  421             & Disparo; disparos                                           \\
+  422             & Ametralladora                                               \\
+  423             & Descarga cerrada                                            \\
+  424             & Fuego de artillería                                         \\
+  425             & pistola de gorra                                            \\
+  426             & Fuegos artificiales                                         \\
+  427             & Petardo                                                     \\
+  428             & Explosión; estallido                                        \\
+  429             & Chin; tintineo                                              \\
+  430             & Líquido                                                     \\
+  431             & Salpicar; salpicar                                          \\
+  432             & Pegar                                                       \\
+  433             & Chapotear                                                   \\
+  434             & Derramar                                                    \\
+  435             & Goteo; regateo                                              \\
+  436             & Llenar (con líquido)                                        \\
+  437             & Erupción                                                    \\
+  438             & Auge                                                        \\
+  439             & Madera                                                      \\
+  440             & Cortar                                                      \\
+  441             & Astilla                                                     \\
+  442             & Grieta                                                      \\
+  443             & Vaso                                                        \\
+  444             & Romper                                                      \\
+  445             & Goteo                                                       \\
+  446             & Chorro                                                      \\
+  447             & Pulverización                                               \\
+  448             & Bomba (líquido)                                             \\
+  449             & Remover                                                     \\
+  450             & Hirviendo                                                   \\
+  451             & Sonar                                                       \\
+  452             & Flecha                                                      \\
+  453             & Whoosh; swoosh; silbido                                     \\
+  454             & Golpe; golpe                                                \\
+  455             & Tonk                                                        \\
+  456             & sintonizador electrónico                                    \\
+  457             & Unidad de efectos                                           \\
+  458             & efecto coro                                                 \\
+  459             & rebote de baloncesto                                        \\
+  460             & Estallido                                                   \\
+  461             & Bofetada; bofetada                                          \\
+  462             & Golpe; golpe                                                \\
+  463             & Aplastar; chocar                                            \\
+  464             & Rotura                                                      \\
+  465             & Fuerte                                                      \\
+  466             & Látigo                                                      \\
+  467             & Solapa                                                      \\
+  468             & Rascar                                                      \\
+  469             & Raspar                                                      \\
+  470             & Frotar                                                      \\
+  471             & Rollo                                                       \\
+  472             & Aplastante                                                  \\
+  473             & Arrugando; arrugando                                        \\
+  474             & lagrimeo                                                    \\
+  475             & Bip; bip                                                    \\
+  476             & Silbido                                                     \\
+  477             & Timbre                                                      \\
+  478             & Sonido metálico                                             \\
+  479             & Chillido                                                    \\
+  480             & Crujir                                                      \\
+  481             & Crujido                                                     \\
+  482             & Zumbido                                                     \\
+  483             & Estrepito                                                   \\
+  484             & Chisporrotear                                               \\
+  485             & Haciendo clic                                               \\
+  486             & Clic-clac                                                   \\
+  487             & Retumbar                                                    \\
+  488             & Plaf                                                        \\
+  489             & Jingle; tintineo                                            \\
+  490             & Tararear                                                    \\
+  491             & Gusto                                                       \\
+  492             & boing                                                       \\
+  493             & Crujido                                                     \\
+  494             & Silencio                                                    \\
+  495             & onda sinusoidal                                             \\
+  496             & Armónico                                                    \\
+  497             & tono de chirrido                                            \\
+  498             & efecto de sonido                                            \\
+  499             & Legumbres                                                   \\
+  500             & Interior; habitacion pequeña.                               \\
+  501             & Interior; gran salon o recibidor.                           \\
+  502             & Interior; espacio publico.                                  \\
+  503             & Exterior; urbano o artificial                               \\
+  504             & Exterior; rural o natural                                   \\
+  505             & Reverberacion                                               \\
+  506             & Eco                                                         \\
+  507             & Ruido                                                       \\
+  508             & Ruido ambiental                                             \\
+  509             & Estatico                                                    \\
+  510             & Zumbido de red                                              \\
+  511             & Distorsion                                                  \\
+  512             & efecto local                                                \\
+  513             & Cacofonia                                                   \\
+  514             & ruido blanco                                                \\
+  515             & ruido rosa                                                  \\
+  516             & Palpitante                                                  \\
+  517             & Vibracion                                                   \\
+  518             & Television                                                  \\
+  519             & Radio                                                       \\
+  520             & Grabacion de campo                                          \\
+\end{longtable}
