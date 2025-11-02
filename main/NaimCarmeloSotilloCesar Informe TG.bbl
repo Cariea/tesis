@@ -1269,36 +1269,6 @@ Upton, E.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
-Vaswani%
-\ \protect \BOthers {.}}{%
-Vaswani%
-\ \protect \BOthers {.}}{%
-{\protect \APACyear {2017}}%
-}]{%
-vaswani2017attention}
-\APACinsertmetastar {%
-vaswani2017attention}%
-\begin{APACrefauthors}%
-Vaswani, A.%
-, Shazeer, N.%
-, Parmar, N.%
-, Uszkoreit, J.%
-, Jones, L.%
-, Gomez, A\BPBI N.%
-\BDBL {}Polosukhin, I.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{2017}{}{}.
-\newblock
-{\BBOQ}\APACrefatitle {Attention is all you need} {Attention is all you
-  need}.{\BBCQ}
-\newblock
-\APACjournalVolNumPages{Advances in neural information processing
-  systems}{30}{}{}.
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
 Yuill%
 \ \BBA {} Halpin%
 }{%
