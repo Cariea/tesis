@@ -1,6 +1,6 @@
 \usection{Metodología de Desarrollo Utilizada}
 
-Dado que al inicio del proyecto no se contaba con una definición completa de los requisitos, se necesitaba una metodología que fuera flexible y evolutiva. La elección del modelo de desarrollo se basó en la necesidad de gestionar activamente los riesgos técnicos, permitir una mejora continua a través de iteraciones y adaptar el sistema a los desafíos que surgieran durante la implementación.
+El desarrollo de un sistema de detección de monitoreo acústico que envie alertas de emergencia presenta desafíos técnicos inherentes que dificultan la definición precisa de los requisitos de implementación desde el inicio. Entre estos desafíos se encuentran, la incertidumbre sobre qué técnicas de procesamiento de audio y algoritmos de aprendizaje automático serían más efectivos para los escenarios identificados, el desconocimiento sobre las capacidades reales de los dispositivos embebidos para ejecutar procesamiento de señales y algoritmos de IA en tiempo real y la necesidad de validar el desempeño de diferentes enfoques técnicos antes de comprometer la arquitectura completa. Estos factores hacían imprescindible un enfoque iterativo con validación experimental en cada etapa del desarrollo.
 
 \begin{table}[ht]
   \doublespacing
@@ -13,18 +13,19 @@ Dado que al inicio del proyecto no se contaba con una definición completa de lo
     Espiral      & Sí       & Sí        & Sí                 & Sí                          \\
     Cascada      & No       & No        & No                 & No                          \\
     Incremental  & No       & Sí        & No                 & Sí                          \\
-    Scrum        & Sí       & Sí        & Si                 & Sí                          \\
+    Scrum        & Sí       & Sí        & No                 & Sí                          \\
     \hline
   \end{tabular}
   \caption{Cuadro Comparativo de metodologías}
   \label{tab:comparative-methodologies}
 \end{table}
 
-Esto implicaba ciclos de retroalimentación constantes, validación continua y refinamiento iterativo del sistema, características esenciales para alcanzar una solución en un contexto tan dinámico. La elección de una metodología de desarrollo adaptable permitió no solo enfrentar la incertidumbre técnica, sino también ajustar oportunamente el diseño según los aprendizajes obtenidos en cada etapa del proceso. Con esto en mente comparamos las distintas metodologías basándonos en esas necesidades en la Tabla \ref{tab:comparative-methodologies}.
+Dada esta incertidumbre técnica, se necesitaba una metodología flexible y evolutiva, capaz de gestionar activamente los riesgos de implementación y permitir el refinamiento continuo de la solución mediante ciclos de retroalimentación. Para seleccionar la metodología más adecuada, se compararon diferentes enfoques en función de cuatro características clave: flexibilidad, capacidad evolutiva, gestión de riesgos e iteración con mejora continua, como se muestra en la Tabla \ref{tab:comparative-methodologies}.
 
-Aunque metodologías ágiles como Scrum también cumplen con estos criterios, se optó por el modelo Espiral debido a su énfasis explícito en el 'Análisis de Riesgos' como una fase formal en cada ciclo. Dada la incertidumbre técnica del proyecto, esta característica fue considerada fundamental para mitigar de manera proactiva cualquier desafío técnico o de gestión que pudiera surgir.
+% Dado que al inicio del proyecto no se contaba con una definición completa de los requisitos, se necesitaba una metodología que fuera flexible y evolutiva. La elección del modelo de desarrollo se basó en la necesidad de gestionar activamente los riesgos técnicos, permitir una mejora continua a través de iteraciones y adaptar el sistema a los desafíos que surgieran durante la implementación.
+Se optó por el Modelo Espiral debido a su énfasis explícito en el análisis de riesgos como una fase formal y estructurada en cada ciclo. Dada la naturaleza exploratoria del proyecto y los múltiples riesgos técnicos identificados, esta característica fue considerada fundamental para mitigar de manera proactiva cualquier desafío que pudiera surgir durante la implementación.
 
-Según lo propuesto por \citeauthor{boehm_spiral_1988} \citeyear{boehm_spiral_1988}, es un enfoque iterativo y flexible que combina elementos del desarrollo incremental y el prototipado, permitiendo gestionar riesgos y adaptar el sistema a medida que avanza el proyecto. Este modelo ha sido ampliamente reconocido por su capacidad para gestionar el desarrollo de sistemas complejos, ya que combina la naturaleza iterativa del prototipado con la estructura sistemática del modelo en cascada \cite[p. 39]{pressman_ingenieria_2010}. En cada iteración, se pueden realizar ajustes en el plan del proyecto, permitiendo adaptar el software a las necesidades emergentes y reducir riesgos antes de que se conviertan en problemas críticos \cite[p. 40]{pressman_ingenieria_2010}.
+El Modelo Espiral, propuesto por \citeauthor{boehm_spiral_1988} \citeyear{boehm_spiral_1988}, es un enfoque iterativo que combina elementos del desarrollo incremental y el prototipado, permitiendo gestionar riesgos y adaptar el sistema a medida que avanza el proyecto. Este modelo ha sido ampliamente reconocido por su capacidad para gestionar el desarrollo de sistemas complejos, ya que combina la naturaleza iterativa del prototipado con la estructura sistemática del modelo en cascada \cite[p. 39]{pressman_ingenieria_2010}. En cada iteración se pueden realizar ajustes en el plan del proyecto, permitiendo adaptar el software a las necesidades emergentes y reducir riesgos antes de que se conviertan en problemas críticos \cite[p. 40]{pressman_ingenieria_2010}.
 
 Según \citeauthor{boehm_spiral_1988} \citeyear{boehm_spiral_1988}, el Modelo Espiral se caracteriza por su estructura cíclica, en la que cada iteración incluye cuatro fases principales:
 

@@ -32,7 +32,7 @@ En función del analisis realizado, se procedio a definir los requerimientos del
 \begin{enumerate}
       \item El sistema debe procesar y analizar los datos de audio en el borde (edge) sin almacenar las grabaciones de audio bruto ni información personal identificable.
       \item El sistema debe ser capaz de integrar de manera flexible nuevos dispositivos de procesamiento (hardware) y/o de captura (micrófonos).
-      \item El sistema debe contar con una característica de inicio automático después de cualquier corte de energía o reinicio forzado.
+      \item El sistema debe contar con una característica de inicio automático después de cualquier corte de energía o reinicio.
       \item El sistema debe tener un diseño modular que simplifique y agilice las tareas de mantenimiento y actualización de sus componentes.
 \end{enumerate}
 
@@ -43,7 +43,7 @@ En función del analisis realizado, se procedio a definir los requerimientos del
       \begin{figure}[ht!]
             \centering
             \includegraphics[width=0.65\textwidth]{Arquitectura/I1.png}
-            \caption{Prototipo basado en ESP32 y detección de intensidad de sonido}
+            \caption{Prototipo  con ESP32 y detección de intensidad de sonido}
             \label{fig:prototipo1}
       \end{figure}
 
@@ -64,7 +64,7 @@ Con estas limitaciones identificadas, se decidió avanzar hacia una segunda iter
       \begin{figure}[ht!]
             \centering
             \includegraphics[width=0.85\textwidth]{Arquitectura/I2.png}
-            \caption{Diseño de prototipo de esp32 con micrófono de señales de audio y prophet}
+            \caption{Prototipo con ESP32, micrófono de señales de audio y prophet}
             \label{fig:prototipo2}
       \end{figure}
 
@@ -77,12 +77,11 @@ Con estas limitaciones identificadas, se decidió avanzar hacia una segunda iter
 
 \usubsection{Tercera iteración}
 
-
-El objetivo de esta tercera iteración fue abordar la necesidad de la caracterización semántica del sonido que se identificó como limitación crítica en las etapas previas. Inicialmente, la estrategia se centró en el desarrollo de un modelo de clasificación personalizado a partir de un conjunto de datos propio. El plan consistía en capturar y etiquetar una colección de sonidos de emergencia para entrenar una red neuronal diseñada específicamente para los escenarios de interés del proyecto.El principal riesgo metodológico de esta etapa fue la viabilidad de la adquisición de datos. Se asumió el riesgo de que la construcción de un dataset lo suficientemente vasto y diverso para garantizar la robustez y generalización del clasificador resultara inviable para los recursos del proyecto. A pesar de este riesgo, el diseño de hardware de Edge Computing se mantuvo para el desarrollo, enfocado en el procesamiento local de las señales.
+El objetivo de esta tercera iteración fue abordar la necesidad de clasificar los tipos de sonidos detectados, limitación identificada desde la primera iteración. Inicialmente, la estrategia se centró en el desarrollo de un modelo de clasificación personalizado a partir de un conjunto de datos propio. El plan consistía en capturar y etiquetar una colección de sonidos de emergencia para entrenar una red neuronal diseñada específicamente para los escenarios de interés del proyecto. El principal riesgo metodológico de esta etapa fue la viabilidad de la adquisición de datos. Se asumió el riesgo de que la construcción de un dataset lo suficientemente vasto y diverso para garantizar la robustez y generalización del clasificador resultara inviable para los recursos del proyecto. A pesar de este riesgo, el diseño de hardware de Edge Computing se mantuvo para el desarrollo, enfocado en el procesamiento local de las señales.
 
 Sin embargo, a medida que avanzaba el desarrollo, la investigación sobre la robustez de los clasificadores acústicos reveló la verdadera magnitud del desafío. Se hizo evidente que para que un modelo pudiera generalizar y operar de manera fiable, necesitaría ser entrenado con un volumen de datos masivo. La literatura académica confirma que la efectividad de los modelos de aprendizaje profundo para audio depende directamente de la escala y diversidad de los datos, requiriendo a menudo millones de ejemplos para capturar la enorme variabilidad de los sonidos del mundo real \cite{gemmeke2017audio}. La tarea de construir un dataset de esa magnitud, confirmando el riesgo inicial, era logísticamente inviable para el proyecto.
 
-Fue precisamente durante esta etapa de investigación que se identificó YAMNet, una arquitectura de clasificación acústica ya pre-entrenada por Google. Este modelo fue entrenado sobre el corpus AudioSet, un extenso conjunto de datos que, como describen \citeauthor{gemmeke2017audio} \citeyear{gemmeke2017audio}, contiene más de dos millones de clips de audio de $10$ segundos etiquetados a partir de una ontología de $527$ clases de eventos sonoros, éase el anexo C. El descubrimiento de YAMNet ofreció una solución directa al problema de la adquisición de datos a gran escala que se había identificado como el principal obstáculo. Ante esta situación, continuar con el desarrollo de un modelo propio habría significado un esfuerzo redundante. Por lo tanto, se tomó la decisión de descartar el enfoque personalizado y pivotar hacia la integración de YAMNet.
+Fue precisamente durante esta etapa de investigación que se identificó YAMNet, una arquitectura de clasificación acústica ya pre-entrenada por Google. Este modelo fue entrenado sobre el corpus AudioSet, un extenso conjunto de datos que, como describen \citeauthor{gemmeke2017audio} \citeyear{gemmeke2017audio}, contiene más de dos millones de clips de audio de $10$ segundos etiquetados a partir de una ontología de $527$ clases de eventos sonoros, éase el anexo C. El descubrimiento de YAMNet ofreció una solución directa al problema de la adquisición de datos a gran escala que se había identificado como el principal obstáculo. Ante esta situación, continuar con el desarrollo de un modelo propio habría significado un esfuerzo redundante. Por lo tanto, se tomó la decisión de descartar el enfoque personalizado y pivotar hacia la integraciónde YAMNet.
 
 En el anexo C una figura ilustra el volumen y diversidad del dataset AudioSet utilizado para entrenar YAMNet.
 
@@ -103,7 +102,7 @@ Esta medida representa una aplicación práctica del paradigma de aprendizaje po
 
       No obstante, Si bien YAMNet ofrecía una detección puntual efectiva de eventos sonoros, surgió la necesidad de dotar a dichos eventos de un significado secuencial y contextual. Para atender esta limitación, se optó por integrar un módulo de modelado probabilístico basado en cadenas de Márkov, con el fin de analizar la secuencia temporal de eventos y determinar si un patrón resultaba coherente con el comportamiento normal del entorno o, por el contrario, representaba una posible anomalía.
 
-      La decisión de emplear cadenas de Márkov estuvo fundamentada en dos aspectos principales: por un lado, en la existencia de estudios previos donde este tipo de modelos han sido utilizados para la detección de anomalías en secuencias temporales, destacando por su capacidad de representar probabilísticamente las transiciones entre estados inmediatos. En particular, investigaciones como la de \citeauthor{boldt2020anomaly} \citeyear{boldt2020anomaly}, muestran cómo las cadenas de Márkov permiten identificar patrones irregulares en secuencias de eventos al modelar las transiciones esperadas y comparar estas con la realidad observada. Por otro lado, la elección también estuvo motivada por la recomendación del profesor de estadistica Omar Castro, quien sugirió explorar este enfoque como un primer acercamiento al modelado secuencial de los eventos detectados.
+      La decisión de emplear cadenas de Márkov estuvo fundamentada en dos aspectos principales: por un lado, en la existencia de estudios previos donde este tipo de modelos han sido utilizados para la detección de anomalías en secuencias temporales, destacando por su capacidad de representar probabilísticamente las transiciones entre estados inmediatos. En particular, investigaciones como la de \citeauthor{boldt2020anomaly} \citeyear{boldt2020anomaly}, muestran cómo las cadenas de Márkov permiten identificar patrones irregulares en secuencias de eventos al modelar las transiciones esperadas y comparar estas con la realidad observada. Por otro lado, la elección también estuvo motivada por la recomendación del profesor de estadística Omar Castro, quien sugirió explorar este enfoque como un primer acercamiento al modelado secuencial de los eventos detectados.
 
       No obstante, también surgieron limitaciones importantes. Si bien éramos capaces de detectar situaciones potencialmente peligrosas a partir de categorías específicas identificadas por YAMNet, el intento de modelar secuencias completas de eventos mediante cadenas de Márkov resultó ineficaz, ya que se quedaba saltando en ciclos infinitos de cambios de estado, por ejemplo (luego de Habla el siguiente evento mas probable era Habla). Estas cadenas se limitan a representar transiciones entre estados inmediatos, es decir, predicen solo el evento más probable siguiente, sin tener en cuenta el historial completo de eventos previos.
 
@@ -114,13 +113,13 @@ Esta medida representa una aplicación práctica del paradigma de aprendizaje po
 
 \usubsection{Quinta Iteración}
 
-      En esta quinta iteración, nos enfocamos en el desarrollo de una solución más robusta para la detección de anomalías, como respuesta a las limitaciones encontradas con las cadenas de Markov. Para ello, basamos nuestro enfoque en el trabajo de \citeauthor{reis2025edge} \citeyear{reis2025edge}, cuya investigación se centra en arquitecturas de Inteligencia Artificial en el borde (Edge AI) para el monitoreo en tiempo real. Específicamente, su estudio valida el uso de dos tecnologías que adoptamos: Isolation Forest (IF), un modelo para la detección de eventos anomalos basado en arboles, y un Long Short-Term Memory Autoencoder (LSTM), una red neuronal para el análisis de patrones secuenciales complejos.
+      En esta quinta iteración, nos enfocamos en el desarrollo de una solución más robusta para la detección de anomalías, como respuesta a las limitaciones encontradas con las cadenas de Markov. Para ello, basamos nuestro enfoque en el trabajo de \citeauthor{reis2025edge} \citeyear{reis2025edge}, cuya investigación se centra en arquitecturas de Inteligencia Artificial en el borde (Edge AI) para el monitoreo en tiempo real. Específicamente, su estudio valida el uso de dos tecnologías que adoptamos: Isolation Forest (IF), un modelo para la detección de eventos anomalos basado en árboles, y un (LSTM) Autoencoder, una red neuronal para el análisis de patrones secuenciales complejos.
 
       Para la implementación de estos modelos en nuestro sistema, se replicaron las configuraciones de hiperparámetros validadas en dicho estudio para asegurar el rendimiento en la Raspberry Pi.
 
-      En el caso del Isolation Forest, adoptamos los hiperparámetros del estudio, configurando el modelo con 100 árboles ($n_estimators$) y un parámetro de contaminación del 3\%. Este último valor asume una proporción esperada de anomalías en nuestros datos, alineándose con los escenarios simulados en la investigación de referencia, Vease en la figura \ref{fig:isolation-forest-algorithm}
+      En el caso del Isolation Forest, adoptamos los hiperparámetros del estudio, configurando el modelo con 100 árboles ($n_estimators$) y un parámetro de contaminación del 3\%. Este último valor asume una proporción esperada de anomalías en nuestros datos, alineándose con los escenarios simulados en la investigación de referencia, Véase en la figura \ref{fig:isolation-forest-algorithm}
 
-      El segundo modelo implementado es un LSTM Autoencoder, una arquitectura de red neuronal no supervisada especialmente eficaz para la detección de anomalías en datos secuenciales \cite{malhotra2015long}. Su objetivo es aprender una representación comprimida de los patrones ``normales'' presentes en los datos de entrenamiento para luego identificar desviaciones significativas. De igual manera, se adoptaron los hiperparámetros recomendados por \citeauthor{reis2025edge} \citeyear{reis2025edge}, que incluyen un tamaño de lote de 32 y 50 épocas de entrenamiento. La arquitectura específica del modelo consta de 3 capas LSTM en el codificador y 3 capas LSTM en el decodificador, con tamaños de capa decrecientes de 32, 16 y 8 unidades respectivamente. y activacion del ReLu para ajustar la tasa de aprendizaje y evitar el sobreajuste.
+      El segundo modelo implementado es un LSTM Autoencoder, una arquitectura de red neuronal no supervisada especialmente eficaz para la detección de anomalías en datos secuenciales \cite{malhotra2015long}. Su objetivo es aprender una representación comprimida de los patrones ``normales'' presentes en los datos de entrenamiento para luego identificar desviaciones significativas. De igual manera, se adoptaron los hiperparámetros recomendados por \citeauthor{reis2025edge} \citeyear{reis2025edge}, que incluyen un tamaño de lote de 32 y 50 épocas de entrenamiento. La arquitectura específica del modelo consta de 3 capas LSTM en el codificador y 3 capas LSTM en el decodificador, con tamaños de capa decrecientes de 32, 16 y 8 unidades respectivamente. y activación de ReLU para ajustar la tasa de aprendizaje y evitar el sobreajuste.
       Para el desarrollo y aplicación del modelo, se adoptó un enfoque metodológico inspirado en el trabajo de \citeauthor{reis2025edge} \citeyear{reis2025edge}, el cual se estructuró en un proceso de tres etapas: preparación de los datos, construcción y entrenamiento de la arquitectura, y definición del mecanismo de detección.
 
       \begin{enumerate}
@@ -245,7 +244,7 @@ Estas cifras se traducen en las siguientes métricas de rendimiento:
             \end{align}
             \myequations{Tasa de Error para LSTM Autoencoder}
 
-      \item Sensibilidad (Recall o Verdaderos Positivos): proporción de eventos de anomalos correctamente detectados.
+      \item Sensibilidad (Recall o Verdaderos Positivos): proporción de eventos de anómalos correctamente detectados.
 
             \begin{align}
                   Recall = \frac{TP}{TP+FN} \notag \\
