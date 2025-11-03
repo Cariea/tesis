@@ -255,7 +255,7 @@ Estas cifras se traducen en las siguientes métricas de rendimiento:
       \item Sensibilidad (Recall o Verdaderos Positivos): proporción de eventos de anómalos correctamente detectados.
 
             \begin{align}
-                  Recall = \frac{TP}{TP+FN}
+                  Recall = \frac{TP}{TP+FN}=\frac{(18)}{(18+6)}=0.75
                   \label{eq:recall}
             \end{align}
             \myequations{Recall para LSTM Autoencoder}
@@ -379,7 +379,7 @@ El proceso de evaluación se aplicó sobre el mismo conjunto de datos, compuesto
             \myequations{Specificity para Isolation Forest}
 
             \begin{align}
-                  F1_{score} = 2 \cdot \frac{Precision * Recall}{Precision+Recall}
+                  F1_{score} = 2 \cdot \frac{Precision * Recall}{Precision+Recall} = 2 \cdot \frac{(0.5707 * 0.2638)}{(0.5707 + 0.2638)}\approx 0.361
                   \label{eq:f1_if}
             \end{align}
             \myequations{F1 Score para Isolation Forest}
