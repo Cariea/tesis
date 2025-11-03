@@ -452,37 +452,6 @@ Heaton, J.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
-Hernández%
-, Fernández%
-\BCBL {}\ \BBA {} Baptista%
-}{%
-Hernández%
-\ \protect \BOthers {.}}{%
-{\protect \APACyear {2014}}%
-}]{%
-hernandez_metodologia_2014}
-\APACinsertmetastar {%
-hernandez_metodologia_2014}%
-\begin{APACrefauthors}%
-Hernández, R.%
-, Fernández, C.%
-\BCBL {}\ \BBA {} Baptista, P.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYear{2014}.
-\newblock
-\APACrefbtitle {Metodología de la investigación} {Metodología de la
-  investigación}\ (\PrintOrdinal{6}\ \BEd).
-\newblock
-\APACaddressPublisher{}{McGraw-Hill}.
-\newblock
-\begin{APACrefURL}
-  \url{https://www.esup.edu.pe/wp-content/uploads/2020/12/2.%20Hernandez,%20Fernandez%20y%20Baptista-Metodología%20Investigacion%20Cientifica%206ta%20ed.pdf}
-  \end{APACrefURL}
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
 Hochreiter%
 \ \BBA {} Schmidhuber%
 }{%
@@ -1122,33 +1091,6 @@ Shi, W.%
 \APACjournalVolNumPages{IEEE Internet of Things Journal}{3}{5}{637--646}.
 \newblock
 \begin{APACrefDOI} \doi{10.1109/JIOT.2016.2579198} \end{APACrefDOI}
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
-Tamayo%
-}{%
-Tamayo%
-}{%
-{\protect \APACyear {2004}}%
-}]{%
-tamayo_proceso_2004}
-\APACinsertmetastar {%
-tamayo_proceso_2004}%
-\begin{APACrefauthors}%
-Tamayo, M.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYear{2004}.
-\newblock
-\APACrefbtitle {El proceso de la investigación científica} {El proceso de la
-  investigación científica}.
-\newblock
-\APACaddressPublisher{}{Limusa}.
-\newblock
-\begin{APACrefURL}
-  \url{https://www.gob.mx/cms/uploads/attachment/file/227860/El_proceso__de_la_investigaci_n_cient_fica_Mario_Tamayo.pdf}
-  \end{APACrefURL}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
