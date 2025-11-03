@@ -1211,6 +1211,34 @@ Upton, E.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Wolf%
+}{%
+Wolf%
+}{%
+{\protect \APACyear {2002}}%
+}]{%
+wolf_computers_2002}
+\APACinsertmetastar {%
+wolf_computers_2002}%
+\begin{APACrefauthors}%
+Wolf, W.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2002}{}{}.
+\newblock
+\APACrefbtitle {Computers as components: Principles of embedded computing
+  system design.} {Computers as components: Principles of embedded computing
+  system design.}
+\newblock
+\APACaddressPublisher{}{Morgan Kaufmann}.
+\newblock
+\begin{APACrefURL}
+  \url{https://referenceglobe.com/CollegeLibrary/library_books/20180226061001computers-as-components-principles-of-embedded-computing-system-design-2nd-edition-wayne-wolf-elsevier-2008-%5Bbookspar.com%5D.pdf}
+  \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Yuill%
 \ \BBA {} Halpin%
 }{%
