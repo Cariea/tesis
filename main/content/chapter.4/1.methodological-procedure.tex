@@ -464,6 +464,7 @@ En la gráfica de la figura \ref{fig:mse_lstm_optimized}, se visualiza el error 
       \label{tab:confusion_matrix_lstm_optimized}
 \end{table}
 
+
 VP (Verdaderos Positivos): 19
 FP (Falsos Positivos): 2
 FN (Falsos Negativos): 0
@@ -503,6 +504,7 @@ Estas cifras se traducen en las siguientes métricas de rendimiento:
             \myequations{Specificity para LSTM Autoencoder V2}
 \end{itemize}
 
+
 El análisis de las métricas de rendimiento cuantifica el desempeño del modelo V2. La exactitud general es del 99.98\%, similar al modelo previo, pero con mejoras notables en las métricas clave. La Sensibilidad (Recall) es del 100\%, indicando que el modelo ahora detecta todas las anomalías reales, un avance significativo. La Precisión ha aumentado a 90.48\%, lo que significa que casi todas sus alertas positivas son correctas. La puntuación F1 refleja este equilibrio mejorado, situándose en un valor más alto que antes, lo que confirma que los nuevos parametros han mejorado la capacidad del modelo para detectar anomalías de manera fiable y a reducir las falsas alarmas.
 
 La curva ROC (figura \ref{fig:roc_lstm_optimized}) y su AUC de 1.0 confirman que el modelo optimizado tiene una capacidad excelente para distinguir entre comportamientos normales y anómalos, superando ampliamente el umbral deseado de 0.8. En conjunto, estos resultados validan la efectividad del LSTM Autoencoder V2 para la detección de anomalías en secuencias de eventos en nuestro contexto específico.
@@ -511,7 +513,9 @@ La figura \ref{fig:mse_lstm_optimized} ilustra la mejora en la distribución de 
 
 \usubsection{Diseño final de la arquitectura del sistema}
 
+
 Con base en los resultados obtenidos durante las fases de desarrollo y evaluación, se procedió a diseñar el sistema final de monitoreo acústico para la detección de anomalías y generación de alertas en casos de emergencia. Este diseño integra tanto el hardware como el software necesarios para su implementación efectiva.
+
 
 La arquitectura implementada se fundamenta en el modelo en capas, donde cada nivel cumple funciones específicas alineadas con los requisitos funcionales y no funcionales del sistema. La Capa de Captación de Audio (Micrófonos, Raspberry Pi) satisface el RF1 al garantizar la captura continua de audio; la Capa de Clasificación de Audio (Vosk, Yamnet, Activity-Agent) cumple el RF2 y parcialmente el RF4 al procesar y caracterizar la señal; la Capa de Detección de Anomalías (LSTM, IF-Agent) y la Capa de Gestión de Alertas (Emergency-Agent) abordan el núcleo del problema, cumpliendo el RF4 al detectar patrones anómalos; la Capa de Gestión de Datos (Postgres, Redis) facilita el RF3 al almacenar la información necesaria para caracterizar la actividad acústica "típica"; y la Capa de Notificaciones (Telegram, SMTP) garantiza el cumplimiento del RF5 al enviar alertas validadas. Estas capas no se ejecutan como módulos monolíticos, sino como procesos independientes que se comunican mediante un esquema pub/sub interno con Redis, lo que introduce un componente distribuido local. Esta modularidad no solo simplifica el mantenimiento y la actualización de componentes (RNF4), sino que también facilita la integración flexible de nuevos agentes o dispositivos (RNF2), ya que solo necesitan publicar o suscribirse a canales de Redis para interactuar. Además, el uso de un Raspberry Pi como nodo principal aproxima la solución al concepto de servidores al borde (edge computing), lo cual es esencial para cumplir el RNF1: el procesamiento y análisis de datos de audio ocurre localmente, minimizando la latencia (clave para el RF4) y evitando el almacenamiento de grabaciones de audio bruto o información personal identificable. Esta combinación de estilo cliente-servidor con mecanismos de colaboración descentralizados, según \citeauthor{tanenbaum2007distributed} \citeyear{tanenbaum2007distributed}, se entiende como una arquitectura híbrida. Por último, la naturaleza embedded del sistema sobre el Raspberry Pi permite la configuración de inicio automático a nivel de sistema operativo (RNF3), asegurando la continuidad del monitoreo tras fallos o reinicios. De esta manera, la propuesta logra unir la claridad del enfoque en capas con la flexibilidad de un sistema distribuido basado en microservicios locales, satisfaciendo los requisitos funcionales y no funcionales.
 
@@ -519,10 +523,11 @@ Los algoritmos de los distintos agentes se encuentran en el apéndice D
 
 \begin{figure}[ht!]
       \centering
-      \includegraphics[width=0.40\textwidth]{Arquitectura/Arquitectura3.png}
+      \includegraphics[width=0.25\textwidth]{Arquitectura/Arquitectura3.png}
       \caption{Arquitectura del sistema de monitoreo acústico para generar alertas en casos de emergencia}
       \label{fig:arquitectura}
 \end{figure}
+
 
 \begin{enumerate}
       \item Capa de captación de audio: Esta capa corresponde al nivel más cercano al hardware y tiene como función principal la adquisición de datos acústicos mediante los micrófonos conectados al dispositivo Raspberry Pi. Se encarga de gestionar la interacción con el sistema operativo para acceder a las señales de audio en tiempo real y ponerlas a disposición del sistema a través de canales de comunicación internos. Su objetivo es abstraer la complejidad del hardware y garantizar que los datos se entreguen de forma continua a las capas superiores.
@@ -546,6 +551,14 @@ También se consideraron otros dispositivos edge, como el ESP32, pero se descart
 
 La comparación entre los distintos dispositivos edge se resume en el apendice C.
 
+\begin{figure}
+      \centering
+      \includegraphics[width=0.85\textwidth]{notifications/notificaciones1.jpg}
+      \caption{Ejemplo de notificaciones.}
+      \label{fig:notificaciones}
+\end{figure}
+
+La figura \ref{fig:notificaciones} muestra ejemplos de notificaciones enviadas por el sistema a través de Telegram, ilustrando cómo se comunica la información crítica al usuario final.
 
 % \usubsection{Validación del sistema de monitoreo acústico para generar alertas en casos de emergencia}
 
