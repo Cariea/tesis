@@ -43,7 +43,7 @@ En función del analisis realizado, se procedio a definir los requerimientos del
 \begin{figure}[ht!]
       \centering
       \includegraphics[width=0.65\textwidth]{Arquitectura/I1.png}
-      \caption{Prototipo  con ESP32 y detección de intensidad de sonido}
+      \caption{Diagrama de arquitectura de sistema con ESP32 y detección de intensidad de sonido}
       \label{fig:prototipo1}
 \end{figure}
 
@@ -64,7 +64,7 @@ Con estas limitaciones identificadas, se decidió avanzar hacia una segunda iter
 \begin{figure}[ht!]
       \centering
       \includegraphics[width=0.85\textwidth]{Arquitectura/I2.png}
-      \caption{Prototipo con ESP32, micrófono de señales de audio y prophet}
+      \caption{Diagrama de arquitectura de sistema con ESP32, micrófono de señales de audio y prophet}
       \label{fig:prototipo2}
 \end{figure}
 
@@ -92,7 +92,7 @@ Esta medida representa una aplicación práctica del paradigma de aprendizaje po
 \begin{figure}[ht!]
       \centering
       \includegraphics[width=0.85\textwidth]{Arquitectura/I4.png}
-      \caption{Prototipo con Raspberry Pi, Yamnet y Cadenas de Markov}
+      \caption{Diagrama de arquitectura de sistema con Raspberry Pi, Yamnet y Cadenas de Markov}
       \label{fig:prototipo4}
 \end{figure}
 
@@ -113,13 +113,13 @@ Este hallazgo marcó un punto de inflexión en el desarrollo del sistema, motiva
 \begin{figure}[ht!]
       \centering
       \includegraphics[width=0.85\textwidth]{Arquitectura/I5.png}
-      \caption{Prototipo con Raspberry Pi Autonomo, Yamnet y Modelos de IA para detección de anomalías}
+      \caption{Diagrama de arquitectura de sistema con Raspberry Pi Autonomo, Yamnet y Modelos de IA para detección de anomalías}
       \label{fig:prototipo5}
 \end{figure}
 
 \usubsection{Quinta Iteración}
 
-En esta quinta iteración, nos enfocamos en el desarrollo de una solución más robusta para la detección de anomalías, como respuesta a las limitaciones encontradas con las cadenas de Markov. Para ello, basamos nuestro enfoque en el trabajo de \citeauthor{reis2025edge} \citeyear{reis2025edge}, cuya investigación se centra en arquitecturas de Inteligencia Artificial en el borde (Edge AI) para el monitoreo en tiempo real. Específicamente, su estudio valida el uso de dos tecnologías que adoptamos: Isolation Forest (IF), un modelo para la detección de eventos anomalos basado en árboles, y un (LSTM) Autoencoder, una red neuronal para el análisis de patrones secuenciales complejos.
+En esta quinta iteración, nos enfocamos en el desarrollo de una solución más robusta para la detección de anomalías, como respuesta a las limitaciones encontradas con las cadenas de Markov. Para ello, basamos nuestro enfoque en el trabajo de \citeauthor{reis2025edge} \citeyear{reis2025edge}, cuya investigación se centra en arquitecturas de Inteligencia Artificial en el borde (Edge AI) para el monitoreo en tiempo real. Específicamente, su estudio valida el uso de dos tecnologías que adoptamos: Isolation Forest (IF), un modelo para la detección de eventos anomalos basado en árboles, y un (LSTM) Autoencoder, una red neuronal para el análisis de patrones secuenciales complejos. En la figura \ref{fig:prototipo5} se ilustra la arquitectura del sistema implementado en esta iteración.
 
 Para la implementación de estos modelos en nuestro sistema, se replicaron las configuraciones de hiperparámetros validadas en dicho estudio para asegurar el rendimiento en la Raspberry Pi.
 
