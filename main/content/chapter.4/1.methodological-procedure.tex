@@ -146,6 +146,10 @@ Para el desarrollo y aplicación del modelo, se adoptó un enfoque metodológico
 
             De esta manera, cada elemento de la secuencia de entrada al modelo LSTM Autoencoder es un vector numérico que combina todas las características relevantes del evento, incluyendo las representaciones cíclicas del tiempo y las codificaciones one-hot de las etiquetas de eventos. Esto permite que el modelo capture tanto la naturaleza temporal como la categórica de los datos, facilitando el aprendizaje de patrones complejos en el comportamiento acústico del entorno.
 
+            Para la construcción del dataset de entrenamiento, se adopto la metodología de Reis et al. \citeyear{reis2025edge}, que consiste en la construccion de un dataset sintético basado en la simulación de secuencias de eventos normales y anómalos. Se generaron múltiples secuencias de eventos que reflejan el comportamiento típico del entorno doméstico, incorporando variaciones para simular anomalias dentro del conjunto de datos. Los datos se conformaban por una marca temporal y una etiqueta de evento, que luego fueron preprocesados como se describió anteriormente para crear secuencias superpuestas de 10 eventos cada una.
+
+            Se configuro una ventana deslizante para generar estas secuencias, donde cada nueva secuencia comenzaba un evento después de la anterior, asegurando así que el modelo pudiera aprender las transiciones entre eventos de manera efectiva. Este enfoque permitió crear un conjunto de datos robusto y representativo para entrenar el modelo LSTM Autoencoder.
+
       \item Arquitectura del Modelo: Utilizamos un tipo especial de red neuronal llamado Autoencoder LSTM.
             La idea es bastante intuitiva. En lugar de predecir un valor futuro, el objetivo de un autoencoder es aprender a reproducir su propia entrada.
             Podemos imaginarlo como intentar crear una figura circular con un lápiz y un compas, normalmente lo hariamos con el compas y el resultado es bastante predecible, pero al hacerlo a mano, el resultado va variar.

@@ -3,7 +3,6 @@
   \small
   \textbf{\textit{Palabras clave---}} #1
 }
-
 \phantomsection
 \addcontentsline{toc}{chapter}{Resumen}
 \setcounter{page}{\value{abstractpage}}
@@ -31,6 +30,8 @@
   \textbf{Resumen} \\
 \end{center}
 
-En el presente trabajo se aborda el desarrollo de un sistema de monitoreo acústico basado en Inteligencia Artificial que emite alertas en tiempo real al identificar eventos anómalos en sonidos ambientales que pueden indicar que una persona se encuentra en situación de vulnerabilidad. Para el desarrollo del sistema se utilizaron dispositivos edge Raspberry Pi 4 y un servidor. Se diseñó una arquitectura de IA que empleó los modelos preentrenados YAMNet para clasificación de sonidos ambientales y Vosk para detección de palabras clave. Posteriormente, se aplicaron modelos avanzados de aprendizaje automático (Isolation Forest, LSTM) para el perfilado del comportamiento acústico y la detección de patrones anómalos a partir de dichas clasificaciones. Para abordar los diferentes desafíos técnicos y la incertidumbre inherente al proyecto, se empleó una metodología basada en el Modelo Espiral, la cual permitió un desarrollo iterativo a través de las fases de Planificación, Análisis y mitigación de riesgos, Desarrollo incremental y evaluación, y Planificación de la siguiente iteración. La solución obtenida cumple con los requerimientos funcionales establecidos, genera notificaciones automáticas a contactos de emergencia ante eventos críticos, y garantiza la privacidad de los usuarios mediante el procesamiento local de los datos de audio sin almacenamiento de grabaciones.
+En el presente trabajo se aborda el desarrollo de un sistema de monitoreo acústico basado en Inteligencia Artificial que emite alertas en tiempo real al identificar eventos anómalos en sonidos ambientales que pueden indicar que una persona se encuentra en situación de vulnerabilidad. Para el desarrollo del sistema se utilizaron dispositivos edge Raspberry Pi 4 y un servidor. Se diseñó una arquitectura de IA que empleó los modelos preentrenados YAMNet para clasificación de sonidos ambientales y Vosk para detección de palabras clave. Posteriormente, se aplicaron modelos avanzados de aprendizaje automático (Isolation Forest, LSTM) para el perfilado del comportamiento acústico y la detección de patrones anómalos a partir de dichas clasificaciones. Para abordar los diferentes desafíos técnicos y la incertidumbre inherente al proyecto, se empleó una metodología basada en el Modelo Espiral, la cual permitió un desarrollo iterativo a través de las fases de Planificación, Análisis y mitigación de riesgos, Desarrollo incremental y evaluación, y Planificación de la siguiente iteración. La solución obtenida, sustentada en el modelo LSTM seleccionado, demostró un rendimiento sobresaliente con una Exactitud del 99.98\%, Precision del 90.48\%, Recall del 100\% y un AUC de 1 en la detección de anomalías, genera notificaciones automáticas a contactos de emergencia ante eventos críticos.
 
 \keywords{Clasificación de secuencias acústicas anómalas, Emisión de alertas en tiempo real,  Inteligencia Artificial,  Monitoreo de sonidos ambientales,  Sistemas Embebidos, Dispositivos Edge}
+
+% , y garantiza la privacidad de los usuarios mediante el procesamiento local de los datos de audio sin almacenamiento de grabaciones.
