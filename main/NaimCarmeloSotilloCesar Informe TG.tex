@@ -165,23 +165,20 @@
     \renewcommand{\cftmyequationsaftersnum}{.\ }         % Punto después del número
     \renewcommand{\cftmyequationsnumwidth}{6em}          % Espacio reservado para el número
     
-    \newcommand{\myequation}[3]{%
-      \refstepcounter{equation} % Avanza el contador sin mostrar número
-      \begin{equation*}
-        #1
-      \end{equation*}
-      \addcontentsline{equ}{myequations}{\protect\numberline{\theequation}#2}
-      \vspace{-0.5em}
-      {\fontsize{11pt}{11pt}\selectfont
-        \noindent\textbf{Ecuación \theequation. #2}\\
-        \noindent \hphantom{.}Fuente: #3\\
-      } 
+\newcommand{\myequation}[3]{%
+      \refstepcounter{equation}
+      \noindent
+      \begin{minipage}{\linewidth}
+        \begin{equation*}
+          #1
+        \end{equation*}
+        \addcontentsline{equ}{myequations}{\protect\numberline{\theequation}#2}
+        {\fontsize{11pt}{11pt}\selectfont
+          \noindent\textbf{Ecuación \theequation. #2}\\
+          \noindent \hphantom{.}Fuente: #3\\
+        }
+      \end{minipage}
     }
-% \newcommand{\listequationsname}{Índice de Ecuaciones}
-% \newlistof{myequations}{equ}{\listequationsname}
-% \newcommand{\myequations}[1]{
-%   \addcontentsline{equ}{myequations}{\protect\numberline{\theequation} #1}\par
-% }
 
 \makeatletter
 \renewcommand{\listofmyequations}{%
@@ -212,29 +209,7 @@
 }
 \renewcommand{\thetable}{\arabic{table}}
  \counterwithout{table}{chapter}
-
-% Ecuaciones
-% \renewcommand{\theequation}{\arabic{equation}}
-% \counterwithout{equation}{chapter}
-
-% \usepackage{calc}
-% \renewcommand{\cftfigpresnum}{Figura~}
-% \setlength{\cftfignumwidth}{\widthof{Figura 0. }}
-% \renewcommand{\cftfigaftersnum}{. }
-
-
-% \renewcommand{\cfttabpresnum}{Tabla~}
-% \setlength{\cfttabnumwidth}{\widthof{Tabla 0. }}
-% \renewcommand{\cfttabaftersnum}{. }
-
-% \renewcommand{\cftmyequationspresnum}{Fórmula~}
-% \setlength{\cftmyequationsindent}{1.5em}
-% \renewcommand{\cftmyequationsaftersnum}{. }
-% \setlength{\cftmyequationsnumwidth}{\widthof{Fórmula 0. }}
-
-
-
-
+   
 \begin{document}
 
 \pagenumbering{gobble}
