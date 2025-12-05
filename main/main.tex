@@ -1,0 +1,51 @@
+\begin{document}
+ % --- preliminares ---
+\pagenumbering{roman}  
+\input{prelude/_index.tex}
+
+% --------- indices 
+{\singlespacing
+    \tableofcontents
+    \clearpage
+    
+    \listoftables
+    \addcontentsline{toc}{chapter}{Índice de Tablas}
+    \clearpage
+    
+    \listoffigures
+    \addcontentsline{toc}{chapter}{Índice de Figuras}
+    \clearpage
+    
+    \renewcommand{\listequationsname}{} % Oculta el título automático
+    \begin{center}
+        \textbf{\normalsize Índice de Fórmulas}
+    \end{center}
+    \vspace*{-5em}
+    \listofmyequations
+    \addcontentsline{toc}{chapter}{Índice de Fórmulas}
+    \clearpage
+}
+
+\input{prelude/4.abstract}
+\clearpage
+
+% --- capitulos ---
+\pagestyle{chapterstyle} 
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\input{content/introduction}
+\input{content/chapter.1/_index}
+\input{content/chapter.2/_index}
+\input{content/chapter.3/_index}
+\input{content/chapter.4/_index}
+\input{content/chapter.5/_index}
+
+\phantomsection
+{\singlespacing
+    \bibliography{references}
+}
+
+\input{appendix/_index}
+
+\end{document}

@@ -1,0 +1,275 @@
+\usepackage[spanish,es-lcroman]{babel}
+\usepackage[utf8]{inputenc} 
+\usepackage[T1]{fontenc}
+\usepackage[letterpaper, margin=1in]{geometry}
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage{newtxtext,newtxmath}
+\usepackage{setspace}
+\linespread{1.5}
+%\setstretch{1.5}
+\usepackage{tabularx}
+\usepackage[colorlinks=true, linkcolor=black, citecolor=black, urlcolor=black]{hyperref}
+\usepackage{url}
+\usepackage{apacite}
+\bibliographystyle{apacite}
+
+\usepackage{lipsum} % For placeholder text
+
+% Formato para los capítulos
+\usepackage{titlesec}
+\titlespacing{\chapter}{0pt}{0pt}{40pt}
+
+% Formato para evitar la separación de palabras 
+\tolerance=1
+\emergencystretch=\maxdimen
+\hyphenpenalty=10000
+\hbadness=10000
+
+% Formato de números de páginas
+\usepackage{fancyhdr}
+\fancyhf{}
+\setlength{\headheight}{15pt}
+
+\fancypagestyle{prelude}{
+  \fancyhf{}
+  \fancyfoot[C]{\roman{page}}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
+
+\fancypagestyle{chapterstyle}{
+  \fancyhf{}
+  \fancyhead[R]{\thepage}   % número arriba a la derecha
+  \renewcommand{\headrulewidth}{0pt}
+}
+
+% Estilo para índices (número abajo centrado)
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \fancyfoot[C]{\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+}
+
+\renewcommand{\headrulewidth}{0pt}
+%\renewcommand{\thepage}{\roman{page}}
+\renewcommand{\thechapter}{\Roman{chapter}}
+
+% Formato de sangrías y listas
+\usepackage{enumitem}
+\renewcommand{\labelitemi}{$\bullet$}
+\setlength{\parindent}{1.25cm}
+\setlist[itemize,1]{leftmargin=0.55in}
+\setlist[itemize]{leftmargin=0.2in}
+
+% Formato de la tabla de contenido
+\usepackage{tocloft}
+\addto\captionsspanish{
+  \renewcommand{\contentsname}{Índice de Contenido}
+  \renewcommand{\listfigurename}{Índice de Figuras}
+  \renewcommand{\listtablename}{Índice de Tablas}
+}
+\renewcommand{\cftloftitlefont}{\hfill\normalsize\bfseries}
+\renewcommand{\cftafterloftitle}{\hfill}
+
+\renewcommand{\cftlottitlefont}{\hfill\normalsize\bfseries}
+\renewcommand{\cftafterlottitle}{\hfill}
+
+\renewcommand{\cfttoctitlefont}{\hfil\normalsize\bfseries}
+\renewcommand{\cftaftertoctitle}{\hfil}
+
+\setlength{\cftbeforetoctitleskip}{-20pt}
+\setlength{\cftbeforeloftitleskip}{-20pt}
+\setlength{\cftbeforelottitleskip}{-20pt}
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+
+% TOC Chapter Style
+%\cftpagenumbersoff{chapter}
+\setlength{\cftbeforechapskip}{5pt}
+
+% TOC Sections Style
+\setlength{\cftsecindent}{0pt}
+\setlength{\cftsubsecindent}{1.5em}
+\setlength{\cftsubsubsecindent}{3em}
+\setlength{\cftparaindent}{4.5em}
+
+% Formato de los diferentes niveles de secciones
+% \newcommand{\upper}[1]{\uppercase{#1}}
+\usepackage{titlesec}
+\titleformat{\chapter}
+{\normalfont\normalsize\bfseries\centering}{}{0.3em}{}[\thispagestyle{empty}]
+\titleformat{\section}
+{\normalfont\normalsize\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}
+{\normalfont\normalsize\bfseries\narrower}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}
+{\normalfont\normalsize\bfseries\itshape\narrower}{\thesubsubsection}{1em}{}
+\titleformat{\paragraph}
+{\normalfont\normalsize\itshape\narrower}{\theparagraph}{1em}{}
+
+% Espaciado vertical ajustado
+\titlespacing{\chapter}{0pt}{0pt}{18pt}
+\titlespacing{\section}{0pt}{12pt}{6pt}
+\titlespacing{\subsection}{0pt}{10pt}{5pt}
+\titlespacing{\subsubsection}{0pt}{8pt}{4pt}
+\titlespacing{\paragraph}{0pt}{6pt}{3pt}
+
+% TOC Chapter Style
+\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
+\setlength{\cftbeforechapskip}{1pt}
+
+\makeatletter
+\renewcommand{\l@chapter}[2]{%
+  \ifnum \c@tocdepth >\m@ne
+    \addpenalty{-\@highpenalty}%
+    \noindent #1 \dotfill #2\par
+  \fi}
+\makeatother
+                   
+% Comandos para crear secciones no numeradas con entrada en el índice
+\newcommand{\uchapter}[1]{%
+  \addtocounter{chapter}{1}%
+  \phantomsection
+  \chapter*{\textbf{\setstretch{1.5}\selectfont Capítulo \thechapter \break #1}}%
+  \addcontentsline{toc}{chapter}{\textbf{Capítulo \thechapter. #1}}%
+}
+
+\newcommand{\uextra}[2]{
+  \addtocounter{chapter}{1}
+  \phantomsection
+  \chapter*{\centering\textbf{#1 \thechapter. #2}}
+  \addcontentsline{toc}{chapter}{#1 \thechapter. #2}
+  \thispagestyle{chapterstyle}
+}
+
+
+\newcommand{\usection}[1]{
+  \phantomsection
+  \section*{#1}
+  \addcontentsline{toc}{section}{#1}
+}
+\newcommand{\usubsection}[1]{
+  \phantomsection
+  \subsection*{#1.}
+  \addcontentsline{toc}{subsection}{#1}
+}
+\newcommand{\usubsubsection}[1]{
+  \phantomsection
+  \subsubsection*{#1.}
+  \addcontentsline{toc}{subsubsection}{#1}
+}
+\newcommand{\uparagraph}[1]{
+  \phantomsection
+  \paragraph*{#1.}
+  \addcontentsline{toc}{paragraph}{#1}
+}
+
+%auri
+% Citas largas
+    \long\def\citalarga#1{
+      \medskip
+      \begingroup
+      \parindent 0pt
+      \leftskip=1.25cm
+      \rightskip=1.25cm
+      #1 \par \medskip
+      \endgroup
+    }
+% Formato personalizado para el índice de tablas
+    \renewcommand{\cfttabpresnum}{Tabla\ }     % Prefijo antes del número
+    \renewcommand{\cfttabaftersnum}{.\ }       % Punto después del número
+    \renewcommand{\cfttabnumwidth}{6.5em}      % Espacio reservado para el número
+% Formato de tablas
+    \usepackage{caption}
+    \captionsetup[table]{
+      labelsep=newline,
+      justification=justified,
+      singlelinecheck=false,
+      textfont=it,
+      name=Tabla,
+      font=small
+    }
+    \renewcommand{\thetable}{\arabic{table}}
+% Formato personalizado para el índice de figuras
+
+
+
+
+
+    \renewcommand{\cftfigpresnum}{Figura\ }    % Prefijo antes del número
+    \renewcommand{\cftfigaftersnum}{.\ }       % Punto después del número
+    \renewcommand{\cftfignumwidth}{6.5em}      % Espacio reservado para el número
+
+    
+% Formato de figuras
+    \usepackage{caption}
+    \captionsetup[figure]{
+        labelfont={bf,it}, 
+        justification=justified,
+        singlelinecheck=false,
+        labelsep=period,
+        name=Figura,
+        font=small
+    }
+    \renewcommand{\thefigure}{\arabic{figure}}
+% Hipervínculo
+    % \makeatletter
+    % \def\url@leostyle{%
+    %   \@ifundefined{selectfont}{\def\UrlFont{\rm}}{\def\UrlFont{\rmfamily}}}
+    % \makeatother
+    % \urlstyle{leo}
+% Por si quieres que todas las figuras pendientes se impriman antes de seguir
+    \usepackage{placeins}
+%appendices
+    \usepackage{longtable}
+    \usepackage{booktabs}
+    \usepackage{float}
+%para que las fig/tab salgan despues de su definicion (pryuba a borrarlo luego ngl)
+    \usepackage{flafter}
+%Para indice de formulas (sadge)
+   \usepackage{amsmath}
+    \renewcommand{\theequation}{\arabic{equation}}
+
+    \newcommand{\listequationsname}{Índice de Fórmulas}
+    \newlistof{myequations}{equ}{\listequationsname}
+
+    % Formato personalizado para el índice de fórmulas
+    \renewcommand{\cftmyequationspresnum}{Ecuación\ }     % Prefijo antes del número
+    \renewcommand{\cftmyequationsaftersnum}{.\ }         % Punto después del número
+    \renewcommand{\cftmyequationsnumwidth}{5em}          % Espacio reservado para el número
+    
+    \newcommand{\myequation}[3]{%
+      \refstepcounter{equation} % Avanza el contador sin mostrar número
+      \begin{equation*}
+        #1
+      \end{equation*}
+      \addcontentsline{equ}{myequations}{\protect\numberline{\theequation}#2}
+      \vspace{-0.5em}
+      {\fontsize{11pt}{11pt}\selectfont
+        \noindent\textbf{Ecuación \theequation. #2}\\
+        \noindent \hphantom{.}Fuente: #3\\
+      } 
+    }
+% para poner abajo-centro el numero de pagina en los indices
+    \usepackage{afterpage}
+% quitar monoespaciado en links
+    \AtBeginDocument{%
+        \urlstyle{same} 
+    }
+% quitar subtitulos de los apendices (cuestionable)
+    \newcommand{\usectionNoToc}[1]{%
+        \phantomsection
+        \section*{#1}
+    }
+    \newcommand{\usubsectionNoToc}[1]{%
+        \phantomsection
+        \subsection*{#1.}
+    }
+%para combinar celdas ig
+    \usepackage{tabularx}
+    \usepackage{array}
+%para no romper parafos
+    \widowpenalties 1 10000
+    \raggedbottom
+%///endauri

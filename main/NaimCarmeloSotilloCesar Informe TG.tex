@@ -17,11 +17,22 @@
 \usepackage{amsmath, amssymb}
 \usepackage{float}
 \usepackage{pdfpages}
+\usepackage{caption}
+\usepackage{url} 
+
+
+% para poner abajo-centro el numero de pagina en los indices
+    \usepackage{afterpage}
+% quitar monoespaciado en links
+    \AtBeginDocument{%
+        \urlstyle{same} 
+    }
+
 % Interlineado y Espacio entre párrafos 
 \linespread{1.5}
 \setlength{\parskip}{5pt}
 
-\titlespacing{\chapter}{0pt}{0pt}{40pt}
+
 
 % Formato para evitar la separación de palabras 
 \tolerance=1
@@ -53,6 +64,7 @@
 
 % Formato de la tabla de contenido
 \usepackage{tocloft}
+
 \addto\captionsspanish{
   \renewcommand{\contentsname}{Índice de Contenido}
   \renewcommand{\listfigurename}{Índice de Figuras}
@@ -67,9 +79,22 @@
 \setlength{\cftbeforetoctitleskip}{-20pt}
 \setlength{\cftbeforeloftitleskip}{-20pt}
 \setlength{\cftbeforelottitleskip}{-20pt}
+
+
+\setlength{\cftaftertoctitleskip}{10pt}
+\setlength{\cftafterloftitleskip}{10pt}
+\setlength{\cftafterlottitleskip}{10pt}
+
 \setcounter{secnumdepth}{4}
 \setcounter{tocdepth}{4}
 
+
+% Espaciado vertical ajustado
+\titlespacing{\chapter}{0pt}{0pt}{18pt}
+\titlespacing{\section}{0pt}{12pt}{6pt}
+\titlespacing{\subsection}{0pt}{10pt}{5pt}
+\titlespacing{\subsubsection}{0pt}{8pt}{4pt}
+\titlespacing{\paragraph}{0pt}{6pt}{3pt}
 
 % TOC Chapter Style
 \setlength{\cftbeforechapskip}{5pt}
@@ -128,12 +153,35 @@
   \paragraph*{#1.}
   \addcontentsline{toc}{paragraph}{#1}
 }
+%Para indice de formulas (sadge)
+   \usepackage{amsmath}
+    \renewcommand{\theequation}{\arabic{equation}}
 
-\newcommand{\listequationsname}{Índice de Ecuaciones}
-\newlistof{myequations}{equ}{\listequationsname}
-\newcommand{\myequations}[1]{
-  \addcontentsline{equ}{myequations}{\protect\numberline{\theequation} #1}\par
-}
+    \newcommand{\listequationsname}{Índice de Fórmulas}
+    \newlistof{myequations}{equ}{\listequationsname}
+
+    % Formato personalizado para el índice de fórmulas
+    \renewcommand{\cftmyequationspresnum}{Ecuación\ }     % Prefijo antes del número
+    \renewcommand{\cftmyequationsaftersnum}{.\ }         % Punto después del número
+    \renewcommand{\cftmyequationsnumwidth}{6em}          % Espacio reservado para el número
+    
+    \newcommand{\myequation}[3]{%
+      \refstepcounter{equation} % Avanza el contador sin mostrar número
+      \begin{equation*}
+        #1
+      \end{equation*}
+      \addcontentsline{equ}{myequations}{\protect\numberline{\theequation}#2}
+      \vspace{-0.5em}
+      {\fontsize{11pt}{11pt}\selectfont
+        \noindent\textbf{Ecuación \theequation. #2}\\
+        \noindent \hphantom{.}Fuente: #3\\
+      } 
+    }
+% \newcommand{\listequationsname}{Índice de Ecuaciones}
+% \newlistof{myequations}{equ}{\listequationsname}
+% \newcommand{\myequations}[1]{
+%   \addcontentsline{equ}{myequations}{\protect\numberline{\theequation} #1}\par
+% }
 
 \makeatletter
 \renewcommand{\listofmyequations}{%
@@ -154,28 +202,38 @@
 \counterwithout{figure}{chapter}
 
 % Tablas
-\captionsetup[table]{labelformat=default,labelsep=colon,name=Tabla}
+\captionsetup[table]{
+  labelsep=newline,
+  justification=justified,
+  singlelinecheck=false,
+  textfont=it,
+  name=Tabla,
+  font=small
+}
 \renewcommand{\thetable}{\arabic{table}}
-\counterwithout{table}{chapter}
+ \counterwithout{table}{chapter}
 
 % Ecuaciones
-\renewcommand{\theequation}{\arabic{equation}}
-\counterwithout{equation}{chapter}
+% \renewcommand{\theequation}{\arabic{equation}}
+% \counterwithout{equation}{chapter}
 
-\usepackage{calc}
-\renewcommand{\cftfigpresnum}{Figura~}
-\setlength{\cftfignumwidth}{\widthof{Figura 0. }}
-\renewcommand{\cftfigaftersnum}{. }
+% \usepackage{calc}
+% \renewcommand{\cftfigpresnum}{Figura~}
+% \setlength{\cftfignumwidth}{\widthof{Figura 0. }}
+% \renewcommand{\cftfigaftersnum}{. }
 
 
-\renewcommand{\cfttabpresnum}{Tabla~}
-\setlength{\cfttabnumwidth}{\widthof{Tabla 0. }}
-\renewcommand{\cfttabaftersnum}{. }
+% \renewcommand{\cfttabpresnum}{Tabla~}
+% \setlength{\cfttabnumwidth}{\widthof{Tabla 0. }}
+% \renewcommand{\cfttabaftersnum}{. }
 
-\renewcommand{\cftmyequationspresnum}{Fórmula~}
-\setlength{\cftmyequationsindent}{1.5em}
-\renewcommand{\cftmyequationsaftersnum}{. }
-\setlength{\cftmyequationsnumwidth}{\widthof{Fórmula 0. }}
+% \renewcommand{\cftmyequationspresnum}{Fórmula~}
+% \setlength{\cftmyequationsindent}{1.5em}
+% \renewcommand{\cftmyequationsaftersnum}{. }
+% \setlength{\cftmyequationsnumwidth}{\widthof{Fórmula 0. }}
+
+
+
 
 \begin{document}
 

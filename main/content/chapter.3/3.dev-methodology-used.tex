@@ -2,7 +2,9 @@
 
 El desarrollo de un sistema de detección de monitoreo acústico que envie alertas de emergencia presenta desafíos técnicos inherentes que dificultan la definición precisa de los requisitos de implementación desde el inicio. Entre estos desafíos se encuentran, la incertidumbre sobre qué técnicas de procesamiento de audio y algoritmos de aprendizaje automático serían más efectivos para los escenarios identificados, el desconocimiento sobre las capacidades reales de los dispositivos embebidos para ejecutar procesamiento de señales y algoritmos de IA en tiempo real y la necesidad de validar el desempeño de diferentes enfoques técnicos antes de comprometer la arquitectura completa. Estos factores hacían imprescindible un enfoque iterativo con validación experimental en cada etapa del desarrollo.
 
-\begin{table}[ht]
+\begin{table}[htbp]
+  \caption{Cuadro Comparativo de metodologías} 
+  \label{tab:comparative-methodologies}
   \doublespacing
   \centering
   \small
@@ -16,8 +18,6 @@ El desarrollo de un sistema de detección de monitoreo acústico que envie alert
     Scrum        & Sí       & Sí        & No                 & Sí                          \\
     \hline
   \end{tabular}
-  \caption{Cuadro Comparativo de metodologías}
-  \label{tab:comparative-methodologies}
 \end{table}
 
 Dada esta incertidumbre técnica, se necesitaba una metodología flexible y evolutiva, capaz de gestionar activamente los riesgos de implementación y permitir el refinamiento continuo de la solución mediante ciclos de retroalimentación. Para seleccionar la metodología más adecuada, se compararon diferentes enfoques en función de cuatro características clave: flexibilidad, capacidad evolutiva, gestión de riesgos e iteración con mejora continua, como se muestra en la Tabla \ref{tab:comparative-methodologies}.
@@ -40,7 +40,7 @@ Como señala \citeauthor{boehm_spiral_1988} \citeyear{boehm_spiral_1988}, ``el M
 
       \begin{figure}[H]
             \centering
-            \includegraphics[width=0.85\textwidth]{Anexos/metodologia_espiral.png}
+            \includegraphics[width=0.65\textwidth]{Anexos/Spiral_model_(Boehm,_1988).svg.png}
             \caption{Modelo de desarrollo en espiral propuesto por Boehm (1988).}
             \label{fig:modelo_espiral}
       \end{figure}

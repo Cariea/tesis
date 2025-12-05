@@ -51,7 +51,7 @@ El objetivo principal de la primera iteración fue validar la hipótesis de que 
 
 Los componentes con los que contó esta iteración fueron un microcontrolador ESP32 y un micrófono que capturaba la intensidad de sonido. Véase en la figura \ref{fig:prototipo1}. Esta serie temporal de niveles de intensidad sonora fue procesada por un modelo ARIMA (AutoRegressive Integrated Moving Average) para predecir el comportamiento esperado. Si la diferencia entre el valor predicho y el valor real superaba un umbral predefinido, se generaba una alerta.
 
-El diseño del prototipo para probar este enfoque se inspiró en metodologías documentadas para sistemas IoT \cite{luis2024desarrollo} y consistió en un dispositivo de captura basado en un microcontrolador ESP32, que transmitía los datos a un servidor local (Raspberry Pi 4) para su análisis con el modelo ARIMA.Sin embargo, durante la fase de evaluación, este enfoque demostró ser fundamentalmente inviable. El problema de fondo no fue solo que el modelo ARIMA tuviera limitaciones funcionales, sino que su propio proceso de parametrización resultó ser incompatible con la naturaleza del problema de investigación.
+El diseño del prototipo para probar este enfoque se inspiró en metodologías documentadas para sistemas IoT \cite{luis2024desarrollo} y consistió en un dispositivo de captura basado en un microcontrolador ESP32, que transmitía los datos a un servidor local (Raspberry Pi 4) para su análisis con el modelo ARIMA. Sin embargo, durante la fase de evaluación, este enfoque demostró ser fundamentalmente inviable. El problema de fondo no fue solo que el modelo ARIMA tuviera limitaciones funcionales, sino que su propio proceso de parametrización resultó ser incompatible con la naturaleza del problema de investigación.
 
 La parametrización de ARIMA (basada en los parámetros $p, d, q$) busca definir una estructura de dependencia y estacionalidad fija en los datos. En un entorno doméstico, la estacionalidad de los eventos acústicos es altamente variable y depende de múltiples factores contextuales, como la hora del día, el día de la semana, o eventos imprevistos. Esta variabilidad hace que sea extremadamente difícil definir parámetros fijos que puedan capturar adecuadamente los patrones normales de comportamiento sonoro para cualquier entorno, confirmando el riesgo inicial sobre la inestabilidad.
 
@@ -119,7 +119,7 @@ Este hallazgo marcó un punto de inflexión en el desarrollo del sistema, motiva
 
 \usubsection{Quinta Iteración}
 
-En esta quinta iteración, nos enfocamos en el desarrollo de una solución más robusta para la detección de anomalías, como respuesta a las limitaciones encontradas con las cadenas de Markov. Para ello, basamos nuestro enfoque en el trabajo de \citeauthor{reis2025edge} \citeyear{reis2025edge}, cuya investigación se centra en arquitecturas de Inteligencia Artificial en el borde (Edge AI) para el monitoreo en tiempo real. Específicamente, su estudio valida el uso de dos tecnologías que adoptamos: Isolation Forest (IF), un modelo para la detección de eventos anomalos basado en árboles, y un (LSTM) Autoencoder, una red neuronal para el análisis de patrones secuenciales complejos. En la figura \ref{fig:prototipo5} se ilustra la arquitectura del sistema implementado en esta iteración.
+En esta quinta iteración, sustituimos el análisis predictivo por uno descriptivo para el desarrollo de la solución de detección de anomalías, como respuesta a las limitaciones encontradas con las cadenas de Markov. Para ello, basamos nuestro enfoque en el trabajo de \citeauthor{reis2025edge} \citeyear{reis2025edge}, cuya investigación se centra en arquitecturas de Inteligencia Artificial en el borde (Edge AI) para el monitoreo en tiempo real. Específicamente, su estudio valida el uso de dos tecnologías que adoptamos: Isolation Forest (IF), un modelo para la detección de eventos anomalos basado en árboles, y un (LSTM) Autoencoder, una red neuronal para el análisis de patrones secuenciales complejos. En la figura \ref{fig:prototipo5} se ilustra la arquitectura del sistema implementado en esta iteración.
 
 Para la implementación de estos modelos en nuestro sistema, se replicaron las configuraciones de hiperparámetros validadas en dicho estudio para asegurar el rendimiento en la Raspberry Pi.
 
@@ -223,6 +223,7 @@ Para analizar en detalle el rendimiento del modelo, no es suficiente con saber e
       \doublespacing
       \small
       \centering
+      \caption{Matriz de Confusión del LSTM Autoencoder}
       \begin{tabular}{ >{\centering\arraybackslash}p{3cm} >{\centering\arraybackslash}p{3cm} >{\centering\arraybackslash}p{3cm} }
             \hline
                           & \multicolumn{2}{c}{\textbf{Esperado}}              \\
@@ -233,7 +234,6 @@ Para analizar en detalle el rendimiento del modelo, no es suficiente con saber e
             F             & 3                                     & 45814      \\
             \hline
       \end{tabular}
-      \caption{Matriz de Confusión del LSTM Autoencoder}
       \label{tab:confusion_matrix_lstm}
 \end{table}
 
@@ -247,57 +247,17 @@ VN (Verdaderos Negativos): 45814
 
 Estas cifras se traducen en las siguientes métricas de rendimiento:
 
-\begin{itemize}
-      \item  Exactitud (Accuracy): proporción de predicciones correctas respecto al total de casos evaluados.
+\myequation{Accuracy = \frac{TP+TN}{TP+TN+FP+FN}=\frac{(18+45814)}{(18+45814+3+6)}\approx 0.9998}{Exactitud para LSTM Autoencoder.}{Hand et al. (2020). \textit{An Introduction to the Principles of Data Science}. Springer.}
 
-            \begin{align}
-                  Accuracy = \frac{TP+TN}{TP+TN+FP+FN}=\frac{(18+45814)}{(18+45814+3+6)}\approx 0.9998
-                  \label{eq:accuracy}
-            \end{align}
-            \myequations{Accuracy para LSTM Autoencoder}
+\myequation{Error = \frac{FP+FN}{TP+TN+FP+FN}=\frac{(3+6)}{(18+45814+3+6)}\approx 0.0002}{Tasa de Error para LSTM Autoencoder.}{Hand et al. (2020). \textit{An Introduction to the Principles of Data Science}. Springer.}
 
+\myequation{Recall = \frac{TP}{TP+FN}=\frac{(18)}{(18+6)}=0.75}{Sensibilidad para LSTM Autoencoder.}{Hand et al. (2020). \textit{An Introduction to the Principles of Data Science}. Springer.}
 
-      \item Tasa de error: proporción de predicciones incorrectas respecto al total.
+\myequation{Precision = \frac{TP}{TP+FP}=\frac{18}{18+3}\approx 0.8571}{Precisión para LSTM Autoencoder.}{Hand et al. (2020). \textit{An Introduction to the Principles of Data Science}. Springer.}
 
-            \begin{align}
-                  Error = \frac{FP+FN}{TP+TN+FP+FN}=\frac{(3+6)}{(18+45814+3+6)}\approx 0.0002
-                  \label{eq:error}
-            \end{align}
-            \myequations{Tasa de Error para LSTM Autoencoder}
+\myequation{Specificity = \frac{TN}{TN+FP}=\frac{45814}{45814+3}\approx 0.9999}{Especificidad para LSTM Autoencoder.}{Hand et al. (2020). \textit{An Introduction to the Principles of Data Science}. Springer.}
 
-      \item Sensibilidad (Recall o Verdaderos Positivos): proporción de eventos de anómalos correctamente detectados.
-
-            \begin{align}
-                  Recall = \frac{TP}{TP+FN}=\frac{(18)}{(18+6)}=0.75
-                  \label{eq:recall}
-            \end{align}
-            \myequations{Recall para LSTM Autoencoder}
-
-      \item Precisión: La proporción de casos realmente positivos entre todos los casos que el modelo predijo como positivos.
-
-            \begin{align}
-                  Precision = \frac{TP}{TP+FP}=\frac{18}{18+3}\approx 0.8571
-                  \label{eq:precision}
-            \end{align}
-            \myequations{Precision para LSTM Autoencoder}
-
-      \item Especificidad: proporción de eventos no críticos correctamente descartados.
-
-            \begin{align}
-                  Specificity = \frac{TN}{TN+FP}=\frac{45814}{45814+3}\approx 0.9999
-                  \label{eq:specificity}
-            \end{align}
-            \myequations{Specificity para LSTM Autoencoder}
-
-      \item F1 Score: media armónica entre la precisión y la sensibilidad, útil cuando es importante equilibrar ambas.
-
-            \begin{align}
-                  F1_{score} = 2 \cdot \frac{Precision \cdot Recall}{Precision + Recall} = 2 \cdot \frac{0.8571 * 0.75}{0.8571+0.75} \approx 0.8
-                  \label{eq:f1score}
-            \end{align}
-            \myequations{F1 Score para LSTM Autoencoder}
-
-\end{itemize}
+\myequation{F1_{score} = 2 \cdot \frac{Precision \cdot Recall}{Precision + Recall} = 2 \cdot \frac{0.8571 * 0.75}{0.8571+0.75} \approx 0.8}{F1 Score para LSTM Autoencoder.}{Hand et al. (2020). \textit{An Introduction to the Principles of Data Science}. Springer.}
 
 El análisis de las métricas de rendimiento cuantifica el desempeño del modelo. La exactitud general es del 99.98\%, aunque este valor es menos indicativo en conjuntos de datos con clases desbalanceadas. Un análisis más específico muestra una Sensibilidad (Recall) del 75.0\%, lo que indica que el modelo identifica a tres de cada cuatro anomalías reales. A su vez, la Precisión es del 85.7\%, lo que significa que sus alertas positivas son correctas en esa proporción. La puntuación F1, como media armónica de ambas, se sitúa en 80.0\%, reflejando el balance entre la capacidad de detección y la fiabilidad de sus predicciones.
 
@@ -329,6 +289,7 @@ El proceso de evaluación se aplicó sobre el mismo conjunto de datos, compuesto
                   \doublespacing
                   \small
                   \centering
+                  \caption{Matriz de Confusión del Isolation Forest}
                   \begin{tabular}{ >{\centering\arraybackslash}p{3cm} >{\centering\arraybackslash}p{3cm} >{\centering\arraybackslash}p{3cm} }
                         \hline
                                       & \multicolumn{2}{c}{\textbf{Esperado}}              \\
@@ -339,7 +300,6 @@ El proceso de evaluación se aplicó sobre el mismo conjunto de datos, compuesto
                         F             & 2164                                  & 87737      \\
                         \hline
                   \end{tabular}
-                  \caption{Matriz de Confusión del Isolation Forest}
                   \label{tab:confusion_matrix_isolation_forest}
             \end{table}
 
@@ -351,53 +311,19 @@ El proceso de evaluación se aplicó sobre el mismo conjunto de datos, compuesto
 
             VN (Verdaderos Negativos): 87,737
 
-            % \begin{figure}[ht!]
-            %       \centering
-            %       \includegraphics[width=0.65\textwidth]{IF/matriz_confusion.png}
-            %       \caption{Matriz de Confusión del Isolation Forest}
-            %       \label{fig:confusion_matrix_if}
-            % \end{figure}
-
       \item Métricas de Rendimiento
+      \myequation{Accuracy = \frac{(2877+87737)}{(2877+87737+2164+8031)}\approx 0.8989}{Exactitud para Isolation Forest}{Hand et al. (2020). \textit{An Introduction to the Principles of Data Science}. Springer.}
 
-            \begin{align}
-                  Accuracy = \frac{(2877+87737)}{(2877+87737+2164+8031)}\approx 0.8989
-                  \label{eq:accuracy_if}
-            \end{align}
-            \myequations{Accuracy para Isolation Forest}
+      \myequation{Error = \frac{(2164+8031)}{(2877+87737+2164+8031)}\approx 0.101}{Tasa de Error para Isolation Forest}{Hand et al. (2020). \textit{An Introduction to the Principles of Data Science}. Springer.}
 
+      \myequation{Recall = \frac{2877}{2877+8031}\approx 0.2638}{Sensibilidad para Isolation Forest}{Hand et al. (2020). \textit{An Introduction to the Principles of Data Science}. Springer.}
 
-            \begin{align}
-                  Error = \frac{(2164+8031)}{(2877+87737+2164+8031)}\approx 0.101
-                  \label{eq:error_if}
-            \end{align}
-            \myequations{Tasa de Error para Isolation Forest}
+      \myequation{Precision = \frac{2877}{2877+2164}\approx 0.5707}{Precisión para Isolation Forest}{Hand et al. (2020). \textit{An Introduction to the Principles of Data Science}. Springer.}
 
-            \begin{align}
-                  Recall = \frac{2877}{2877+8031}\approx 0.2638
-                  \label{eq:recall_if}
-            \end{align}
-            \myequations{Recall para Isolation Forest}
-
-            \begin{align}
-                  Precision = \frac{2877}{2877+2164}\approx 0.5707
-                  \label{eq:precision_if}
-            \end{align}
-            \myequations{Precision para Isolation Forest}
-
-            \begin{align}
-                  Specificity = \frac{87737}{87737+2164}\approx 0.9759
-                  \label{eq:specificity_if}
-            \end{align}
-            \myequations{Specificity para Isolation Forest}
-
-            \begin{align}
-                  F1_{score} = 2 \cdot \frac{Precision * Recall}{Precision+Recall} = 2 \cdot \frac{(0.5707 * 0.2638)}{(0.5707 + 0.2638)}\approx 0.361
-                  \label{eq:f1_if}
-            \end{align}
-            \myequations{F1 Score para Isolation Forest}
-
-\end{itemize}
+      \myequation{Specificity = \frac{87737}{87737+2164}\approx 0.9759}{Especificidad para Isolation Forest}{Hand et al. (2020). \textit{An Introduction to the Principles of Data Science}. Springer.} 
+      \myequation{F1_{score} = 2 \cdot \frac{(0.5707 * 0.2638)}{(0.5707 + 0.2638)}\approx 0.361}{F1 Score para Isolation Forest}{Hand et al. (2020). \textit{An Introduction to the Principles of Data Science}. Springer.}
+      
+      \end{itemize}
 
 \begin{figure}[ht!]
       \centering
@@ -463,6 +389,7 @@ En la gráfica de la figura \ref{fig:mse_lstm_optimized}, se visualiza el error 
       \doublespacing
       \small
       \centering
+      \caption{Matriz de Confusión del LSTM Autoencoder V2}
       \begin{tabular}{ >{\centering\arraybackslash}p{3cm} >{\centering\arraybackslash}p{3cm} >{\centering\arraybackslash}p{3cm} }
             \hline
                           & \multicolumn{2}{c}{\textbf{Esperado}}              \\
@@ -473,7 +400,6 @@ En la gráfica de la figura \ref{fig:mse_lstm_optimized}, se visualiza el error 
             F             & 2                                     & 45820      \\
             \hline
       \end{tabular}
-      \caption{Matriz de Confusión del LSTM Autoencoder V2}
       \label{tab:confusion_matrix_lstm_optimized}
 \end{table}
 
@@ -484,39 +410,12 @@ FN (Falsos Negativos): 0
 VN (Verdaderos Negativos): 45820
 Estas cifras se traducen en las siguientes métricas de rendimiento:
 
-\begin{itemize}
-      \item  Exactitud (Accuracy):
-            \begin{align}
-                  Accuracy = \frac{(19+45820)}{(19+45820+2+0)}\approx 0.9999
-                  \label{eq:accuracy_optimized}
-            \end{align}
-            \myequations{Accuracy para LSTM Autoencoder V2}
-      \item Tasa de error (Error Rate):
-            \begin{align}
-                  Error\ Rate = \frac{(2+0)}{(19+45820+2+0)}\approx 0.00004
-                  \label{eq:error_rate_optimized}
-            \end{align}
-            \myequations{Tasa de Error para LSTM Autoencoder V2}
-      \item Sensibilidad (Recall):
-            \begin{align}
-                  Recall = \frac{19}{19+0}\approx 1.0000
-                  \label{eq:recall_optimized}
-            \end{align}
-            \myequations{Recall para LSTM Autoencoder V2}
-      \item Precisión (Precision):
-            \begin{align}
-                  Precision = \frac{19}{19+2}\approx 0.9048
-                  \label{eq:precision_optimized}
-            \end{align}
-            \myequations{Precision para LSTM Autoencoder V2}
-      \item Especificidad (Specificity):
-            \begin{align}
-                  Specificity = \frac{45820}{45820+2}\approx 0.9999
-                  \label{eq:specificity_optimized}
-            \end{align}
-            \myequations{Specificity para LSTM Autoencoder V2}
-\end{itemize}
-
+\myequation{Accuracy = \frac{(19+45820)}{(19+45820+2+0)}\approx 0.9999}{Exactitud para LSTM Autoencoder V2}{Hand et al. (2020). \textit{An Introduction to the Principles of Data Science}. Springer.}
+\myequation{Error = \frac{(2+0)}{(19+45820+2+0)}\approx 0.00004}{Tasa de Error para LSTM Autoencoder V2}{Hand et al. (2020). \textit{An Introduction to the Principles of Data Science}. Springer.}
+\myequation{Recall = \frac{19}{19+0}\approx 1.0000}{Sensibilidad para LSTM Autoencoder V2}{Hand et al. (2020). \textit{An Introduction to the Principles of Data Science}. Springer.}
+\myequation{Precision = \frac{19}{19+2}\approx 0.9048}{Precisión para LSTM Autoencoder V2}{Hand et al. (2020). \textit{An Introduction to the Principles of Data Science}. Springer.}
+\myequation{Specificity = \frac{45820}{45820+2}\approx 0.9999}{Especificidad para LSTM Autoencoder V2}{Hand et al. (2020). \textit{An Introduction to the Principles of Data Science}. Springer.}
+\myequation{F1_{score} = 2 \cdot \frac{(0.9048 * 1.0000)}{(0.9048 + 1.0000)}\approx 0.95}{F1 Score para LSTM Autoencoder V2}{Hand et al. (2020). \textit{An Introduction to the Principles of Data Science}. Springer.}
 
 El análisis de las métricas de rendimiento cuantifica el desempeño del modelo V2. La exactitud general es del 99.98\%, similar al modelo previo, pero con mejoras notables en las métricas clave. La Sensibilidad (Recall) es del 100\%, indicando que el modelo ahora detecta todas las anomalías reales, un avance significativo. La Precisión ha aumentado a 90.48\%, lo que significa que casi todas sus alertas positivas son correctas. La puntuación F1 refleja este equilibrio mejorado, situándose en un valor más alto que antes, lo que confirma que los nuevos parametros han mejorado la capacidad del modelo para detectar anomalías de manera fiable y a reducir las falsas alarmas.
 
@@ -534,9 +433,9 @@ La arquitectura implementada se fundamenta en el modelo en capas, donde cada niv
 
 Los algoritmos de los distintos agentes se encuentran en el apéndice D
 
-\begin{figure}[ht!]
+\begin{figure}[H]
       \centering
-      \includegraphics[width=0.25\textwidth]{Arquitectura/Arquitectura3.png}
+      \includegraphics[width=0.65\textwidth]{Arquitectura/Arquitectura3.png}
       \caption{Arquitectura del sistema de monitoreo acústico para generar alertas en casos de emergencia}
       \label{fig:arquitectura}
 \end{figure}
@@ -573,6 +472,7 @@ La comparación entre los distintos dispositivos edge se resume en el apendice C
 
 La figura \ref{fig:notificaciones} muestra ejemplos de notificaciones enviadas por el sistema a través de Telegram, ilustrando cómo se comunica la información crítica al usuario final.
 
+El sistema final implementado se configura como una solución de Edge Computing autónoma que opera en el dispositivo Raspberry Pi. El flujo de trabajo comienza con la \textbf{Captación de Audio} a través de micrófonos conectados, garantizando la adquisición continua de la señal acústica. Estos datos brutos son inmediatamente procesados por la \textbf{Capa de Clasificación}, que utiliza agentes como YAMNet y Vosk para \textbf{seleccionar y transformar} el audio en eventos categóricos y representaciones semánticas (datos característicos). Esta información estructurada alimenta el \textbf{LSTM Autoencoder V2}, el modelo central de la \textbf{Capa de Detección de Anomalías}, el cual ha sido optimizado bayesianamente para calcular el error de reconstrucción en tiempo real. Finalmente, si el error excede el umbral redefinido, la \textbf{Capa de Gestión de Alertas} valida la situación, y la \textbf{Capa de Notificaciones} genera el \textbf{resultado obtenido} mediante un mensaje de emergencia a través de Telegram o SMTP. De este modo, el sistema ofrece un mecanismo de monitoreo acústico autonomo, capaz de detectar y notificar eventos anómalos en tiempo real, todo dentro del entorno local del dispositivo edge.
 % \usubsection{Validación del sistema de monitoreo acústico para generar alertas en casos de emergencia}
 
 % Para validar el funcionamiento del sistema de monitoreo acústico y su capacidad de generar alertas de emergencia, se procedió con un proceso de verificación. Este proceso se basó en el contraste directo del comportamiento del prototipo con los requerimientos operativos definidos, detallados en la Tabla \ref{tab:requerimientos_sistema_acustico}.
